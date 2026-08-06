@@ -1,0 +1,22 @@
+{
+  "created_at_utc": "2026-07-15T15:39:42.477747+00:00",
+  "decision_hash": "677d4558e0d3c59ed9f3ac32c94ace15d9aa8467ce4b54d8566663a6ba11cb9f",
+  "diagnostic_threshold_labels": {
+    "allowed_for_analysis_only": true,
+    "allowed_for_modeling": false
+  },
+  "direction_threshold_policy_id": "vol_scaled_k050_floor_5bps",
+  "permission_to_enter_phase3": "CONDITIONAL",
+  "permitted_phase3_scope": {
+    "cot_features": "NO",
+    "cross_market_features": "NO",
+    "garch_volatility_features": "CONDITIONAL",
+    "gold_only_technical_features": "YES",
+    "hurst_features": "CONDITIONAL",
+    "macro_features": "NO",
+    "safe_haven_diagnostics": "NO"
+  },
+  "phase2_target_status": "CLOSED",
+  "target_policy_id": "final_mvp_v1",
+  "trade_threshold_policy_id": "cost_aware_roundtrip_tc3_slip2_bps"
+}

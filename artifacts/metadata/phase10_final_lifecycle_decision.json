@@ -1,0 +1,58 @@
+{
+  "actual_submission_executed": false,
+  "anonymized_reviewer_identity_stored": false,
+  "claim_upgrade_detected": false,
+  "created_at_utc": "2026-07-15T15:41:55.834030+00:00",
+  "current_editorial_status": "NOT_SUBMITTED",
+  "decision_hash": "1df9444a9107a06951dd256b63050a72198612bc55ecde07b34866f5368b0559",
+  "new_analysis_executed": false,
+  "new_evidence_created": false,
+  "operating_mode_registry_hash": "382a16b62153e6f74eae9d91003777d841f1ba1fbd5556e86f83c306016b388b",
+  "operating_mode_status": {
+    "continued_submission_followup": {
+      "active": true,
+      "final_mode_status": "OPEN"
+    },
+    "controlled_submission_execution": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    },
+    "editorial_revision": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    },
+    "extension_dispatch": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    },
+    "post_submission_tracking": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    },
+    "project_closure": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    },
+    "publication_archiving": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    },
+    "resubmission_governance": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    },
+    "reviewer_response": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    },
+    "transfer_package_execution": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    }
+  },
+  "permission_to_enter_phase11": "CONDITIONAL",
+  "phase10_lifecycle_status": "CONDITIONAL",
+  "portal_credentials_stored": false,
+  "source_decision_hash": "45d50610663a7e43ada50ceb08f57ae5c7f6fd9d16bcd0d84dbcb430eac4af35",
+  "submission_status": "BLOCKED_PENDING_JOURNAL_SELECTION"
+}

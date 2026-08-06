@@ -1,0 +1,70 @@
+{
+  "actual_submission_executed": false,
+  "anonymized_reviewer_identity_stored": false,
+  "claim_upgrade_detected": false,
+  "created_at_utc": "2026-07-15T15:41:55.787450+00:00",
+  "current_editorial_status": "NOT_SUBMITTED",
+  "decision_hash": "c1030dbfd811d707ddefad09574a2684f96ede49d3e9916bb6c3bebb74c4042d",
+  "new_analysis_executed": false,
+  "new_evidence_created": false,
+  "operating_mode_registry_hash": "270b41f83799bd83526ba60424dfe41c4b9f3d3be8036163aa8abbe5704a6a9b",
+  "operating_mode_status": {
+    "continued_lifecycle_monitoring": {
+      "active": true,
+      "final_mode_status": "OPEN"
+    },
+    "controlled_submission_execution": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    },
+    "editorial_revision_continuation": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    },
+    "extension_orchestration": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    },
+    "extension_result_reentry": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    },
+    "post_closure_audit": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    },
+    "post_submission_tracking": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    },
+    "project_closure_confirmation": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    },
+    "publication_archiving_continuation": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    },
+    "publication_metadata_update": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    },
+    "resubmission_governance_continuation": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    },
+    "reviewer_response_continuation": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    },
+    "transfer_package_execution_continuation": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    }
+  },
+  "permission_to_enter_phase9": "CONDITIONAL",
+  "phase8_submission_execution_status": "CONDITIONAL",
+  "portal_credentials_stored": false,
+  "source_decision_hash": "f774ed96cbff5220e02231b8b2727869faf531627b800b90c86875fa286053d4",
+  "submission_status": "BLOCKED_PENDING_JOURNAL_SELECTION"
+}

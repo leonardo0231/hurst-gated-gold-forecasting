@@ -1,0 +1,19 @@
+{
+  "created_at_utc": "2026-07-15T15:39:42.289274+00:00",
+  "data_mode": "SIMULATED",
+  "decision_hash": "60f50f528f5431507ad158a3b4bb5615f4f76648276d130212117bfb73adcda9",
+  "paper_grade_limitation": "Settlement, daily open interest, verified roll metadata, and exchange timestamps are unavailable.",
+  "permission_to_enter_phase2": "CONDITIONAL",
+  "permitted_scope": {
+    "cot_features": "NO",
+    "cross_market_features": "NO",
+    "garch_volatility_features": "CONDITIONAL",
+    "gold_only_target_construction": "YES",
+    "gold_only_technical_features": "YES",
+    "hurst_features": "CONDITIONAL",
+    "macro_features": "NO",
+    "safe_haven_diagnostics": "NO"
+  },
+  "phase1_mvp_data_status": "CLOSED_FOR_MVP",
+  "phase1_paper_grade_data_status": "NOT_READY"
+}

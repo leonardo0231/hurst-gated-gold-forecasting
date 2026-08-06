@@ -1,0 +1,18 @@
+{
+  "created_at_utc": "2026-07-15T15:41:55.744391+00:00",
+  "decision_hash": "065a87fd8424875241cfad5f2a25004d23b4e0ddfec41a0f6562ed7441643380",
+  "full_manuscript_draft_hash": "ac030bb22670ae83101de7b1c54a10b1457249e6015a17cd5fa84eefc6374cc2",
+  "full_manuscript_draft_path": "reports\\phase6\\manuscript\\full_manuscript_draft.md",
+  "new_evidence_created": false,
+  "paper_grade_claims": "NO",
+  "permission_to_enter_phase7": "CONDITIONAL",
+  "permitted_phase7_scope": {
+    "claim_upgrade": "NO",
+    "journal_formatting": "YES",
+    "language_editing": "YES",
+    "new_analysis": "NO",
+    "reviewer_response": "CONDITIONAL",
+    "submission_package": "YES"
+  },
+  "phase6_manuscript_status": "CLOSED"
+}

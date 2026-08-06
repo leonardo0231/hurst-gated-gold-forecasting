@@ -1,0 +1,42 @@
+{
+  "mode_conflicts_detected": false,
+  "modes": {
+    "editorial_revision": {
+      "activation_reason": "trigger_absent",
+      "active": false,
+      "mode_status": "NOT_ACTIVE",
+      "required_registries": []
+    },
+    "post_submission_tracking": {
+      "activation_reason": "trigger_absent",
+      "active": false,
+      "mode_status": "NOT_ACTIVE",
+      "required_registries": []
+    },
+    "publication_archiving": {
+      "activation_reason": "trigger_absent",
+      "active": false,
+      "mode_status": "NOT_ACTIVE",
+      "required_registries": []
+    },
+    "reviewer_response": {
+      "activation_reason": "trigger_absent",
+      "active": false,
+      "mode_status": "NOT_ACTIVE",
+      "required_registries": []
+    },
+    "submission_followup": {
+      "activation_reason": "generic_package_requires_target_journal",
+      "active": true,
+      "mode_status": "ACTIVE",
+      "required_registries": []
+    },
+    "transfer_governance": {
+      "activation_reason": "trigger_absent",
+      "active": false,
+      "mode_status": "NOT_ACTIVE",
+      "required_registries": []
+    }
+  },
+  "operating_mode_registry_id": "phase9_operating_mode_registry_v1"
+}

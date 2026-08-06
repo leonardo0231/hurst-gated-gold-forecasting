@@ -1,0 +1,77 @@
+{
+  "artifacts": [
+    {
+      "artifact_name": "gold_feature_matrix",
+      "artifact_status": "CREATED",
+      "enabled_in_config": true,
+      "hash": "d2d6455b2b6fb4a26149f307a300b6814d15952c8ee14cf24c89ab408fb03317",
+      "object_type": "artifact",
+      "path": "data\\processed\\features\\gold_feature_matrix.parquet",
+      "required": true,
+      "required_if": null,
+      "validation_status": "PASS"
+    },
+    {
+      "artifact_name": "phase3_modeling_base_gold_only",
+      "artifact_status": "CREATED",
+      "enabled_in_config": true,
+      "hash": "9aff61bb64951a3ae9dc9e85fa02b0668d267a53b1f5fda6fce72e22b7eb7c8c",
+      "object_type": "artifact",
+      "path": "data\\processed\\modeling_base\\phase3_modeling_base_gold_only.parquet",
+      "required": true,
+      "required_if": null,
+      "validation_status": "PASS"
+    },
+    {
+      "artifact_name": "phase3_feature_formula_registry",
+      "artifact_status": "CREATED",
+      "enabled_in_config": true,
+      "hash": "0b4e4c89b32ae311fe5a34001ce5a5c5fddabe274b0bf5f918972eb23c13fae7",
+      "object_type": "artifact",
+      "path": "artifacts\\metadata\\phase3_feature_formula_registry.json",
+      "required": true,
+      "required_if": null,
+      "validation_status": "PASS"
+    },
+    {
+      "artifact_name": "phase3_feature_registry",
+      "artifact_status": "CREATED",
+      "enabled_in_config": true,
+      "hash": "4febf159416a29c64be44aca81fd0f0f855c5631af16c459dcba8acf6eb15916",
+      "object_type": "artifact",
+      "path": "artifacts\\metadata\\phase3_feature_registry.json",
+      "required": true,
+      "required_if": null,
+      "validation_status": "PASS"
+    },
+    {
+      "artifact_name": "feature_leakage_audit_report",
+      "artifact_status": "CREATED",
+      "enabled_in_config": true,
+      "hash": "21afb9fa12abf58716b2d791998257d10ac322ae4fe3fa53af335ac6d63cbd34",
+      "object_type": "artifact",
+      "path": "artifacts\\metadata\\feature_leakage_audit_report.csv",
+      "required": true,
+      "required_if": null,
+      "validation_status": "PASS"
+    },
+    {
+      "artifact_name": "phase3_final_feature_decision",
+      "artifact_status": "CREATED",
+      "enabled_in_config": true,
+      "hash": "9993b2c663071ec973c0d4f086dbe2eaa68362849d542db255af94869ed4557b",
+      "object_type": "artifact",
+      "path": "artifacts\\metadata\\phase3_final_feature_decision.json",
+      "required": true,
+      "required_if": null,
+      "validation_status": "PASS"
+    }
+  ],
+  "authoritative_format": "json",
+  "created_at_utc": "2026-07-15T15:39:42.756721+00:00",
+  "phase": 3,
+  "self_hash_excluded": [
+    "artifacts\\metadata\\phase3_artifact_manifest.json",
+    "artifacts\\metadata\\phase3_artifact_manifest.csv"
+  ]
+}

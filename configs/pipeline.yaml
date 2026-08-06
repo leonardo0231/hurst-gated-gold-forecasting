@@ -1,0 +1,48 @@
+project:
+  name: HGE-Hybrid Gold Forecasting Framework
+  mode: mvp
+  trading_mode: offline
+  seed: 42
+data:
+  source: sample
+  primary_asset: COMEX Gold Futures continuous front-month, back-adjusted
+  symbol: GC
+  price_field: close
+  decision_hour_utc: 22
+  same_day_cross_market_allowed: false
+  paper_grade_status: NOT_READY
+targets:
+  horizons: [1, 5, 10, 20]
+  target_policy_id: final_mvp_v1
+  direction_k: 0.5
+  threshold_sigma_window: 63
+  threshold_sigma_min_periods: 40
+  threshold_floor_bps: 5.0
+  transaction_cost_bps: 3.0
+  slippage_bps: 2.0
+  cost_convention: round_trip
+  roll_target_policy: keep_and_flag
+features:
+  feature_set_id: gold_only_mvp_feature_set_v1
+  hurst_windows: [63, 126]
+  technical_windows: [5, 10, 20, 63]
+  garch_status: DEFERRED
+modeling:
+  locked_test_fraction: 0.20
+  validation_fraction: 0.15
+  min_train_rows: 160
+  n_walk_forward_folds: 3
+  model_families: [baseline, linear_regularized, tree_ensemble]
+  final_refit: true
+evaluation:
+  bootstrap_iterations: 5000
+  bootstrap_seed: 42
+  block_length: 20
+  costs_bps: [1, 3, 5, 10]
+  primary_backtest_horizon: 1
+governance:
+  target_journal: null
+  actual_submission_enabled: false
+  reviewer_response_enabled: false
+  new_analysis_enabled: false
+  claim_upgrade_enabled: false

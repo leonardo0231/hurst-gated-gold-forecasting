@@ -1,0 +1,562 @@
+{
+  "formulas": [
+    {
+      "causal": true,
+      "created_by_module": "hge_gold.features",
+      "domain_validity_rule": "all prices > 0",
+      "feature_group": "technical",
+      "feature_name": "ret_mean_5",
+      "formula": "mean(ret[t-4:t])",
+      "includes_r_t": true,
+      "input_columns": [
+        "gc_price_for_return"
+      ],
+      "input_series": "log_price",
+      "log_domain_required": true,
+      "lookback_window": 5,
+      "min_periods": 5,
+      "output_unit": "log_return_or_state",
+      "uses_returns_up_to_t": true
+    },
+    {
+      "causal": true,
+      "created_by_module": "hge_gold.features",
+      "domain_validity_rule": "all prices > 0",
+      "feature_group": "volatility",
+      "feature_name": "rolling_vol_5",
+      "formula": "std(ret[t-4:t])",
+      "includes_r_t": true,
+      "input_columns": [
+        "gc_price_for_return"
+      ],
+      "input_series": "log_price",
+      "log_domain_required": true,
+      "lookback_window": 5,
+      "min_periods": 5,
+      "output_unit": "log_return_or_state",
+      "uses_returns_up_to_t": true
+    },
+    {
+      "causal": true,
+      "created_by_module": "hge_gold.features",
+      "domain_validity_rule": "all prices > 0",
+      "feature_group": "technical",
+      "feature_name": "momentum_5",
+      "formula": "log(P_t/P_t-5)",
+      "includes_r_t": true,
+      "input_columns": [
+        "gc_price_for_return"
+      ],
+      "input_series": "log_price",
+      "log_domain_required": true,
+      "lookback_window": 5,
+      "min_periods": 5,
+      "output_unit": "log_return_or_state",
+      "uses_returns_up_to_t": true
+    },
+    {
+      "causal": true,
+      "created_by_module": "hge_gold.features",
+      "domain_validity_rule": "all prices > 0",
+      "feature_group": "technical",
+      "feature_name": "ma_distance_5",
+      "formula": "log(P_t/SMA_5)",
+      "includes_r_t": true,
+      "input_columns": [
+        "gc_price_for_return"
+      ],
+      "input_series": "log_price",
+      "log_domain_required": true,
+      "lookback_window": 5,
+      "min_periods": 5,
+      "output_unit": "log_return_or_state",
+      "uses_returns_up_to_t": true
+    },
+    {
+      "causal": true,
+      "created_by_module": "hge_gold.features",
+      "domain_validity_rule": "all prices > 0",
+      "feature_group": "technical",
+      "feature_name": "ret_mean_10",
+      "formula": "mean(ret[t-9:t])",
+      "includes_r_t": true,
+      "input_columns": [
+        "gc_price_for_return"
+      ],
+      "input_series": "log_price",
+      "log_domain_required": true,
+      "lookback_window": 10,
+      "min_periods": 10,
+      "output_unit": "log_return_or_state",
+      "uses_returns_up_to_t": true
+    },
+    {
+      "causal": true,
+      "created_by_module": "hge_gold.features",
+      "domain_validity_rule": "all prices > 0",
+      "feature_group": "volatility",
+      "feature_name": "rolling_vol_10",
+      "formula": "std(ret[t-9:t])",
+      "includes_r_t": true,
+      "input_columns": [
+        "gc_price_for_return"
+      ],
+      "input_series": "log_price",
+      "log_domain_required": true,
+      "lookback_window": 10,
+      "min_periods": 10,
+      "output_unit": "log_return_or_state",
+      "uses_returns_up_to_t": true
+    },
+    {
+      "causal": true,
+      "created_by_module": "hge_gold.features",
+      "domain_validity_rule": "all prices > 0",
+      "feature_group": "technical",
+      "feature_name": "momentum_10",
+      "formula": "log(P_t/P_t-10)",
+      "includes_r_t": true,
+      "input_columns": [
+        "gc_price_for_return"
+      ],
+      "input_series": "log_price",
+      "log_domain_required": true,
+      "lookback_window": 10,
+      "min_periods": 10,
+      "output_unit": "log_return_or_state",
+      "uses_returns_up_to_t": true
+    },
+    {
+      "causal": true,
+      "created_by_module": "hge_gold.features",
+      "domain_validity_rule": "all prices > 0",
+      "feature_group": "technical",
+      "feature_name": "ma_distance_10",
+      "formula": "log(P_t/SMA_10)",
+      "includes_r_t": true,
+      "input_columns": [
+        "gc_price_for_return"
+      ],
+      "input_series": "log_price",
+      "log_domain_required": true,
+      "lookback_window": 10,
+      "min_periods": 10,
+      "output_unit": "log_return_or_state",
+      "uses_returns_up_to_t": true
+    },
+    {
+      "causal": true,
+      "created_by_module": "hge_gold.features",
+      "domain_validity_rule": "all prices > 0",
+      "feature_group": "technical",
+      "feature_name": "ret_mean_20",
+      "formula": "mean(ret[t-19:t])",
+      "includes_r_t": true,
+      "input_columns": [
+        "gc_price_for_return"
+      ],
+      "input_series": "log_price",
+      "log_domain_required": true,
+      "lookback_window": 20,
+      "min_periods": 20,
+      "output_unit": "log_return_or_state",
+      "uses_returns_up_to_t": true
+    },
+    {
+      "causal": true,
+      "created_by_module": "hge_gold.features",
+      "domain_validity_rule": "all prices > 0",
+      "feature_group": "volatility",
+      "feature_name": "rolling_vol_20",
+      "formula": "std(ret[t-19:t])",
+      "includes_r_t": true,
+      "input_columns": [
+        "gc_price_for_return"
+      ],
+      "input_series": "log_price",
+      "log_domain_required": true,
+      "lookback_window": 20,
+      "min_periods": 20,
+      "output_unit": "log_return_or_state",
+      "uses_returns_up_to_t": true
+    },
+    {
+      "causal": true,
+      "created_by_module": "hge_gold.features",
+      "domain_validity_rule": "all prices > 0",
+      "feature_group": "technical",
+      "feature_name": "momentum_20",
+      "formula": "log(P_t/P_t-20)",
+      "includes_r_t": true,
+      "input_columns": [
+        "gc_price_for_return"
+      ],
+      "input_series": "log_price",
+      "log_domain_required": true,
+      "lookback_window": 20,
+      "min_periods": 20,
+      "output_unit": "log_return_or_state",
+      "uses_returns_up_to_t": true
+    },
+    {
+      "causal": true,
+      "created_by_module": "hge_gold.features",
+      "domain_validity_rule": "all prices > 0",
+      "feature_group": "technical",
+      "feature_name": "ma_distance_20",
+      "formula": "log(P_t/SMA_20)",
+      "includes_r_t": true,
+      "input_columns": [
+        "gc_price_for_return"
+      ],
+      "input_series": "log_price",
+      "log_domain_required": true,
+      "lookback_window": 20,
+      "min_periods": 20,
+      "output_unit": "log_return_or_state",
+      "uses_returns_up_to_t": true
+    },
+    {
+      "causal": true,
+      "created_by_module": "hge_gold.features",
+      "domain_validity_rule": "all prices > 0",
+      "feature_group": "technical",
+      "feature_name": "ret_mean_63",
+      "formula": "mean(ret[t-62:t])",
+      "includes_r_t": true,
+      "input_columns": [
+        "gc_price_for_return"
+      ],
+      "input_series": "log_price",
+      "log_domain_required": true,
+      "lookback_window": 63,
+      "min_periods": 63,
+      "output_unit": "log_return_or_state",
+      "uses_returns_up_to_t": true
+    },
+    {
+      "causal": true,
+      "created_by_module": "hge_gold.features",
+      "domain_validity_rule": "all prices > 0",
+      "feature_group": "volatility",
+      "feature_name": "rolling_vol_63",
+      "formula": "std(ret[t-62:t])",
+      "includes_r_t": true,
+      "input_columns": [
+        "gc_price_for_return"
+      ],
+      "input_series": "log_price",
+      "log_domain_required": true,
+      "lookback_window": 63,
+      "min_periods": 63,
+      "output_unit": "log_return_or_state",
+      "uses_returns_up_to_t": true
+    },
+    {
+      "causal": true,
+      "created_by_module": "hge_gold.features",
+      "domain_validity_rule": "all prices > 0",
+      "feature_group": "technical",
+      "feature_name": "momentum_63",
+      "formula": "log(P_t/P_t-63)",
+      "includes_r_t": true,
+      "input_columns": [
+        "gc_price_for_return"
+      ],
+      "input_series": "log_price",
+      "log_domain_required": true,
+      "lookback_window": 63,
+      "min_periods": 63,
+      "output_unit": "log_return_or_state",
+      "uses_returns_up_to_t": true
+    },
+    {
+      "causal": true,
+      "created_by_module": "hge_gold.features",
+      "domain_validity_rule": "all prices > 0",
+      "feature_group": "technical",
+      "feature_name": "ma_distance_63",
+      "formula": "log(P_t/SMA_63)",
+      "includes_r_t": true,
+      "input_columns": [
+        "gc_price_for_return"
+      ],
+      "input_series": "log_price",
+      "log_domain_required": true,
+      "lookback_window": 63,
+      "min_periods": 63,
+      "output_unit": "log_return_or_state",
+      "uses_returns_up_to_t": true
+    },
+    {
+      "causal": true,
+      "created_by_module": "hge_gold.features",
+      "domain_validity_rule": "all prices > 0",
+      "feature_group": "technical",
+      "feature_name": "ret_lag_1",
+      "formula": "log(P_t/P_t-1)",
+      "includes_r_t": true,
+      "input_columns": [
+        "gc_price_for_return"
+      ],
+      "input_series": "log_price",
+      "log_domain_required": true,
+      "lookback_window": 1,
+      "min_periods": 1,
+      "output_unit": "log_return_or_state",
+      "uses_returns_up_to_t": true
+    },
+    {
+      "causal": true,
+      "created_by_module": "hge_gold.features",
+      "domain_validity_rule": "all prices > 0",
+      "feature_group": "technical",
+      "feature_name": "reversal_5",
+      "formula": "-log(P_t/P_t-5)",
+      "includes_r_t": true,
+      "input_columns": [
+        "gc_price_for_return"
+      ],
+      "input_series": "log_price",
+      "log_domain_required": true,
+      "lookback_window": 5,
+      "min_periods": 5,
+      "output_unit": "log_return_or_state",
+      "uses_returns_up_to_t": true
+    },
+    {
+      "causal": true,
+      "created_by_module": "hge_gold.features",
+      "domain_validity_rule": "all prices > 0",
+      "feature_group": "technical",
+      "feature_name": "rolling_skew_20",
+      "formula": "skew(ret[t-19:t])",
+      "includes_r_t": true,
+      "input_columns": [
+        "gc_price_for_return"
+      ],
+      "input_series": "log_price",
+      "log_domain_required": true,
+      "lookback_window": 20,
+      "min_periods": 20,
+      "output_unit": "log_return_or_state",
+      "uses_returns_up_to_t": true
+    },
+    {
+      "causal": true,
+      "created_by_module": "hge_gold.features",
+      "domain_validity_rule": "all prices > 0",
+      "feature_group": "technical",
+      "feature_name": "rolling_kurtosis_20",
+      "formula": "kurt(ret[t-19:t])",
+      "includes_r_t": true,
+      "input_columns": [
+        "gc_price_for_return"
+      ],
+      "input_series": "log_price",
+      "log_domain_required": true,
+      "lookback_window": 20,
+      "min_periods": 20,
+      "output_unit": "log_return_or_state",
+      "uses_returns_up_to_t": true
+    },
+    {
+      "causal": true,
+      "created_by_module": "hge_gold.features",
+      "domain_validity_rule": "all prices > 0",
+      "feature_group": "technical",
+      "feature_name": "rolling_drawdown_63",
+      "formula": "P_t/max(P[t-62:t])-1",
+      "includes_r_t": true,
+      "input_columns": [
+        "gc_price_for_return"
+      ],
+      "input_series": "log_price",
+      "log_domain_required": true,
+      "lookback_window": 63,
+      "min_periods": 63,
+      "output_unit": "log_return_or_state",
+      "uses_returns_up_to_t": true
+    },
+    {
+      "causal": true,
+      "created_by_module": "hge_gold.features",
+      "domain_validity_rule": "all prices > 0",
+      "feature_group": "technical",
+      "feature_name": "range_hl_1",
+      "formula": "log(high_t/low_t)",
+      "includes_r_t": true,
+      "input_columns": [
+        "gc_price_for_return"
+      ],
+      "input_series": "log_price",
+      "log_domain_required": true,
+      "lookback_window": 1,
+      "min_periods": 1,
+      "output_unit": "log_return_or_state",
+      "uses_returns_up_to_t": true
+    },
+    {
+      "causal": true,
+      "created_by_module": "hge_gold.features",
+      "domain_validity_rule": "all prices > 0",
+      "feature_group": "volatility",
+      "feature_name": "ewma_vol_20",
+      "formula": "causal_EWMA_std_20(ret)",
+      "includes_r_t": true,
+      "input_columns": [
+        "gc_price_for_return"
+      ],
+      "input_series": "log_price",
+      "log_domain_required": true,
+      "lookback_window": 20,
+      "min_periods": 20,
+      "output_unit": "log_return_or_state",
+      "uses_returns_up_to_t": true
+    },
+    {
+      "causal": true,
+      "created_by_module": "hge_gold.features",
+      "domain_validity_rule": "all prices > 0",
+      "feature_group": "volatility",
+      "feature_name": "realized_var_trailing_20",
+      "formula": "sum(ret[t-19:t]^2)",
+      "includes_r_t": true,
+      "input_columns": [
+        "gc_price_for_return"
+      ],
+      "input_series": "log_price",
+      "log_domain_required": true,
+      "lookback_window": 20,
+      "min_periods": 20,
+      "output_unit": "log_return_or_state",
+      "uses_returns_up_to_t": true
+    },
+    {
+      "causal": true,
+      "created_by_module": "hge_gold.features",
+      "domain_validity_rule": "all prices > 0",
+      "feature_group": "hurst",
+      "feature_name": "hurst_rs_63",
+      "formula": "R/S(log_price[t-62:t])",
+      "includes_r_t": true,
+      "input_columns": [
+        "gc_price_for_return"
+      ],
+      "input_series": "log_price",
+      "log_domain_required": true,
+      "lookback_window": 63,
+      "min_periods": 63,
+      "output_unit": "log_return_or_state",
+      "uses_returns_up_to_t": true
+    },
+    {
+      "causal": true,
+      "created_by_module": "hge_gold.features",
+      "domain_validity_rule": "all prices > 0",
+      "feature_group": "hurst",
+      "feature_name": "hurst_rs_126",
+      "formula": "R/S(log_price[t-125:t])",
+      "includes_r_t": true,
+      "input_columns": [
+        "gc_price_for_return"
+      ],
+      "input_series": "log_price",
+      "log_domain_required": true,
+      "lookback_window": 126,
+      "min_periods": 126,
+      "output_unit": "log_return_or_state",
+      "uses_returns_up_to_t": true
+    },
+    {
+      "causal": true,
+      "created_by_module": "hge_gold.features",
+      "domain_validity_rule": "all prices > 0",
+      "feature_group": "hurst",
+      "feature_name": "hurst_zscore_252",
+      "formula": "rolling causal zscore(H,252)",
+      "includes_r_t": true,
+      "input_columns": [
+        "gc_price_for_return"
+      ],
+      "input_series": "log_price",
+      "log_domain_required": true,
+      "lookback_window": 252,
+      "min_periods": 252,
+      "output_unit": "log_return_or_state",
+      "uses_returns_up_to_t": true
+    },
+    {
+      "causal": true,
+      "created_by_module": "hge_gold.features",
+      "domain_validity_rule": "all prices > 0",
+      "feature_group": "hurst",
+      "feature_name": "hurst_delta_20",
+      "formula": "H_t-H_t-20",
+      "includes_r_t": true,
+      "input_columns": [
+        "gc_price_for_return"
+      ],
+      "input_series": "log_price",
+      "log_domain_required": true,
+      "lookback_window": 20,
+      "min_periods": 20,
+      "output_unit": "log_return_or_state",
+      "uses_returns_up_to_t": true
+    },
+    {
+      "causal": true,
+      "created_by_module": "hge_gold.features",
+      "domain_validity_rule": "H in [0,1]",
+      "feature_group": "hurst",
+      "feature_name": "hurst_regime_label",
+      "formula": "fixed thresholds 0.45/0.55",
+      "includes_r_t": true,
+      "input_columns": [
+        "hurst_rs_126"
+      ],
+      "input_series": "hurst",
+      "log_domain_required": false,
+      "lookback_window": 1,
+      "min_periods": 1,
+      "output_unit": "category",
+      "uses_returns_up_to_t": true
+    },
+    {
+      "causal": true,
+      "created_by_module": "hge_gold.features",
+      "domain_validity_rule": "std > 0",
+      "feature_group": "volatility",
+      "feature_name": "vol_zscore_252",
+      "formula": "rolling causal zscore(vol20,252)",
+      "includes_r_t": true,
+      "input_columns": [
+        "rolling_vol_20"
+      ],
+      "input_series": "volatility",
+      "log_domain_required": false,
+      "lookback_window": 252,
+      "min_periods": 126,
+      "output_unit": "zscore",
+      "uses_returns_up_to_t": true
+    },
+    {
+      "causal": true,
+      "created_by_module": "hge_gold.features",
+      "domain_validity_rule": "finite zscore",
+      "feature_group": "volatility",
+      "feature_name": "vol_regime_label",
+      "formula": "fixed z thresholds -1/1",
+      "includes_r_t": true,
+      "input_columns": [
+        "vol_zscore_252"
+      ],
+      "input_series": "volatility",
+      "log_domain_required": false,
+      "lookback_window": 1,
+      "min_periods": 1,
+      "output_unit": "category",
+      "uses_returns_up_to_t": true
+    }
+  ]
+}

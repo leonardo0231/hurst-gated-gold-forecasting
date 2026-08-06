@@ -1,0 +1,54 @@
+{
+  "components": [
+    {
+      "artifact_name": "manuscript_submission_ready",
+      "artifact_status": "CREATED",
+      "enabled_in_config": true,
+      "hash": "ac030bb22670ae83101de7b1c54a10b1457249e6015a17cd5fa84eefc6374cc2",
+      "object_type": "artifact",
+      "path": "reports\\phase7\\submission\\manuscript_submission_ready.md",
+      "required": true,
+      "required_if": null,
+      "validation_status": "PASS"
+    },
+    {
+      "artifact_name": "cover_letter",
+      "artifact_status": "CREATED",
+      "enabled_in_config": true,
+      "hash": "ca82cda277a40e7da9b75437b37727ae71782bfffc6fac9be0a5a9d757cc01fd",
+      "object_type": "artifact",
+      "path": "reports\\phase7\\submission\\cover_letter.md",
+      "required": true,
+      "required_if": null,
+      "validation_status": "PASS"
+    },
+    {
+      "artifact_name": "availability_statements",
+      "artifact_status": "CREATED",
+      "enabled_in_config": true,
+      "hash": "10f4c071a5a2687287919aace6b4282aa83efd7ce6aead40e2f3419dfbd45235",
+      "object_type": "artifact",
+      "path": "reports\\phase7\\submission\\availability_statements.md",
+      "required": true,
+      "required_if": null,
+      "validation_status": "PASS"
+    },
+    {
+      "artifact_name": "phase7_generic_submission_package",
+      "artifact_status": "CREATED",
+      "enabled_in_config": true,
+      "hash": "e7a58a41dc5f5ee45e2d8484317eeffe45ac503dc7670508363f3396e4922166",
+      "object_type": "artifact",
+      "path": "reports\\phase7\\submission\\phase7_generic_submission_package.zip",
+      "required": true,
+      "required_if": null,
+      "validation_status": "PASS"
+    }
+  ],
+  "journal_specific_formatting_status": "CONDITIONAL",
+  "package_hash": "0325a2b233ad4bd2f0cfc21559b03f02b7f5198fac2faea813962e4ceca7ebb0",
+  "submission_package_id": "phase7_submission_package_v1",
+  "target_journal": null,
+  "zip_binary_hash": "e7a58a41dc5f5ee45e2d8484317eeffe45ac503dc7670508363f3396e4922166",
+  "zip_binary_hash_used_for_audit_only": true
+}

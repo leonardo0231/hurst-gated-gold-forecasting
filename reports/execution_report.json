@@ -1,0 +1,26 @@
+{
+  "data_execution": "SIMULATED_NON_CONFIDENTIAL",
+  "external_submission": "NOT_EXECUTED",
+  "locked_test_y_true_present_in_phase4_predictions": false,
+  "platform": "Windows-10-10.0.26200-SP0",
+  "project": "HGE-Hybrid Gold Forecasting Framework",
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "run_finished_at_utc": "2026-07-15T15:41:55.875857+00:00",
+  "run_started_at_utc": "2026-07-15T15:39:42.086952+00:00",
+  "selected_model_count": 16,
+  "statuses": {
+    "phase0": "CLOSED",
+    "phase1": "CLOSED_FOR_MVP / PAPER_GRADE_NOT_READY",
+    "phase10": "CONDITIONAL (NO_EXTERNAL_SUBMISSION_AUTHORIZED)",
+    "phase11": "CONDITIONAL (NO_EXTERNAL_SUBMISSION_AUTHORIZED)",
+    "phase2": "CLOSED",
+    "phase3": "CONDITIONAL (GARCH_DEFERRED)",
+    "phase4": "CLOSED",
+    "phase5": "CLOSED (SAMPLE_EVIDENCE_ONLY)",
+    "phase6": "CLOSED",
+    "phase7": "CONDITIONAL (TARGET_JOURNAL_NOT_SELECTED)",
+    "phase8": "CONDITIONAL (NO_EXTERNAL_SUBMISSION_AUTHORIZED)",
+    "phase9": "CONDITIONAL (NO_EXTERNAL_SUBMISSION_AUTHORIZED)"
+  },
+  "trading_mode": "offline"
+}

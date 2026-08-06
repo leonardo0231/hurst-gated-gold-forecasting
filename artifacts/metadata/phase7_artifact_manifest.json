@@ -1,0 +1,99 @@
+{
+  "artifacts": [
+    {
+      "artifact_name": "manuscript_submission_ready",
+      "artifact_status": "CREATED",
+      "enabled_in_config": true,
+      "hash": "ac030bb22670ae83101de7b1c54a10b1457249e6015a17cd5fa84eefc6374cc2",
+      "object_type": "artifact",
+      "path": "reports\\phase7\\submission\\manuscript_submission_ready.md",
+      "required": true,
+      "required_if": null,
+      "validation_status": "PASS"
+    },
+    {
+      "artifact_name": "cover_letter",
+      "artifact_status": "CREATED",
+      "enabled_in_config": true,
+      "hash": "ca82cda277a40e7da9b75437b37727ae71782bfffc6fac9be0a5a9d757cc01fd",
+      "object_type": "artifact",
+      "path": "reports\\phase7\\submission\\cover_letter.md",
+      "required": true,
+      "required_if": null,
+      "validation_status": "PASS"
+    },
+    {
+      "artifact_name": "availability_statements",
+      "artifact_status": "CREATED",
+      "enabled_in_config": true,
+      "hash": "10f4c071a5a2687287919aace6b4282aa83efd7ce6aead40e2f3419dfbd45235",
+      "object_type": "artifact",
+      "path": "reports\\phase7\\submission\\availability_statements.md",
+      "required": true,
+      "required_if": null,
+      "validation_status": "PASS"
+    },
+    {
+      "artifact_name": "phase7_generic_submission_package",
+      "artifact_status": "CREATED",
+      "enabled_in_config": true,
+      "hash": "e7a58a41dc5f5ee45e2d8484317eeffe45ac503dc7670508363f3396e4922166",
+      "object_type": "artifact",
+      "path": "reports\\phase7\\submission\\phase7_generic_submission_package.zip",
+      "required": true,
+      "required_if": null,
+      "validation_status": "PASS"
+    },
+    {
+      "artifact_name": "phase7_submission_package_manifest",
+      "artifact_status": "CREATED",
+      "enabled_in_config": true,
+      "hash": "21924f52c8a5553005252bfd67784695439684552d53f39e60f517b13dcaf6e4",
+      "object_type": "artifact",
+      "path": "artifacts\\metadata\\phase7_submission_package_manifest.json",
+      "required": true,
+      "required_if": null,
+      "validation_status": "PASS"
+    },
+    {
+      "artifact_name": "phase7_reviewer_request_registry",
+      "artifact_status": "CREATED",
+      "enabled_in_config": true,
+      "hash": "99d02ca0054561498286c1e8b9b212ceb2227298f21e5368b1e084f44fb335c4",
+      "object_type": "artifact",
+      "path": "artifacts\\metadata\\phase7_reviewer_request_registry.json",
+      "required": true,
+      "required_if": null,
+      "validation_status": "PASS"
+    },
+    {
+      "artifact_name": "phase7_extension_request_registry",
+      "artifact_status": "CREATED",
+      "enabled_in_config": true,
+      "hash": "9fa6445f3e69f78e2e0a1523a7712866f4e6df636d33e3a5844aec73a2daf712",
+      "object_type": "artifact",
+      "path": "artifacts\\metadata\\phase7_extension_request_registry.json",
+      "required": true,
+      "required_if": null,
+      "validation_status": "PASS"
+    },
+    {
+      "artifact_name": "phase7_final_submission_decision",
+      "artifact_status": "CREATED",
+      "enabled_in_config": true,
+      "hash": "f774ed96cbff5220e02231b8b2727869faf531627b800b90c86875fa286053d4",
+      "object_type": "artifact",
+      "path": "artifacts\\metadata\\phase7_final_submission_decision.json",
+      "required": true,
+      "required_if": null,
+      "validation_status": "PASS"
+    }
+  ],
+  "authoritative_format": "json",
+  "created_at_utc": "2026-07-15T15:41:55.776938+00:00",
+  "phase": 7,
+  "self_hash_excluded": [
+    "artifacts\\metadata\\phase7_artifact_manifest.json",
+    "artifacts\\metadata\\phase7_artifact_manifest.csv"
+  ]
+}

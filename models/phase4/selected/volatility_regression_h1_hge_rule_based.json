@@ -1,0 +1,12 @@
+{
+  "component_hashes": [
+    "275890afe0776abfecd8c8fb81ed50f076c335079c9f1bcd17c206ff73c919a5",
+    "4bad17ea223acdcc02e70bf34f952b45a66a96503a6e9082a0cdb512566cca89"
+  ],
+  "components": [
+    "linear_regularized",
+    "tree_ensemble"
+  ],
+  "type": "rule_based_hge_v1",
+  "uses_locked_test_for_selection": false
+}

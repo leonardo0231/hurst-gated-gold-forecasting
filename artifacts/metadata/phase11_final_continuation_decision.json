@@ -1,0 +1,70 @@
+{
+  "actual_submission_executed": false,
+  "anonymized_reviewer_identity_stored": false,
+  "claim_upgrade_detected": false,
+  "created_at_utc": "2026-07-15T15:41:55.858058+00:00",
+  "current_editorial_status": "NOT_SUBMITTED",
+  "decision_hash": "000db468c371011845bcc24628b524e53f48210d6072618b524779d2352a989e",
+  "new_analysis_executed": false,
+  "new_evidence_created": false,
+  "operating_mode_registry_hash": "9b17914827a23d2e542d1b7bb44b0fc79dc8075250981978ad6b82984441fc13",
+  "operating_mode_status": {
+    "continued_lifecycle_monitoring": {
+      "active": true,
+      "final_mode_status": "OPEN"
+    },
+    "controlled_submission_execution": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    },
+    "editorial_revision_continuation": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    },
+    "extension_orchestration": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    },
+    "extension_result_reentry": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    },
+    "post_closure_audit": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    },
+    "post_submission_tracking": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    },
+    "project_closure_confirmation": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    },
+    "publication_archiving_continuation": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    },
+    "publication_metadata_update": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    },
+    "resubmission_governance_continuation": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    },
+    "reviewer_response_continuation": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    },
+    "transfer_package_execution_continuation": {
+      "active": false,
+      "final_mode_status": "NOT_ACTIVE"
+    }
+  },
+  "permission_to_enter_phase12": "CONDITIONAL",
+  "phase11_continuation_status": "CONDITIONAL",
+  "portal_credentials_stored": false,
+  "source_decision_hash": "6b36bfb7cc9eee8a724566f4073da4491da2a03a6fda4da443a548478a25be31",
+  "submission_status": "BLOCKED_PENDING_JOURNAL_SELECTION"
+}

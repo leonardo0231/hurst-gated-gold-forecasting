@@ -1,0 +1,132 @@
+{
+  "artifacts": [
+    {
+      "artifact_name": "phase10_editorial_status_registry",
+      "artifact_status": "CREATED",
+      "enabled_in_config": true,
+      "hash": "5b8dc7178595f98af7ae4788a5b9275e95d123e437ea6d6245d7c756c5d5d5bb",
+      "object_type": "artifact",
+      "path": "artifacts\\metadata\\phase10_editorial_status_registry.json",
+      "required": true,
+      "required_if": null,
+      "validation_status": "PASS"
+    },
+    {
+      "artifact_name": "phase10_editorial_communication_registry",
+      "artifact_status": "CREATED",
+      "enabled_in_config": true,
+      "hash": "94c37356ef7656665d2aa5ad2e5d3663e0a0618dbfb58d76bc4ae992b2a63080",
+      "object_type": "artifact",
+      "path": "artifacts\\metadata\\phase10_editorial_communication_registry.json",
+      "required": true,
+      "required_if": null,
+      "validation_status": "PASS"
+    },
+    {
+      "artifact_name": "phase10_reviewer_request_registry",
+      "artifact_status": "CREATED",
+      "enabled_in_config": true,
+      "hash": "3aa1bc0a6532d6ecb8164e2fce7282d53b32963570c526c106680a211766bb3f",
+      "object_type": "artifact",
+      "path": "artifacts\\metadata\\phase10_reviewer_request_registry.json",
+      "required": true,
+      "required_if": null,
+      "validation_status": "PASS"
+    },
+    {
+      "artifact_name": "phase10_revision_action_registry",
+      "artifact_status": "CREATED",
+      "enabled_in_config": true,
+      "hash": "aeab99d4aa3189255ceea26ef9fca5946b76d13ff0915904b3c9bbcc72ffc4bf",
+      "object_type": "artifact",
+      "path": "artifacts\\metadata\\phase10_revision_action_registry.json",
+      "required": true,
+      "required_if": null,
+      "validation_status": "PASS"
+    },
+    {
+      "artifact_name": "phase10_extension_request_registry",
+      "artifact_status": "CREATED",
+      "enabled_in_config": true,
+      "hash": "068444152eda50266033cc3bd10b16b91b4b5423a577d578d28314714346ea11",
+      "object_type": "artifact",
+      "path": "artifacts\\metadata\\phase10_extension_request_registry.json",
+      "required": true,
+      "required_if": null,
+      "validation_status": "PASS"
+    },
+    {
+      "artifact_name": "phase10_transfer_offer_registry",
+      "artifact_status": "CREATED",
+      "enabled_in_config": true,
+      "hash": "9e813a85adceae31336d117171c270daf4000920abd8bc9e60c4a6502dff63ff",
+      "object_type": "artifact",
+      "path": "artifacts\\metadata\\phase10_transfer_offer_registry.json",
+      "required": true,
+      "required_if": null,
+      "validation_status": "PASS"
+    },
+    {
+      "artifact_name": "phase10_submission_receipt",
+      "artifact_status": "CREATED",
+      "enabled_in_config": true,
+      "hash": "d829a1b6f8f6eba1e0cebbafb3cd1efffe7192d90b5ef3a9e200a8db60d1ca1c",
+      "object_type": "artifact",
+      "path": "artifacts\\metadata\\phase10_submission_receipt.json",
+      "required": true,
+      "required_if": null,
+      "validation_status": "PASS"
+    },
+    {
+      "artifact_name": "phase10_portal_privacy_policy",
+      "artifact_status": "CREATED",
+      "enabled_in_config": true,
+      "hash": "1caaf4036de455b721c5384a3bfa9c921ca71bab9217daf5843f221dab2318d2",
+      "object_type": "artifact",
+      "path": "artifacts\\metadata\\phase10_portal_privacy_policy.json",
+      "required": true,
+      "required_if": null,
+      "validation_status": "PASS"
+    },
+    {
+      "artifact_name": "phase10_operating_mode_registry",
+      "artifact_status": "CREATED",
+      "enabled_in_config": true,
+      "hash": "382a16b62153e6f74eae9d91003777d841f1ba1fbd5556e86f83c306016b388b",
+      "object_type": "artifact",
+      "path": "artifacts\\metadata\\phase10_operating_mode_registry.json",
+      "required": true,
+      "required_if": null,
+      "validation_status": "PASS"
+    },
+    {
+      "artifact_name": "phase10_final_lifecycle_decision",
+      "artifact_status": "CREATED",
+      "enabled_in_config": true,
+      "hash": "6b36bfb7cc9eee8a724566f4073da4491da2a03a6fda4da443a548478a25be31",
+      "object_type": "artifact",
+      "path": "artifacts\\metadata\\phase10_final_lifecycle_decision.json",
+      "required": true,
+      "required_if": null,
+      "validation_status": "PASS"
+    },
+    {
+      "artifact_name": "phase10_external_submission:manual_authorization_and_target_journal_required",
+      "artifact_status": "DEFERRED",
+      "enabled_in_config": false,
+      "hash": null,
+      "object_type": "artifact",
+      "path": null,
+      "required": false,
+      "required_if": "manual_authorization_and_target_journal_required",
+      "validation_status": "NOT_APPLICABLE"
+    }
+  ],
+  "authoritative_format": "json",
+  "created_at_utc": "2026-07-15T15:41:55.847542+00:00",
+  "phase": 10,
+  "self_hash_excluded": [
+    "artifacts\\metadata\\phase10_artifact_manifest.json",
+    "artifacts\\metadata\\phase10_artifact_manifest.csv"
+  ]
+}
