@@ -101,7 +101,7 @@ def run_thesis_pipeline(config_path: Path, source_csv: Path | None = None) -> di
             {
                 "task": "binary_direction",
                 "horizon": horizon,
-                "target_policy_id": "adaptive_actionable_direction_v2_1",
+                "target_policy_id": "all_samples_binary_direction_v2_1",
                 "feature_set_id": "causal_gold_features_v2",
                 "selected_strategy": result.selected_strategy,
                 "selected_candidate": result.selected_candidate,

@@ -56,7 +56,7 @@ def build_horizon_dataset(
         & (result["feature_coverage"] >= feature_config.min_feature_coverage)
         & (result["label_end_index"] < len(source))
     )
-    result["target_policy_id"] = "adaptive_actionable_direction_v2_1"
+    result["target_policy_id"] = "all_samples_binary_direction_v2_1"
     result["feature_set_id"] = "causal_gold_features_v2"
     keep = [
         "row_id",
