@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import asdict
+from typing import TypedDict
 
 import numpy as np
 import pandas as pd
@@ -19,9 +20,26 @@ from sklearn.metrics import (
 from .config import EvaluationConfig
 
 
+class ClassificationMetrics(TypedDict):
+    n_samples: int
+    accuracy: float
+    balanced_accuracy: float
+    macro_f1: float
+    precision_down: float
+    precision_up: float
+    recall_down: float
+    recall_up: float
+    mcc: float
+    roc_auc: float
+    brier_score: float
+    threshold: float
+    confusion_matrix: list[list[int]]
+    
 def classification_metrics(
-    y_true: np.ndarray, probability_up: np.ndarray, threshold: float
-) -> dict[str, float | int | list[list[int]]]:
+    y_true: np.ndarray,
+    probability_up: np.ndarray,
+    threshold: float
+) -> ClassificationMetrics:
     y_true = np.asarray(y_true, dtype=int)
     probability_up = np.asarray(probability_up, dtype=float)
     y_pred = (probability_up >= threshold).astype(int)
@@ -51,7 +69,7 @@ def tune_probability_threshold(
     minimum: float,
     maximum: float,
     steps: int,
-) -> tuple[float, dict[str, float | int | list[list[int]]]]:
+) -> tuple[float, ClassificationMetrics]:
     best_threshold = 0.5
     best_metrics = classification_metrics(y_true, probability_up, best_threshold)
     best_key = (
@@ -104,7 +122,8 @@ def moving_block_bootstrap_ci(
 
 
 def acceptance_status(
-    metrics: dict[str, float | int | list[list[int]]], config: EvaluationConfig
+    metrics: ClassificationMetrics,
+    config: EvaluationConfig
 ) -> dict[str, object]:
     checks = {
         "minimum_test_samples": int(metrics["n_samples"]) >= config.min_test_samples,

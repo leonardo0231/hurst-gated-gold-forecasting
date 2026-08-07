@@ -294,6 +294,8 @@ def train_and_predict(
         locked_base_probabilities[candidate.name] = _positive_probability(fitted, x_locked)
 
     final_meta_model: Pipeline | None = None
+    validation_metrics: dict[str, Any]
+    
     if use_gate:
         final_meta_model = Pipeline(
             [
@@ -315,7 +317,7 @@ def train_and_predict(
         locked_probability = _positive_probability(final_meta_model, locked_meta)
         selected_strategy = "learned_regime_gate"
         threshold = gate_threshold
-        validation_metrics = gate_metrics
+        validation_metrics = dict(gate_metrics)
     else:
         locked_probability = locked_base_probabilities[best_candidate]
         selected_strategy = "best_base_model"

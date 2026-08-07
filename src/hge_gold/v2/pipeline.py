@@ -78,18 +78,25 @@ def run_thesis_pipeline(config_path: Path, source_csv: Path | None = None) -> di
         result = train_and_predict(development, locked, feature_columns, folds, config.models)
 
         y_true = locked["direction_binary"].to_numpy(dtype=int)
-        metrics = classification_metrics(y_true, result.locked_probability_up, result.threshold)
-        metrics.update(
-            moving_block_bootstrap_ci(
-                y_true,
-                result.locked_probability_up,
-                result.threshold,
-                config.evaluation.bootstrap_iterations,
-                config.evaluation.bootstrap_block_length,
-                config.models.random_seed + horizon,
-            )
+        classification = classification_metrics(
+            y_true,
+            result.locked_probability_up,
+            result.threshold,
         )
-        acceptance = acceptance_status(metrics, config.evaluation)
+        bootstrap_ci = moving_block_bootstrap_ci(
+            y_true,
+            result.locked_probability_up,
+            result.threshold,
+            config.evaluation.bootstrap_iterations,
+            config.evaluation.bootstrap_block_length,
+            config.models.random_seed + horizon,
+        )
+        acceptance = acceptance_status(
+            classification,
+            config.evaluation,
+        )
+        metrics: dict[str, Any] = dict(classification)
+        metrics.update(bootstrap_ci)
         metric_rows.append(
             {
                 "task": "binary_direction",
