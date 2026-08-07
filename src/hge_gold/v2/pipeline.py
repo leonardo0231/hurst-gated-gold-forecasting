@@ -82,9 +82,9 @@ def run_thesis_pipeline(config_path: Path, source_csv: Path | None = None) -> di
         acceptance = acceptance_status(metrics, config.evaluation)
         metric_rows.append(
             {
-                "task": "actionable_direction_binary",
+                "task": "binary_direction",
                 "horizon": horizon,
-                "target_policy_id": "adaptive_actionable_direction_v2",
+                "target_policy_id": "adaptive_actionable_direction_v2_1",
                 "feature_set_id": "causal_gold_features_v2",
                 "selected_strategy": result.selected_strategy,
                 "selected_candidate": result.selected_candidate,

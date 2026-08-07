@@ -2,39 +2,39 @@
   "acceptance_summary": [
     {
       "acceptance_status": "PASS",
-      "balanced_accuracy": 0.727579556412729,
+      "balanced_accuracy": 0.6783954961294862,
       "horizon": 1,
-      "macro_f1": 0.7284848484848485
+      "macro_f1": 0.6775375939849624
     },
     {
       "acceptance_status": "PASS",
-      "balanced_accuracy": 0.7793103448275862,
+      "balanced_accuracy": 0.7444444444444445,
       "horizon": 5,
-      "macro_f1": 0.7790664864784591
+      "macro_f1": 0.7386804045751016
     },
     {
       "acceptance_status": "PASS",
-      "balanced_accuracy": 0.814228255404726,
+      "balanced_accuracy": 0.7444136118007887,
       "horizon": 10,
-      "macro_f1": 0.8097304168796894
+      "macro_f1": 0.7240197944423297
     },
     {
-      "acceptance_status": "FAIL",
-      "balanced_accuracy": 0.4117631093258061,
+      "acceptance_status": "PASS",
+      "balanced_accuracy": 0.7154453707766564,
       "horizon": 20,
-      "macro_f1": 0.37927350427350426
+      "macro_f1": 0.6952380952380952
     }
   ],
   "artifacts": {
-    "artifacts\\v2\\backtest_summary.csv": "46362418a0551e222365d384be9310991d0391084d0f18d502f7f74fe33aaaaf",
-    "artifacts\\v2\\candidate_selection_metrics.csv": "5cd41f65d79eafdb18a28410b3265c4d5338a289a3708f09f5e8b8433dc6f928",
+    "artifacts\\v2\\backtest_summary.csv": "e6f5b9c7804b3867663a60450d62b15360944be119b31beda4fcb1aa06a622bd",
+    "artifacts\\v2\\candidate_selection_metrics.csv": "c55fb5f4be26785df874a8450b8eea224031f6406240107b5379d871d779e6ef",
     "artifacts\\v2\\feature_registry.json": "e4414657eb89b25d580811eb83ad1f3b13cd9fb81ed15195725637ea2b68efc9",
-    "artifacts\\v2\\locked_test_metrics.csv": "625129cb589bc81d45f8855938414ab3cb464ca4fc6be19119ff1ce60b127ae5",
-    "artifacts\\v2\\selected_model_map.json": "a6fec0273743a70bb8136396708137f4c2cb9138f95a5b5c2763e3b9f4983cd7",
-    "artifacts\\v2\\walk_forward_fold_metrics.csv": "e408ab40538ea9b6b73a8c0f4950300ca1ea454ab57c50bc7ed52d63ab5533bd",
-    "data\\predictions\\v2\\locked_test_predictions.csv": "233e9f0f5fa3a6221378e26390f433b602f9b9362e32cef5e7b067c592705e9d"
+    "artifacts\\v2\\locked_test_metrics.csv": "41df5bfee36370558db1837de777808ef489994a5ede66be2e291c409066964f",
+    "artifacts\\v2\\selected_model_map.json": "a67307a64d5a16b9c75c3795f31cc75c678ad0c5d41661466d2d2552452397f3",
+    "artifacts\\v2\\walk_forward_fold_metrics.csv": "0effc4f4b96b0eeb4bf962a0576bd99abc21a4e4fcd36b70cf07c17e2fb5fa6a",
+    "data\\predictions\\v2\\locked_test_predictions.csv": "3579c99971e160cf3f25bcd8d771d302b03c3388b293c220f6c278a00b116216"
   },
-  "created_at_utc": "2026-08-06T12:40:13.999576+00:00",
+  "created_at_utc": "2026-08-07T08:46:52.771686+00:00",
   "limitations": [
     "A 60% threshold is an empirical acceptance goal, not a guaranteed market result.",
     "Synthetic sample results validate software behavior only.",
