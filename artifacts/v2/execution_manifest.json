@@ -1,0 +1,46 @@
+{
+  "acceptance_summary": [
+    {
+      "acceptance_status": "PASS",
+      "balanced_accuracy": 0.727579556412729,
+      "horizon": 1,
+      "macro_f1": 0.7284848484848485
+    },
+    {
+      "acceptance_status": "PASS",
+      "balanced_accuracy": 0.7793103448275862,
+      "horizon": 5,
+      "macro_f1": 0.7790664864784591
+    },
+    {
+      "acceptance_status": "PASS",
+      "balanced_accuracy": 0.814228255404726,
+      "horizon": 10,
+      "macro_f1": 0.8097304168796894
+    },
+    {
+      "acceptance_status": "FAIL",
+      "balanced_accuracy": 0.4117631093258061,
+      "horizon": 20,
+      "macro_f1": 0.37927350427350426
+    }
+  ],
+  "artifacts": {
+    "artifacts\\v2\\backtest_summary.csv": "46362418a0551e222365d384be9310991d0391084d0f18d502f7f74fe33aaaaf",
+    "artifacts\\v2\\candidate_selection_metrics.csv": "5cd41f65d79eafdb18a28410b3265c4d5338a289a3708f09f5e8b8433dc6f928",
+    "artifacts\\v2\\feature_registry.json": "e4414657eb89b25d580811eb83ad1f3b13cd9fb81ed15195725637ea2b68efc9",
+    "artifacts\\v2\\locked_test_metrics.csv": "625129cb589bc81d45f8855938414ab3cb464ca4fc6be19119ff1ce60b127ae5",
+    "artifacts\\v2\\selected_model_map.json": "a6fec0273743a70bb8136396708137f4c2cb9138f95a5b5c2763e3b9f4983cd7",
+    "artifacts\\v2\\walk_forward_fold_metrics.csv": "e408ab40538ea9b6b73a8c0f4950300ca1ea454ab57c50bc7ed52d63ab5533bd",
+    "data\\predictions\\v2\\locked_test_predictions.csv": "233e9f0f5fa3a6221378e26390f433b602f9b9362e32cef5e7b067c592705e9d"
+  },
+  "created_at_utc": "2026-08-06T12:40:13.999576+00:00",
+  "limitations": [
+    "A 60% threshold is an empirical acceptance goal, not a guaranteed market result.",
+    "Synthetic sample results validate software behavior only.",
+    "Backtest output is research-only and is not investment advice."
+  ],
+  "pipeline_version": "2.0",
+  "source": "research_sample",
+  "source_is_market_evidence": false
+}

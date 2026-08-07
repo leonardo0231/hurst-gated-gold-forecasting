@@ -1,0 +1,223 @@
+{
+  "created_at_utc": "2026-08-06T12:40:13.997550+00:00",
+  "models": [
+    {
+      "acceptance": {
+        "checks": {
+          "balanced_accuracy": true,
+          "macro_f1": true,
+          "minimum_test_samples": true,
+          "recall_down": true,
+          "recall_up": true
+        },
+        "registered_thresholds": {
+          "bootstrap_block_length": 10,
+          "bootstrap_iterations": 40,
+          "macro_f1_threshold": 0.55,
+          "min_test_samples": 80,
+          "minimum_class_recall": 0.5,
+          "primary_metric": "balanced_accuracy",
+          "primary_threshold": 0.6
+        },
+        "status": "PASS"
+      },
+      "horizon": 1,
+      "locked_test_start_row": 1196,
+      "model_path": "models\\v2\\horizon_1_model_bundle.joblib",
+      "model_sha256": "bf389e87116fd8e50ddb7d0d7b016bde5f0e19ecd9b4079a66995c33951a2ba2",
+      "selected_candidate": "random_forest",
+      "selected_strategy": "best_base_model",
+      "selection_uses_locked_test": false,
+      "threshold": 0.535,
+      "validation_metrics": {
+        "accuracy": 0.8051948051948052,
+        "balanced_accuracy": 0.8051948051948052,
+        "brier_score": 0.16372834447698173,
+        "confusion_matrix": [
+          [
+            58,
+            19
+          ],
+          [
+            11,
+            66
+          ]
+        ],
+        "macro_f1": 0.8046676813800101,
+        "mcc": 0.6137109182824568,
+        "n_samples": 154,
+        "precision_down": 0.8405797101449275,
+        "precision_up": 0.7764705882352941,
+        "recall_down": 0.7532467532467533,
+        "recall_up": 0.8571428571428571,
+        "roc_auc": 0.8536009445100354,
+        "selection_fold": "wf_04",
+        "threshold": 0.535
+      }
+    },
+    {
+      "acceptance": {
+        "checks": {
+          "balanced_accuracy": true,
+          "macro_f1": true,
+          "minimum_test_samples": true,
+          "recall_down": true,
+          "recall_up": true
+        },
+        "registered_thresholds": {
+          "bootstrap_block_length": 10,
+          "bootstrap_iterations": 40,
+          "macro_f1_threshold": 0.55,
+          "min_test_samples": 80,
+          "minimum_class_recall": 0.5,
+          "primary_metric": "balanced_accuracy",
+          "primary_threshold": 0.6
+        },
+        "status": "PASS"
+      },
+      "horizon": 5,
+      "locked_test_start_row": 1191,
+      "model_path": "models\\v2\\horizon_5_model_bundle.joblib",
+      "model_sha256": "806ac1eccaf5c3e3f3d36abaefdc5f0da01b77c9206b106ff708ca2247975b4b",
+      "selected_candidate": "random_forest",
+      "selected_strategy": "best_base_model",
+      "selection_uses_locked_test": false,
+      "threshold": 0.515,
+      "validation_metrics": {
+        "accuracy": 0.837696335078534,
+        "balanced_accuracy": 0.8379964889181479,
+        "brier_score": 0.15070376835678623,
+        "confusion_matrix": [
+          [
+            79,
+            14
+          ],
+          [
+            17,
+            81
+          ]
+        ],
+        "macro_f1": 0.8376785371604024,
+        "mcc": 0.6757705751397562,
+        "n_samples": 191,
+        "precision_down": 0.8229166666666666,
+        "precision_up": 0.8526315789473684,
+        "recall_down": 0.8494623655913979,
+        "recall_up": 0.826530612244898,
+        "roc_auc": 0.8733816107087996,
+        "selection_fold": "wf_04",
+        "threshold": 0.515
+      }
+    },
+    {
+      "acceptance": {
+        "checks": {
+          "balanced_accuracy": true,
+          "macro_f1": true,
+          "minimum_test_samples": true,
+          "recall_down": true,
+          "recall_up": true
+        },
+        "registered_thresholds": {
+          "bootstrap_block_length": 10,
+          "bootstrap_iterations": 40,
+          "macro_f1_threshold": 0.55,
+          "min_test_samples": 80,
+          "minimum_class_recall": 0.5,
+          "primary_metric": "balanced_accuracy",
+          "primary_threshold": 0.6
+        },
+        "status": "PASS"
+      },
+      "horizon": 10,
+      "locked_test_start_row": 1190,
+      "model_path": "models\\v2\\horizon_10_model_bundle.joblib",
+      "model_sha256": "8d4d12d9b16c7f41c51792f6731f956075b02a94e388133e0f5bb4e246fd4b61",
+      "selected_candidate": "extra_trees",
+      "selected_strategy": "best_base_model",
+      "selection_uses_locked_test": false,
+      "threshold": 0.5,
+      "validation_metrics": {
+        "accuracy": 0.7738693467336684,
+        "balanced_accuracy": 0.7744741100323624,
+        "brier_score": 0.1898330414345822,
+        "confusion_matrix": [
+          [
+            76,
+            20
+          ],
+          [
+            25,
+            78
+          ]
+        ],
+        "macro_f1": 0.7738465035229942,
+        "mcc": 0.5486708473927472,
+        "n_samples": 199,
+        "precision_down": 0.7524752475247525,
+        "precision_up": 0.7959183673469388,
+        "recall_down": 0.7916666666666666,
+        "recall_up": 0.7572815533980582,
+        "roc_auc": 0.79247572815534,
+        "selection_fold": "wf_04",
+        "threshold": 0.5
+      }
+    },
+    {
+      "acceptance": {
+        "checks": {
+          "balanced_accuracy": false,
+          "macro_f1": false,
+          "minimum_test_samples": true,
+          "recall_down": false,
+          "recall_up": true
+        },
+        "registered_thresholds": {
+          "bootstrap_block_length": 10,
+          "bootstrap_iterations": 40,
+          "macro_f1_threshold": 0.55,
+          "min_test_samples": 80,
+          "minimum_class_recall": 0.5,
+          "primary_metric": "balanced_accuracy",
+          "primary_threshold": 0.6
+        },
+        "status": "FAIL"
+      },
+      "horizon": 20,
+      "locked_test_start_row": 1188,
+      "model_path": "models\\v2\\horizon_20_model_bundle.joblib",
+      "model_sha256": "f8d40a6b50b5132151ec074cd6ccc987c3125fc00a4bd53306b74c89343d74f2",
+      "selected_candidate": "extra_trees",
+      "selected_strategy": "learned_regime_gate",
+      "selection_uses_locked_test": false,
+      "threshold": 0.35,
+      "validation_metrics": {
+        "accuracy": 0.735,
+        "balanced_accuracy": 0.7280701754385965,
+        "brier_score": 0.23514976542973706,
+        "confusion_matrix": [
+          [
+            56,
+            39
+          ],
+          [
+            14,
+            91
+          ]
+        ],
+        "macro_f1": 0.7266279819471309,
+        "mcc": 0.4775669329409193,
+        "n_samples": 200,
+        "precision_down": 0.8,
+        "precision_up": 0.7,
+        "recall_down": 0.5894736842105263,
+        "recall_up": 0.8666666666666667,
+        "roc_auc": 0.7359398496240601,
+        "threshold": 0.35
+      }
+    }
+  ],
+  "pipeline_version": "2.0",
+  "project_name": "HGE Gold Forecasting Thesis V2",
+  "selection_uses_locked_test": false
+}

@@ -1,0 +1,407 @@
+{
+  "feature_set_id": "causal_gold_features_v2",
+  "features": [
+    {
+      "causal": true,
+      "name": "return_lag_1",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "return_lag_2",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "return_lag_3",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "return_lag_5",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "return_lag_10",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "return_lag_20",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "return_mean_5",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "return_std_5",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "momentum_5",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "price_zscore_5",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "drawdown_5",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "trend_slope_5",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "sign_entropy_5",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "return_mean_10",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "return_std_10",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "momentum_10",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "price_zscore_10",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "drawdown_10",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "trend_slope_10",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "sign_entropy_10",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "return_mean_20",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "return_std_20",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "momentum_20",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "price_zscore_20",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "drawdown_20",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "trend_slope_20",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "sign_entropy_20",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "return_mean_63",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "return_std_63",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "momentum_63",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "price_zscore_63",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "drawdown_63",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "trend_slope_63",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "sign_entropy_63",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "return_mean_126",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "return_std_126",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "momentum_126",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "price_zscore_126",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "drawdown_126",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "trend_slope_126",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "sign_entropy_126",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "rsi_14",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "atr_14_normalized",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "range_log",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "close_open_log",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "ewma_vol_20",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "ewma_vol_63",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "vol_ratio_20_63",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "rolling_skew_20",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "rolling_kurtosis_20",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "macd",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "macd_signal",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "macd_histogram",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "volume_change_1",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "volume_zscore_20",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "volume_zscore_63",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "return_volume_interaction",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "hurst_rs_64",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "hurst_rs_128",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "hurst_regime",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "volatility_zscore",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "trend_efficiency_20",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "trend_regime",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "dow_sin",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "dow_cos",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "month_sin",
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "name": "month_cos",
+      "uses_future_data": false,
+      "uses_target_data": false
+    }
+  ]
+}
