@@ -15,6 +15,48 @@ Production-oriented, audit-first implementation of the locked Phase 0–11 speci
 
 The sample execution validates software behavior. It is not paper-grade market evidence and must not be used to make investment decisions.
 
+## Thesis V2
+
+V2 is an additive, non-breaking research pipeline for the bachelor thesis. It preserves all legacy outputs and writes separate `_v2` artifacts.
+
+Main changes:
+
+- actionable binary direction target with an adaptive volatility/cost threshold;
+- expanded causal feature set including RSI, ATR, MACD, volume, trend, entropy and Hurst regimes;
+- purged walk-forward validation and a locked chronological test;
+- Logistic Regression, Random Forest, Extra Trees and HistGradientBoosting candidates;
+- learned regime gate trained on out-of-fold probabilities with best-base fallback;
+- registered acceptance gate: `Balanced Accuracy >= 0.60`, `Macro-F1 >= 0.55`, and recall constraints for both classes;
+- causality, split, modeling and end-to-end tests.
+
+Run the thesis pipeline:
+
+```bash
+uv run hge-gold-v2 --config configs/thesis_v2.yaml
+```
+
+Quick local validation:
+
+```bash
+uv run hge-gold-v2 --config configs/thesis_v2_quick.yaml
+```
+
+Use an audited real CSV:
+
+```bash
+uv run hge-gold-v2 --config configs/thesis_v2.yaml --source-csv /absolute/path/gold.csv
+```
+
+V2 outputs:
+
+- `artifacts/v2/locked_test_metrics.csv`
+- `artifacts/v2/selected_model_map.json`
+- `artifacts/v2/execution_manifest.json`
+- `data/predictions/v2/locked_test_predictions.csv`
+- `models/v2/horizon_<H>_model_bundle.joblib`
+
+See [thesis_v2_plan.md](docs/thesis_v2_plan.md) and [quick_validation_report.md](reports/v2/quick_validation_report.md).
+
 ## Requirements
 
 - Python 3.11–3.13

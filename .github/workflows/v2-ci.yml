@@ -1,0 +1,23 @@
+name: V2 CI
+
+on:
+  push:
+    branches: [main, "agent/**"]
+  pull_request:
+
+jobs:
+  test-v2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.8.14"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: uv sync --frozen --extra dev
+      - run: uv run ruff check src/hge_gold/v2 tests/test_v2_*.py
+      - run: uv run mypy src/hge_gold/v2
+      - run: uv run pytest tests/test_v2_*.py --cov=hge_gold.v2 --cov-fail-under=80

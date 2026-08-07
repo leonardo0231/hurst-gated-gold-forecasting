@@ -36,6 +36,7 @@ dev = [
 
 [project.scripts]
 hge-gold = "hge_gold.cli:app"
+hge-gold-v2 = "hge_gold.v2.cli:app"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/hge_gold"]
