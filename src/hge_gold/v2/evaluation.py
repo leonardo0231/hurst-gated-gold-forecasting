@@ -19,7 +19,9 @@ from sklearn.metrics import (
 from .config import EvaluationConfig
 
 
-def classification_metrics(y_true: np.ndarray, probability_up: np.ndarray, threshold: float) -> dict[str, float | int | list[list[int]]]:
+def classification_metrics(
+    y_true: np.ndarray, probability_up: np.ndarray, threshold: float
+) -> dict[str, float | int | list[list[int]]]:
     y_true = np.asarray(y_true, dtype=int)
     probability_up = np.asarray(probability_up, dtype=float)
     y_pred = (probability_up >= threshold).astype(int)
@@ -34,7 +36,9 @@ def classification_metrics(y_true: np.ndarray, probability_up: np.ndarray, thres
         "recall_down": float(recall_score(y_true, y_pred, pos_label=0, zero_division=0)),
         "recall_up": float(recall_score(y_true, y_pred, pos_label=1, zero_division=0)),
         "mcc": float(matthews_corrcoef(y_true, y_pred)),
-        "roc_auc": float(roc_auc_score(y_true, probability_up)) if np.unique(y_true).size == 2 else float("nan"),
+        "roc_auc": float(roc_auc_score(y_true, probability_up))
+        if np.unique(y_true).size == 2
+        else float("nan"),
         "brier_score": float(brier_score_loss(y_true, probability_up)),
         "threshold": float(threshold),
         "confusion_matrix": matrix.astype(int).tolist(),
@@ -99,7 +103,9 @@ def moving_block_bootstrap_ci(
     return {"balanced_accuracy_ci_low": float(low), "balanced_accuracy_ci_high": float(high)}
 
 
-def acceptance_status(metrics: dict[str, float | int | list[list[int]]], config: EvaluationConfig) -> dict[str, object]:
+def acceptance_status(
+    metrics: dict[str, float | int | list[list[int]]], config: EvaluationConfig
+) -> dict[str, object]:
     checks = {
         "minimum_test_samples": int(metrics["n_samples"]) >= config.min_test_samples,
         "balanced_accuracy": float(metrics["balanced_accuracy"]) >= config.primary_threshold,
@@ -121,7 +127,7 @@ def backtest_summary(
     slippage_bps: float,
 ) -> dict[str, float | int]:
     ordered = predictions.sort_values("row_id").reset_index(drop=True)
-    non_overlapping = ordered.iloc[::max(1, horizon)].copy()
+    non_overlapping = ordered.iloc[:: max(1, horizon)].copy()
     signal = np.where(non_overlapping["y_pred"].to_numpy() == 1, 1.0, -1.0)
     gross = signal * non_overlapping["forward_log_return"].to_numpy(dtype=float)
     cost = np.log1p((transaction_cost_bps + slippage_bps) / 10_000.0)

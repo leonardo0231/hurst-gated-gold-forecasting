@@ -7,15 +7,23 @@ from pathlib import Path
 from typing import Any
 
 import joblib
-import numpy as np
 import pandas as pd
 
-from .config import ThesisConfig, load_config
+from .config import load_config
 from .data import load_ohlcv
-from .evaluation import acceptance_status, backtest_summary, classification_metrics, moving_block_bootstrap_ci
+from .evaluation import (
+    acceptance_status,
+    backtest_summary,
+    classification_metrics,
+    moving_block_bootstrap_ci,
+)
 from .features import build_feature_matrix
 from .modeling import train_and_predict
-from .splits import assert_no_label_overlap, build_purged_walk_forward_folds, split_development_and_locked_test
+from .splits import (
+    assert_no_label_overlap,
+    build_purged_walk_forward_folds,
+    split_development_and_locked_test,
+)
 from .targets import build_horizon_dataset
 
 
@@ -62,7 +70,9 @@ def run_thesis_pipeline(config_path: Path, source_csv: Path | None = None) -> di
             config.features,
         )
         eligible = dataset[dataset["is_modeling_eligible"]].reset_index(drop=True)
-        development, locked, locked_start_row = split_development_and_locked_test(eligible, config.splits)
+        development, locked, locked_start_row = split_development_and_locked_test(
+            eligible, config.splits
+        )
         folds = build_purged_walk_forward_folds(development, config.splits)
         assert_no_label_overlap(development, folds)
         result = train_and_predict(development, locked, feature_columns, folds, config.models)
@@ -208,7 +218,9 @@ def run_thesis_pipeline(config_path: Path, source_csv: Path | None = None) -> di
                 feature_registry_path,
             ]
         },
-        "acceptance_summary": metrics_frame[["horizon", "acceptance_status", "balanced_accuracy", "macro_f1"]].to_dict(orient="records"),
+        "acceptance_summary": metrics_frame[
+            ["horizon", "acceptance_status", "balanced_accuracy", "macro_f1"]
+        ].to_dict(orient="records"),
         "limitations": [
             "A 60% threshold is an empirical acceptance goal, not a guaranteed market result.",
             "Synthetic sample results validate software behavior only.",
@@ -218,9 +230,22 @@ def run_thesis_pipeline(config_path: Path, source_csv: Path | None = None) -> di
     _atomic_json(manifest_path, manifest)
 
     if config.outputs.compatibility_outputs:
-        compatibility_metrics = config.project_root / "artifacts" / "metadata" / "phase5_locked_test_metrics_report_v2.csv"
-        compatibility_predictions = config.project_root / "data" / "predictions" / "phase4" / "phase4_locked_test_predictions_v2.csv"
-        compatibility_selection = config.project_root / "artifacts" / "metadata" / "phase4_selected_model_map_v2.json"
+        compatibility_metrics = (
+            config.project_root
+            / "artifacts"
+            / "metadata"
+            / "phase5_locked_test_metrics_report_v2.csv"
+        )
+        compatibility_predictions = (
+            config.project_root
+            / "data"
+            / "predictions"
+            / "phase4"
+            / "phase4_locked_test_predictions_v2.csv"
+        )
+        compatibility_selection = (
+            config.project_root / "artifacts" / "metadata" / "phase4_selected_model_map_v2.json"
+        )
         compatibility_metrics.parent.mkdir(parents=True, exist_ok=True)
         compatibility_predictions.parent.mkdir(parents=True, exist_ok=True)
         metrics_frame.to_csv(compatibility_metrics, index=False)

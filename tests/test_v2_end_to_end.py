@@ -69,5 +69,7 @@ outputs:
     manifest = json.loads(outputs["manifest"].read_text(encoding="utf-8"))
     assert manifest["pipeline_version"] == "2.0"
     assert manifest["source_is_market_evidence"] is False
-    legacy_compatible = tmp_path / "artifacts" / "metadata" / "phase5_locked_test_metrics_report_v2.csv"
+    legacy_compatible = (
+        tmp_path / "artifacts" / "metadata" / "phase5_locked_test_metrics_report_v2.csv"
+    )
     assert legacy_compatible.exists()

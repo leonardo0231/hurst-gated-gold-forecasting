@@ -22,11 +22,12 @@ def split_development_and_locked_test(
 ) -> tuple[pd.DataFrame, pd.DataFrame, int]:
     ordered = dataset.sort_values("row_id").reset_index(drop=True)
     cutoff_position = int(len(ordered) * (1.0 - config.locked_test_fraction))
-    cutoff_position = min(max(cutoff_position, config.min_train_rows + config.min_validation_rows), len(ordered) - 1)
+    cutoff_position = min(
+        max(cutoff_position, config.min_train_rows + config.min_validation_rows), len(ordered) - 1
+    )
     locked_start_row = int(ordered.iloc[cutoff_position]["row_id"])
     development = ordered[
-        (ordered["row_id"] < locked_start_row)
-        & (ordered["label_end_index"] < locked_start_row)
+        (ordered["row_id"] < locked_start_row) & (ordered["label_end_index"] < locked_start_row)
     ].reset_index(drop=True)
     locked = ordered[ordered["row_id"] >= locked_start_row].reset_index(drop=True)
     if development.empty or locked.empty:
@@ -49,22 +50,25 @@ def build_purged_walk_forward_folds(
         if validation_start_pos >= n_rows:
             break
         validation_end_pos = (
-            n_rows if fold_number == config.n_walk_forward_folds - 1 else min(n_rows, validation_start_pos + validation_size)
+            n_rows
+            if fold_number == config.n_walk_forward_folds - 1
+            else min(n_rows, validation_start_pos + validation_size)
         )
         validation_positions = np.arange(validation_start_pos, validation_end_pos, dtype=int)
         if len(validation_positions) < config.min_validation_rows:
             continue
         validation_start_row = int(ordered.iloc[validation_start_pos]["row_id"])
         validation_end_row = int(ordered.iloc[validation_end_pos - 1]["row_id"])
-        train_mask = (
-            (ordered["row_id"] < validation_start_row)
-            & (ordered["label_end_index"] < validation_start_row)
+        train_mask = (ordered["row_id"] < validation_start_row) & (
+            ordered["label_end_index"] < validation_start_row
         )
         train_positions = np.flatnonzero(train_mask.to_numpy())
         if len(train_positions) < config.min_train_rows:
             continue
         train_classes = ordered.iloc[train_positions]["direction_binary"].nunique(dropna=True)
-        validation_classes = ordered.iloc[validation_positions]["direction_binary"].nunique(dropna=True)
+        validation_classes = ordered.iloc[validation_positions]["direction_binary"].nunique(
+            dropna=True
+        )
         if train_classes < 2 or validation_classes < 2:
             continue
         folds.append(

@@ -7,7 +7,11 @@ import joblib
 import numpy as np
 import pandas as pd
 from sklearn.base import BaseEstimator
-from sklearn.ensemble import ExtraTreesClassifier, HistGradientBoostingClassifier, RandomForestClassifier
+from sklearn.ensemble import (
+    ExtraTreesClassifier,
+    HistGradientBoostingClassifier,
+    RandomForestClassifier,
+)
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
@@ -47,7 +51,12 @@ def _candidate_pipelines(config: ModelConfig) -> list[Candidate]:
                 [
                     ("imputer", SimpleImputer(strategy="median", add_indicator=True)),
                     ("scale", StandardScaler()),
-                    ("model", LogisticRegression(C=0.2, class_weight="balanced", max_iter=2000, random_state=seed)),
+                    (
+                        "model",
+                        LogisticRegression(
+                            C=0.2, class_weight="balanced", max_iter=2000, random_state=seed
+                        ),
+                    ),
                 ]
             ),
         ),
@@ -57,7 +66,12 @@ def _candidate_pipelines(config: ModelConfig) -> list[Candidate]:
                 [
                     ("imputer", SimpleImputer(strategy="median", add_indicator=True)),
                     ("scale", StandardScaler()),
-                    ("model", LogisticRegression(C=1.0, class_weight="balanced", max_iter=2000, random_state=seed)),
+                    (
+                        "model",
+                        LogisticRegression(
+                            C=1.0, class_weight="balanced", max_iter=2000, random_state=seed
+                        ),
+                    ),
                 ]
             ),
         ),
@@ -250,7 +264,12 @@ def train_and_predict(
         [
             ("imputer", SimpleImputer(strategy="median", add_indicator=True)),
             ("scale", StandardScaler()),
-            ("model", LogisticRegression(C=0.5, class_weight="balanced", max_iter=2000, random_state=config.random_seed)),
+            (
+                "model",
+                LogisticRegression(
+                    C=0.5, class_weight="balanced", max_iter=2000, random_state=config.random_seed
+                ),
+            ),
         ]
     )
     _fit(meta_model, all_meta.loc[meta_train_mask], y_dev[meta_train_mask])
@@ -263,11 +282,9 @@ def train_and_predict(
         config.probability_threshold_steps,
     )
     best_metrics = next(row for row in candidate_metrics if row["candidate"] == best_candidate)
-    use_gate = (
-        float(gate_metrics["balanced_accuracy"]) + config.gate_tolerance
-        >= float(best_metrics["balanced_accuracy"])
-        and float(gate_metrics["macro_f1"]) + 0.01 >= float(best_metrics["macro_f1"])
-    )
+    use_gate = float(gate_metrics["balanced_accuracy"]) + config.gate_tolerance >= float(
+        best_metrics["balanced_accuracy"]
+    ) and float(gate_metrics["macro_f1"]) + 0.01 >= float(best_metrics["macro_f1"])
 
     fitted_models: dict[str, Pipeline] = {}
     locked_base_probabilities: dict[str, np.ndarray] = {}
@@ -282,7 +299,15 @@ def train_and_predict(
             [
                 ("imputer", SimpleImputer(strategy="median", add_indicator=True)),
                 ("scale", StandardScaler()),
-                ("model", LogisticRegression(C=0.5, class_weight="balanced", max_iter=2000, random_state=config.random_seed)),
+                (
+                    "model",
+                    LogisticRegression(
+                        C=0.5,
+                        class_weight="balanced",
+                        max_iter=2000,
+                        random_state=config.random_seed,
+                    ),
+                ),
             ]
         )
         _fit(final_meta_model, all_meta.loc[common_mask], y_dev[common_mask])
@@ -295,7 +320,9 @@ def train_and_predict(
         locked_probability = locked_base_probabilities[best_candidate]
         selected_strategy = "best_base_model"
         threshold = best_candidate_threshold
-        validation_metrics = {key: value for key, value in best_metrics.items() if key != "candidate"}
+        validation_metrics = {
+            key: value for key, value in best_metrics.items() if key != "candidate"
+        }
 
     bundle = {
         "version": "2.0",

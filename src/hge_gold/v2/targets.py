@@ -37,10 +37,7 @@ def build_horizon_dataset(
         [1, -1],
         default=0,
     ).astype(float)
-    y_binary = np.where(
-        forward_return.notna(),
-        (forward_return > 0.0).astype(float),
-        np.nan)
+    y_binary = np.where(forward_return.notna(), (forward_return > 0.0).astype(float), np.nan)
     result = features.copy()
     result["horizon"] = int(horizon)
     result["label_end_index"] = result["row_id"] + horizon
@@ -49,12 +46,8 @@ def build_horizon_dataset(
     result["direction_threshold_bps"] = np.expm1(threshold) * 10_000.0
     result["direction_three_class"] = y_three
     result["direction_binary"] = y_binary
-    result["is_actionable"] = (
-        forward_return.notna()
-        & (
-            (forward_return > threshold)
-            | (forward_return < -threshold)
-        )
+    result["is_actionable"] = forward_return.notna() & (
+        (forward_return > threshold) | (forward_return < -threshold)
     )
     result["is_modeling_eligible"] = (
         result["direction_binary"].notna()

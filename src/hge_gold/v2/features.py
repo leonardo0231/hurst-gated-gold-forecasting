@@ -73,7 +73,9 @@ def _safe_zscore(series: pd.Series, window: int, min_periods: int | None = None)
     return (series - mean) / std.replace(0, np.nan)
 
 
-def build_feature_matrix(frame: pd.DataFrame, config: FeatureConfig) -> tuple[pd.DataFrame, list[str]]:
+def build_feature_matrix(
+    frame: pd.DataFrame, config: FeatureConfig
+) -> tuple[pd.DataFrame, list[str]]:
     result = frame[ID_COLUMNS].copy()
     close = frame["close"].astype(float)
     log_price = np.log(close)
@@ -129,17 +131,22 @@ def build_feature_matrix(frame: pd.DataFrame, config: FeatureConfig) -> tuple[pd
     primary_hurst = result[f"hurst_rs_{max(config.hurst_windows)}"]
     regime_window = config.regime_window
     past_hurst = primary_hurst.shift(1)
-    low_hurst = past_hurst.rolling(regime_window, min_periods=max(80, regime_window // 2)).quantile(0.33)
-    high_hurst = past_hurst.rolling(regime_window, min_periods=max(80, regime_window // 2)).quantile(0.67)
+    low_hurst = past_hurst.rolling(regime_window, min_periods=max(80, regime_window // 2)).quantile(
+        0.33
+    )
+    high_hurst = past_hurst.rolling(
+        regime_window, min_periods=max(80, regime_window // 2)
+    ).quantile(0.67)
     result["hurst_regime"] = np.select(
         [primary_hurst <= low_hurst, primary_hurst >= high_hurst], [-1.0, 1.0], default=0.0
     )
     vol = result["ewma_vol_20"]
-    result["volatility_zscore"] = _safe_zscore(vol.shift(1), regime_window, max(80, regime_window // 2))
-    result["trend_efficiency_20"] = (
-        (log_price - log_price.shift(20)).abs()
-        / ret.abs().rolling(20, min_periods=20).sum().replace(0, np.nan)
+    result["volatility_zscore"] = _safe_zscore(
+        vol.shift(1), regime_window, max(80, regime_window // 2)
     )
+    result["trend_efficiency_20"] = (log_price - log_price.shift(20)).abs() / ret.abs().rolling(
+        20, min_periods=20
+    ).sum().replace(0, np.nan)
     result["trend_regime"] = np.select(
         [
             (result["trend_efficiency_20"] > 0.45) & (result["momentum_20"] > 0),

@@ -49,7 +49,11 @@ def generate_research_sample(n_rows: int = 1500, seed: int = 42) -> pd.DataFrame
 
 
 def load_ohlcv(source_csv: Path | None, min_rows: int, seed: int = 42) -> pd.DataFrame:
-    frame = generate_research_sample(max(min_rows, 1500), seed) if source_csv is None else pd.read_csv(source_csv)
+    frame = (
+        generate_research_sample(max(min_rows, 1500), seed)
+        if source_csv is None
+        else pd.read_csv(source_csv)
+    )
     return normalize_and_validate(frame, min_rows=min_rows)
 
 

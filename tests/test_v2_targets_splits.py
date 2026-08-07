@@ -47,21 +47,19 @@ def test_walk_forward_split_is_purged() -> None:
     assert (development["label_end_index"] < locked_start).all()
     assert (locked["row_id"] >= locked_start).all()
 
+
 def test_non_actionable_rows_are_not_excluded_from_modeling() -> None:
     source = normalize_and_validate(
         generate_research_sample(1200),
         min_rows=700,
     )
-    
+
     feature_config = FeatureConfig(
         regime_window=180,
     )
-    
-    features, columns = build_feature_matrix(
-        source,
-        feature_config
-    )
-    
+
+    features, columns = build_feature_matrix(source, feature_config)
+
     dataset = build_horizon_dataset(
         source,
         features,
@@ -70,32 +68,21 @@ def test_non_actionable_rows_are_not_excluded_from_modeling() -> None:
         TargetConfig(horizons=(5,)),
         feature_config,
     )
-    
-    eligible = dataset[
-        dataset["is_modeling_eligible"]
-    ]
-    
-    non_actionable = eligible[
-        ~eligible["is_actionable"]
-    ]
-    
+
+    eligible = dataset[dataset["is_modeling_eligible"]]
+
+    non_actionable = eligible[~eligible["is_actionable"]]
+
     assert not non_actionable.empty
-    
-    assert (
-        non_actionable["direction_binary"]
-        .isin([0.0, 1.0])
-        .all()
-    )
-    
+
+    assert non_actionable["direction_binary"].isin([0.0, 1.0]).all()
+
+
 def test_binary_direction_matches_future_return_sign() -> None:
     dataset = _dataset(10)
-    
-    expected = (
-        dataset["forward_log_return"] > 0.0
-    ).astype(float)
-    
+
+    expected = (dataset["forward_log_return"] > 0.0).astype(float)
+
     assert (
-        dataset["direction_binary"]
-        .reset_index(drop=True)
-        .equals(expected.reset_index(drop=True))
+        dataset["direction_binary"].reset_index(drop=True).equals(expected.reset_index(drop=True))
     )
