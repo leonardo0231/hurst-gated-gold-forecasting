@@ -17,45 +17,70 @@ The sample execution validates software behavior. It is not paper-grade market e
 
 ## Thesis V2
 
-V2 is an additive, non-breaking research pipeline for the bachelor thesis. It preserves all legacy outputs and writes separate `_v2` artifacts.
+V2 is an additive, non-breaking research pipeline for the bachelor thesis. It preserves the legacy pipeline and writes its outputs to separate V2 artifact, prediction, and model paths.
 
-Main changes:
+The primary learning task is multi-horizon **binary gold-price direction forecasting**. For each valid observation and forecast horizon, the target is defined from the sign of the future log return:
 
-- actionable binary direction target with an adaptive volatility/cost threshold;
-- expanded causal feature set including RSI, ATR, MACD, volume, trend, entropy and Hurst regimes;
-- purged walk-forward validation and a locked chronological test;
-- Logistic Regression, Random Forest, Extra Trees and HistGradientBoosting candidates;
-- learned regime gate trained on out-of-fold probabilities with best-base fallback;
-- registered acceptance gate: `Balanced Accuracy >= 0.60`, `Macro-F1 >= 0.55`, and recall constraints for both classes;
-- causality, split, modeling and end-to-end tests.
+* `1` — the future price is higher than the current price;
+* `0` — the future price is unchanged or lower than the current price.
 
-Run the thesis pipeline:
+All observations with a valid future return and sufficient causal feature coverage are eligible for modeling. Future price movement magnitude is **not** used to decide whether an observation is included in the training, validation, or locked-test datasets.
+
+An adaptive volatility-based threshold is still calculated, but it is retained only for secondary analysis. It identifies whether a realized future movement can be considered `actionable` and is also used to preserve the secondary three-class `down / flat / up` analytical label. The `is_actionable` field does not control modeling eligibility.
+
+The current target policy identifier is:
+
+`all_samples_binary_direction_v2_1`
+
+Main V2 changes:
+
+* all-sample binary direction targets for 1, 5, 10, and 20-day horizons;
+* secondary adaptive actionability and three-class direction labels for analysis;
+* expanded causal feature set including RSI, ATR, MACD, volume, trend, entropy, volatility, and Hurst regimes;
+* chronological locked test separated from model development;
+* purged walk-forward validation to prevent label overlap across temporal boundaries;
+* Logistic Regression, Random Forest, Extra Trees, and HistGradientBoosting candidate models;
+* learned regime gate trained from out-of-fold probabilities with best-base fallback;
+* model and probability-threshold selection performed without using the locked test;
+* registered acceptance gate using `Balanced Accuracy >= 0.60`, `Macro-F1 >= 0.55`, and minimum recall constraints for both classes;
+* unit, split, target-alignment, modeling, causality, and end-to-end tests;
+* separate manifests, predictions, model bundles, and compatibility outputs for reproducibility.
+
+The synthetic research fixture is intended only to validate software and modeling behavior. Results produced from the fixture are **not market evidence** and must not be presented as evidence of predictive performance on real gold prices.
+
+### Run the thesis pipeline
 
 ```bash
 uv run hge-gold-v2 --config configs/thesis_v2.yaml
 ```
 
-Quick local validation:
+### Quick local validation
 
 ```bash
 uv run hge-gold-v2 --config configs/thesis_v2_quick.yaml
 ```
 
-Use an audited real CSV:
+### Run with audited real OHLCV data
 
 ```bash
 uv run hge-gold-v2 --config configs/thesis_v2.yaml --source-csv /absolute/path/gold.csv
 ```
 
-V2 outputs:
+The real dataset must satisfy the V2 data contract and contain chronologically ordered, unique OHLCV observations. Dataset source, time range, symbol definition, and relevant preprocessing information must be recorded before results are treated as thesis evidence.
 
-- `artifacts/v2/locked_test_metrics.csv`
-- `artifacts/v2/selected_model_map.json`
-- `artifacts/v2/execution_manifest.json`
-- `data/predictions/v2/locked_test_predictions.csv`
-- `models/v2/horizon_<H>_model_bundle.joblib`
+### V2 outputs
 
-See [thesis_v2_plan.md](docs/thesis_v2_plan.md) and [quick_validation_report.md](reports/v2/quick_validation_report.md).
+* `artifacts/v2/locked_test_metrics.csv`
+* `artifacts/v2/candidate_selection_metrics.csv`
+* `artifacts/v2/walk_forward_fold_metrics.csv`
+* `artifacts/v2/backtest_summary.csv`
+* `artifacts/v2/selected_model_map.json`
+* `artifacts/v2/feature_registry.json`
+* `artifacts/v2/execution_manifest.json`
+* `data/predictions/v2/locked_test_predictions.csv`
+* `models/v2/horizon_<H>_model_bundle.joblib`
+
+See [thesis_v2_plan.md](docs/thesis_v2_plan.md) for the current thesis design and [quick_validation_report.md](reports/v2/quick_validation_report.md) for software-validation results.
 
 ## Requirements
 

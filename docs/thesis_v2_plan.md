@@ -25,96 +25,235 @@
 
 ### داخل محدوده
 
-- داده روزانه OHLCV طلا؛
-- پیش‌بینی جهت قابل‌اقدام در افق‌های 1، 5، 10 و 20 روزه؛
-- ویژگی‌های تکنیکال، نوسان، حجم، Hurst و regime؛
-- مدل‌های خطی و ensemble در scikit-learn؛
-- learned regime gate؛
-- Locked Test، bootstrap و backtest پژوهشی؛
-- خروجی CSV/JSON/Joblib؛
-- تست واحد، یکپارچه و causality.
+* داده روزانه OHLCV طلا؛
+* پیش‌بینی دودویی جهت قیمت در افق‌های 1، 5، 10 و 20 روزه؛
+* استفاده از تمام نمونه‌هایی که بازده آینده معتبر و پوشش ویژگی کافی دارند؛
+* نگهداری برچسب ثانویه `down / flat / up` برای تحلیل شدت و جهت حرکت؛
+* محاسبه وضعیت `actionable` به‌عنوان متغیر تشخیصی و تحلیلی، بدون استفاده از آن برای انتخاب نمونه‌های مدل؛
+* ویژگی‌های تکنیکال، نوسان، حجم، Hurst و regime؛
+* مدل‌های خطی و ensemble مبتنی بر scikit-learn؛
+* learned regime gate با قابلیت fallback به بهترین مدل پایه؛
+* Locked Test زمانی؛
+* Purged Walk-Forward Validation؛
+* Bootstrap Confidence Interval؛
+* Backtest پژوهشی؛
+* خروجی‌های CSV، JSON و Joblib؛
+* تست‌های واحد، یکپارچه، causality، target alignment و split integrity.
 
 ### خارج از محدوده فعلی
 
-- ارسال سفارش واقعی؛
-- اتصال مستقیم به MT5؛
-- معاملات زنده؛
-- داده خبری و NLP؛
-- تضمین سود یا تضمین دقت 60 درصد روی بازار واقعی؛
-- تنظیم پارامتر با استفاده از Locked Test.
+* ارسال سفارش واقعی؛
+* اتصال مستقیم Pipeline به MT5 برای معامله؛
+* معاملات زنده؛
+* داده خبری و NLP؛
+* تضمین سودآوری؛
+* تضمین دستیابی به دقت 60 درصد روی بازار واقعی؛
+* تنظیم مدل یا threshold با استفاده از Locked Test؛
+* انتخاب یا حذف نمونه‌های آموزشی بر اساس اطلاعاتی که فقط در آینده قابل مشاهده هستند.
 
 ## 5. تصمیم اصلی مسئله یادگیری
 
 ### تصمیم
 
-مسئله اصلی از سه‌کلاسه `down/no_trade/up` به **جهت دودویی روی نمونه‌های actionable** تبدیل می‌شود. نمونه‌ای actionable است که قدر مطلق بازده آینده از threshold تطبیقی مبتنی بر نوسان و کف هزینه عبور کند.
+مسئله اصلی V2 به‌صورت **Binary Direction Classification روی تمام نمونه‌های معتبر** تعریف می‌شود.
+
+برای هر نمونه در زمان `t` و افق پیش‌بینی `H`، بازده لگاریتمی آینده محاسبه می‌شود:
+
+```text
+forward_log_return(t, H) = log(close[t + H]) - log(close[t])
+```
+
+Target اصلی به صورت زیر تعریف می‌شود:
+
+```text
+direction_binary = 1    if forward_log_return > 0
+direction_binary = 0    if forward_log_return <= 0
+```
+
+نمونه فقط زمانی از Modeling Dataset کنار گذاشته می‌شود که Target آینده معتبر نباشد، پوشش ویژگی‌ها کافی نباشد، یا الزامات Data Contract و مرز زمانی را نقض کند.
+
+مقدار حرکت آینده برای تصمیم‌گیری درباره ورود نمونه به Training، Validation یا Locked Test استفاده نمی‌شود.
+
+شناسه فعلی این سیاست Target برابر است با:
+
+```text
+all_samples_binary_direction_v2_1
+```
 
 ### دلیل
 
-کلاس `no_trade` در نسخه فعلی هم عدم‌توازن ایجاد می‌کند و هم مفهوم «تشخیص جهت» را مبهم می‌کند. مسئله دودویی actionable برای یک پایان‌نامه کارشناسی روشن‌تر، قابل‌اندازه‌گیری‌تر و از نظر مالی معنادارتر است.
+در نسخه قبلی V2، ابتدا با استفاده از مقدار بازده آینده مشخص می‌شد که یک نمونه `actionable` است یا خیر و فقط نمونه‌های actionable وارد مسئله Binary Classification می‌شدند.
 
-### خروجی‌های ثانویه
+این طراحی باعث ایجاد Future Selection Bias می‌شد، زیرا سیستم هنگام آموزش و ارزیابی عملاً از اطلاعاتی استفاده می‌کرد که در زمان تصمیم‌گیری واقعی در دسترس نبود: اینکه آیا در آینده حرکت قیمت به‌اندازه کافی بزرگ خواهد بود یا خیر.
 
-برچسب سه‌کلاسه و بازده آینده همچنان در dataset نگه داشته می‌شوند تا خروجی‌های فعلی تا حد ممکن قابل مقایسه بمانند.
+در طراحی جدید، تمام نمونه‌های معتبر وارد مسئله پیش‌بینی جهت می‌شوند. در نتیجه مدل باید بدون اطلاع قبلی از بزرگی حرکت آینده، جهت قیمت را پیش‌بینی کند.
+
+این تعریف به شرایط استفاده واقعی نزدیک‌تر است و امکان ارزیابی علمی معتبرتری از توان مدل فراهم می‌کند.
+
+### برچسب‌های ثانویه
+
+Threshold تطبیقی مبتنی بر نوسان همچنان محاسبه می‌شود:
+
+```text
+adaptive_threshold =
+    threshold_k × rolling_volatility × sqrt(horizon)
+```
+
+همچنین یک کف ثابت برحسب basis point اعمال می‌شود.
+
+این Threshold برای تعریف دو خروجی ثانویه استفاده می‌شود:
+
+```text
+direction_three_class:
+    -1 = DOWN
+     0 = FLAT
+     1 = UP
+```
+
+و:
+
+```text
+is_actionable:
+    True  = absolute future movement exceeds the adaptive threshold
+    False = movement does not exceed the threshold
+```
+
+این اطلاعات برای تحلیل، مقایسه و ارزیابی مالی نگه داشته می‌شوند، اما `is_actionable` در تعیین `is_modeling_eligible` دخالت ندارد.
+
+### خروجی‌های اصلی و ثانویه
+
+خروجی اصلی Modeling:
+
+```text
+direction_binary
+```
+
+خروجی‌های تحلیلی ثانویه:
+
+```text
+forward_log_return
+direction_three_class
+direction_threshold
+direction_threshold_bps
+is_actionable
+```
+
+این جداسازی اجازه می‌دهد عملکرد مدل جهت مستقل از شدت حرکت آینده ارزیابی شود و در عین حال اطلاعات اقتصادی لازم برای تحلیل‌های بعدی حفظ شود.
 
 ## 6. معیار پذیرش ثبت‌شده
 
-معیار اصلی:
+معیار اصلی ارزیابی:
 
-- `Balanced Accuracy >= 0.60`
+* `Balanced Accuracy >= 0.60`
 
 قیود مکمل:
 
-- `Macro-F1 >= 0.55`
-- `Recall(up) >= 0.50`
-- `Recall(down) >= 0.50`
-- حداقل تعداد نمونه Locked Test طبق config
-- انتخاب مدل بدون استفاده از Locked Test
+* `Macro-F1 >= 0.55`
+* `Recall(up) >= 0.50`
+* `Recall(down) >= 0.50`
+* حداقل تعداد نمونه Locked Test طبق Configuration؛
+* انتخاب Model بدون استفاده از Locked Test؛
+* انتخاب Probability Threshold بدون استفاده از Locked Test.
 
-عبور از این gate فقط برای همان dataset، بازه زمانی و protocol معتبر است و تضمین آینده بازار نیست.
+استفاده از Balanced Accuracy در کنار Macro-F1 و Recall دو کلاس باعث می‌شود عبور از معیار پذیرش صرفاً از طریق عدم‌توازن کلاس‌ها یا پیش‌بینی بیش‌ازحد یک جهت امکان‌پذیر نباشد.
+
+عبور از این Acceptance Gate تنها برای Dataset، بازه زمانی، Feature Set، Target Policy و Validation Protocol همان آزمایش معتبر است و تضمینی درباره عملکرد آینده بازار ایجاد نمی‌کند.
+
+نتایج Synthetic Research Fixture فقط برای اثبات رفتار صحیح نرم‌افزار و قابلیت یادگیری Pipeline استفاده می‌شوند و نباید به‌عنوان شواهد بازار واقعی گزارش شوند.
 
 ## 7. معماری
 
 ```text
-CSV / Sample Fixture
-        |
-        v
-Strict OHLCV Validation
-        |
-        v
-Causal Feature Engineering
-        |
-        +--> Feature Registry / Causality Test
-        |
-        v
-Adaptive Actionable Labels
-        |
-        v
-Development / Locked Test Split
-        |
-        v
-Purged Walk-Forward Folds
-        |
-        +--> Logistic candidates
-        +--> Random Forest
-        +--> Extra Trees
-        +--> HistGradientBoosting
-        |
-        v
-OOF Probabilities
-        |
-        v
-Learned Regime Gate / Best Base Fallback
-        |
-        v
-Frozen Threshold + Final Refit
-        |
-        v
-Locked Test Metrics + Bootstrap CI + Research Backtest
-        |
-        v
-Manifest / Model Bundle / Compatibility Outputs
+Real CSV / Synthetic Research Fixture
+                 |
+                 v
+        Strict OHLCV Validation
+                 |
+                 v
+        Causal Feature Engineering
+                 |
+                 +----> Feature Registry
+                 |
+                 +----> Causality Tests
+                 |
+                 v
+       Multi-Horizon Target Builder
+                 |
+                 +----> Binary Direction Target
+                 |       (Primary Modeling Target)
+                 |
+                 +----> Adaptive Threshold
+                 |
+                 +----> DOWN / FLAT / UP
+                 |       (Secondary Analysis)
+                 |
+                 +----> is_actionable
+                         (Diagnostic Only)
+                 |
+                 v
+      Modeling Eligibility Validation
+       [NO future-actionability filter]
+                 |
+                 v
+     Development / Locked Test Split
+                 |
+                 v
+       Purged Walk-Forward Folds
+                 |
+        +--------+--------+--------+
+        |        |        |        |
+        v        v        v        v
+     Logistic   RF    ExtraTrees   HGB
+        |        |        |        |
+        +--------+--------+--------+
+                 |
+                 v
+          OOF Probabilities
+                 |
+                 v
+     Learned Regime Gate Evaluation
+                 |
+                 +----> Gate selected
+                 |
+                 +----> Best Base fallback
+                 |
+                 v
+      Frozen Probability Threshold
+                 |
+                 v
+          Final Development Refit
+                 |
+                 v
+           Locked Test Evaluation
+                 |
+        +--------+---------+
+        |                  |
+        v                  v
+ Classification      Research Backtest
+ Metrics + CI
+        |                  |
+        +--------+---------+
+                 |
+                 v
+     Manifest / Predictions / Models
 ```
+
+### اصل جلوگیری از Leakage
+
+ویژگی‌های زمان `t` فقط می‌توانند از اطلاعات قابل دسترس تا همان زمان استفاده کنند.
+
+Target برای آموزش طبیعتاً از آینده ساخته می‌شود، اما هیچ اطلاعات Target یا وضعیت آینده اجازه ورود به Feature Matrix یا فرآیند انتخاب نمونه در زمان پیش‌بینی را ندارد.
+
+Training Foldهایی که Label آنها وارد محدوده Validation می‌شود با Purging حذف می‌شوند:
+
+```text
+training.label_end_index < validation_start_row
+```
+
+به همین ترتیب، Development Dataset نباید دارای Labelهایی باشد که وارد محدوده Locked Test می‌شوند.
+
+Locked Test فقط پس از پایان فرآیند Model Selection و Threshold Selection برای ارزیابی نهایی استفاده می‌شود.
+
 
 ## 8. اجزای کد
 
