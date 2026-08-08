@@ -1,2 +1,0 @@
-source,n_rows,duplicate_date_rate,missing_selected_price_rate,ohlc_violation_rate,final_mvp_data_quality_score,paper_grade_readiness_score,mvp_status,paper_grade_status
-deterministic_sample_fixture,900,0.0,0.0,0.0,95.0,15.0,CLOSED_FOR_MVP,NOT_READY

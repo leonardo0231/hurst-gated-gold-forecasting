@@ -1,7 +1,0 @@
-{
-  "store_passwords": false,
-  "store_portal_credentials": false,
-  "store_private_account_secrets": false,
-  "store_reviewer_identity_if_anonymized": false,
-  "store_session_tokens": false
-}

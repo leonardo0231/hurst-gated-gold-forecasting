@@ -1,3 +1,5 @@
-"""HGE-Hybrid Gold research pipeline."""
+"""Leakage-safe thesis-grade gold forecasting pipeline."""
 
-__version__ = "0.1.0"
+from .pipeline import run_thesis_pipeline
+
+__all__ = ["run_thesis_pipeline"]
