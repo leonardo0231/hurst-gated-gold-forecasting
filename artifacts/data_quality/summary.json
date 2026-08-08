@@ -1,0 +1,40 @@
+{
+  "artifacts": {
+    "horizon_class_balance": "horizon_class_balance.csv",
+    "suspicious_rows": "suspicious_rows.csv",
+    "yearly_statistics": "yearly_statistics.csv"
+  },
+  "audit_version": "market_data_quality_v1",
+  "bull_bear_regimes": {
+    "bear_count": 1498,
+    "bull_count": 2267,
+    "trailing_mean_window": 252,
+    "unclassified_count": 252
+  },
+  "calendar": {
+    "long_calendar_gap_count": 0,
+    "long_calendar_gap_threshold_days": 4,
+    "maximum_calendar_gap_days": 4,
+    "potential_missing_weekday_count": 48,
+    "weekend_row_count": 0
+  },
+  "generated_at_utc": "2026-08-08T16:21:19.293259+00:00",
+  "returns": {
+    "flash_move_count": 9,
+    "flash_move_log_return_threshold": 0.05,
+    "outlier_return_count": 11,
+    "robust_z_threshold": 6.0
+  },
+  "source_end": "2026-07-31T00:00:00",
+  "source_rows": 4017,
+  "source_start": "2011-01-03T00:00:00",
+  "suspicious_row_count": 171,
+  "volume": {
+    "regime_change_count": 91,
+    "regime_ratio_threshold": 3.0,
+    "rolling_median_window": 63,
+    "scale_shift_count": 12,
+    "scale_shift_ratio_threshold": 5.0,
+    "zero_volume_count": 0
+  }
+}

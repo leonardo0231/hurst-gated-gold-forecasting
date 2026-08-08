@@ -88,7 +88,7 @@ def _source_manifest_metadata(
         source_display = "research_sample"
     else:
         try:
-            source_display = str(resolved_source.relative_to(config.project_root))
+            source_display = resolved_source.relative_to(config.project_root).as_posix()
         except ValueError:
             source_display = str(resolved_source)
 
@@ -287,7 +287,7 @@ def run_thesis_pipeline(config_path: Path, source_csv: Path | None = None) -> di
         "created_at_utc": datetime.now(UTC).isoformat(),
         **_source_manifest_metadata(source, resolved_source, config),
         "artifacts": {
-            str(path.relative_to(config.project_root)): _sha256(path)
+            path.relative_to(config.project_root).as_posix(): _sha256(path)
             for path in [
                 metrics_path,
                 predictions_path,

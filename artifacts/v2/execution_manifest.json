@@ -26,16 +26,20 @@
     }
   ],
   "artifacts": {
-    "artifacts\\v2\\backtest_summary.csv": "46afce21730517ef58ddfc1b96dea00f023b2a206bb2a9edce6bfba5555b6294",
-    "artifacts\\v2\\candidate_selection_metrics.csv": "79c5785985d53f5c17e5ebd8d00871d27e8222c7b2759c56b5e55f1eabaa47a9",
-    "artifacts\\v2\\feature_registry.json": "e4414657eb89b25d580811eb83ad1f3b13cd9fb81ed15195725637ea2b68efc9",
-    "artifacts\\v2\\locked_test_metrics.csv": "9da24146dec0a97bb81db1231ac6cc4a00b45f8d11001e467112bc4086c9761b",
-    "artifacts\\v2\\selected_model_map.json": "52ca8b043c7415113881eccc1af8b48197b85d826bc88a536f4c7354c4818ee4",
-    "artifacts\\v2\\walk_forward_fold_metrics.csv": "918cda9789338253cc09bbc649c3a1ebb6ed8b710d663a6966e74d27bbcfde94",
-    "data\\predictions\\v2\\locked_test_predictions.csv": "f58dc57789ad9a963a4df0467b9d6111956769f62408a9449353d7c1a1925720"
+    "artifacts/data_quality/horizon_class_balance.csv": "0b0d8cc26d9f8f6475b4e3d07a5410f8d220d305f8f4a60e8520d5c22600f909",
+    "artifacts/data_quality/summary.json": "7c23c99676f9ad5a0dd5ef373f39e3bbeccc8c0133ffc75c5d645d459ca33f24",
+    "artifacts/data_quality/suspicious_rows.csv": "b7da3245bc04b1c5b076b1d0268cab53947f9ad9ee8fa309664a85e21d7f8743",
+    "artifacts/data_quality/yearly_statistics.csv": "3e727322928d6c2cf92a0789edd8791f5d64492f945fafecb2e2089fa204b2d8",
+    "artifacts/v2/backtest_summary.csv": "46afce21730517ef58ddfc1b96dea00f023b2a206bb2a9edce6bfba5555b6294",
+    "artifacts/v2/candidate_selection_metrics.csv": "79c5785985d53f5c17e5ebd8d00871d27e8222c7b2759c56b5e55f1eabaa47a9",
+    "artifacts/v2/feature_registry.json": "e4414657eb89b25d580811eb83ad1f3b13cd9fb81ed15195725637ea2b68efc9",
+    "artifacts/v2/locked_test_metrics.csv": "9da24146dec0a97bb81db1231ac6cc4a00b45f8d11001e467112bc4086c9761b",
+    "artifacts/v2/selected_model_map.json": "98dfdcf6898ea70cc374a14a1e81fece9237235663d0175939e22644c10f2893",
+    "artifacts/v2/walk_forward_fold_metrics.csv": "918cda9789338253cc09bbc649c3a1ebb6ed8b710d663a6966e74d27bbcfde94",
+    "data/predictions/v2/locked_test_predictions.csv": "f58dc57789ad9a963a4df0467b9d6111956769f62408a9449353d7c1a1925720"
   },
   "broker": null,
-  "created_at_utc": "2026-08-08T15:47:18.027741+00:00",
+  "created_at_utc": "2026-08-08T16:22:55.474067+00:00",
   "export_date": null,
   "limitations": [
     "A 60% threshold is an empirical acceptance goal, not a guaranteed market result.",
@@ -43,14 +47,14 @@
   ],
   "pipeline_version": "2.0",
   "server": null,
-  "source": "D:\\Me\\Final Project\\Project\\hurst-gated-gold-forecasting\\data\\processed\\XAUUSD_Daily_20110103_20260731_model.csv",
+  "source": "data/processed/XAUUSD_Daily_20110103_20260731_model.csv",
   "source_end": "2026-07-31T00:00:00",
   "source_is_market_evidence": true,
   "source_rows": 4017,
   "source_sha256": "0c6d0b9ee76377d2d7048b53459fa6fc285af25fc21d76fad569454239f79a16",
   "source_start": "2011-01-03T00:00:00",
-  "source_type": null,
-  "symbol": null,
-  "timeframe": null,
+  "source_type": "MT5 broker export",
+  "symbol": "XAUUSD",
+  "timeframe": "D1",
   "timezone": null
 }

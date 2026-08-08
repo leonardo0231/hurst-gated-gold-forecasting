@@ -77,7 +77,7 @@ outputs:
     assert manifest["source_sha256"] is None
     assert manifest["source_rows"] == 1500
     assert manifest["symbol"] is None
-    assert "artifacts\\data_quality\\summary.json" in manifest["artifacts"]
+    assert "artifacts/data_quality/summary.json" in manifest["artifacts"]
     legacy_compatible = (
         tmp_path / "artifacts" / "metadata" / "phase5_locked_test_metrics_report_v2.csv"
     )
@@ -156,7 +156,7 @@ outputs:
 
     assert manifest["source_is_market_evidence"] is True
     assert SYNTHETIC_DISCLAIMER not in manifest["limitations"]
-    assert manifest["source"] == str(source_csv.relative_to(tmp_path))
+    assert manifest["source"] == source_csv.relative_to(tmp_path).as_posix()
     assert manifest["source_sha256"] == expected_hash
     assert manifest["source_rows"] == len(source_frame)
     assert manifest["source_start"] == source_frame["date"].iloc[0].isoformat()
