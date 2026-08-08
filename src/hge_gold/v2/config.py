@@ -13,6 +13,13 @@ class DataConfig:
     csv_path: str | None = None
     min_rows: int = 700
     decision_hour_utc: int = 22
+    symbol: str | None = None
+    timeframe: str | None = None
+    source_type: str | None = None
+    broker: str | None = None
+    server: str | None = None
+    timezone: str | None = None
+    export_date: str | None = None
 
 
 @dataclass(frozen=True)
@@ -136,6 +143,13 @@ def load_config(path: Path) -> ThesisConfig:
             csv_path=data_raw.get("csv_path"),
             min_rows=int(data_raw.get("min_rows", 700)),
             decision_hour_utc=int(data_raw.get("decision_hour_utc", 22)),
+            symbol=_optional_string(data_raw.get("symbol")),
+            timeframe=_optional_string(data_raw.get("timeframe")),
+            source_type=_optional_string(data_raw.get("source_type")),
+            broker=_optional_string(data_raw.get("broker")),
+            server=_optional_string(data_raw.get("server")),
+            timezone=_optional_string(data_raw.get("timezone")),
+            export_date=_optional_string(data_raw.get("export_date")),
         ),
         features=FeatureConfig(
             return_lags=_tuple_int(feature_raw.get("return_lags"), (1, 2, 3, 5, 10, 20)),
@@ -185,6 +199,10 @@ def load_config(path: Path) -> ThesisConfig:
     )
     _validate_config(config)
     return config
+
+
+def _optional_string(value: Any) -> str | None:
+    return None if value is None else str(value)
 
 
 def _validate_config(config: ThesisConfig) -> None:

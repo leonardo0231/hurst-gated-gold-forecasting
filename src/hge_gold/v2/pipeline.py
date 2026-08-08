@@ -42,12 +42,70 @@ def _sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+_SOURCE_METADATA_FIELDS = (
+    "symbol",
+    "timeframe",
+    "source_type",
+    "broker",
+    "server",
+    "timezone",
+    "export_date",
+)
+
+
+def _source_file_metadata(path: Path | None) -> dict[str, str | None]:
+    """Read explicitly named provenance columns without loading a large CSV."""
+    if path is None:
+        return {field: None for field in _SOURCE_METADATA_FIELDS}
+    first_row = pd.read_csv(path, nrows=1)
+    if first_row.empty:
+        return {field: None for field in _SOURCE_METADATA_FIELDS}
+    return {
+        field: None
+        if field not in first_row or pd.isna(first_row[field].iloc[0])
+        else str(first_row[field].iloc[0])
+        for field in _SOURCE_METADATA_FIELDS
+    }
+
+
+def _source_manifest_metadata(
+    source: pd.DataFrame, resolved_source: Path | None, config: Any
+) -> dict[str, Any]:
+    """Build input provenance from the validated source and declared data metadata."""
+    is_market_evidence = resolved_source is not None
+    file_metadata = _source_file_metadata(resolved_source)
+
+    def metadata_value(field: str) -> str | None:
+        configured_value = getattr(config.data, field)
+        return configured_value if configured_value is not None else file_metadata[field]
+
+    source_type = metadata_value("source_type")
+    if source_type is None and not is_market_evidence:
+        source_type = "synthetic research sample"
+
+    return {
+        "source": "research_sample" if resolved_source is None else str(resolved_source),
+        "source_is_market_evidence": is_market_evidence,
+        "source_sha256": None if resolved_source is None else _sha256(resolved_source),
+        "source_rows": len(source),
+        "source_start": source["date"].iloc[0].isoformat(),
+        "source_end": source["date"].iloc[-1].isoformat(),
+        "symbol": metadata_value("symbol"),
+        "timeframe": metadata_value("timeframe"),
+        "source_type": source_type,
+        "broker": metadata_value("broker"),
+        "server": metadata_value("server"),
+        "timezone": metadata_value("timezone"),
+        "export_date": metadata_value("export_date"),
+    }
+
+
 def run_thesis_pipeline(config_path: Path, source_csv: Path | None = None) -> dict[str, Path]:
     config = load_config(config_path)
     for directory in (config.artifact_dir, config.model_dir, config.prediction_dir):
         directory.mkdir(parents=True, exist_ok=True)
 
-    resolved_source = source_csv
+    resolved_source = None if source_csv is None else source_csv.resolve()
     if resolved_source is None and config.data.csv_path:
         resolved_source = (config.project_root / config.data.csv_path).resolve()
     source = load_ohlcv(resolved_source, config.data.min_rows, config.models.random_seed)
@@ -207,12 +265,12 @@ def run_thesis_pipeline(config_path: Path, source_csv: Path | None = None) -> di
         },
     )
 
+    source_is_market_evidence = resolved_source is not None
     manifest_path = config.artifact_dir / "execution_manifest.json"
     manifest = {
         "pipeline_version": "2.0",
         "created_at_utc": datetime.now(UTC).isoformat(),
-        "source": "research_sample" if resolved_source is None else str(resolved_source),
-        "source_is_market_evidence": resolved_source is not None,
+        **_source_manifest_metadata(source, resolved_source, config),
         "artifacts": {
             str(path.relative_to(config.project_root)): _sha256(path)
             for path in [
@@ -228,11 +286,18 @@ def run_thesis_pipeline(config_path: Path, source_csv: Path | None = None) -> di
         "acceptance_summary": metrics_frame[
             ["horizon", "acceptance_status", "balanced_accuracy", "macro_f1"]
         ].to_dict(orient="records"),
-        "limitations": [
-            "A 60% threshold is an empirical acceptance goal, not a guaranteed market result.",
-            "Synthetic sample results validate software behavior only.",
-            "Backtest output is research-only and is not investment advice.",
-        ],
+        "limitations": (
+            [
+                "A 60% threshold is an empirical acceptance goal, not a guaranteed market result.",
+                "Backtest output is research-only and is not investment advice.",
+            ]
+            if source_is_market_evidence
+            else [
+                "A 60% threshold is an empirical acceptance goal, not a guaranteed market result.",
+                "Synthetic sample results validate software behavior only.",
+                "Backtest output is research-only and is not investment advice.",
+            ]
+        ),
     }
     _atomic_json(manifest_path, manifest)
 

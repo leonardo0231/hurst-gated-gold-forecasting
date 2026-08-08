@@ -66,7 +66,21 @@ uv run hge-gold-v2 --config configs/thesis_v2_quick.yaml
 uv run hge-gold-v2 --config configs/thesis_v2.yaml --source-csv /absolute/path/gold.csv
 ```
 
-The real dataset must satisfy the V2 data contract and contain chronologically ordered, unique OHLCV observations. Dataset source, time range, symbol definition, and relevant preprocessing information must be recorded before results are treated as thesis evidence.
+The real dataset must satisfy the V2 data contract and contain chronologically ordered, unique OHLCV observations. Dataset source, time range, symbol definition, and relevant preprocessing information must be recorded before results are treated as thesis evidence. Record the available provenance fields in the V2 `data` configuration, for example:
+
+```yaml
+data:
+  source: market_evidence
+  source_type: MT5 broker export
+  symbol: XAUUSD
+  timeframe: D1
+  broker: Example Broker
+  server: ExampleBroker-Live
+  timezone: UTC
+  export_date: 2026-08-08
+```
+
+The execution manifest records the resolved input path, a streaming SHA-256 fingerprint, validated row count, first and last timestamps, and these source metadata fields. Unavailable optional metadata is recorded as `null`.
 
 ### V2 outputs
 

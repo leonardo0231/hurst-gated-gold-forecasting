@@ -30,17 +30,27 @@
     "artifacts\\v2\\candidate_selection_metrics.csv": "a50b5f0e2a03ff95e0bcc4a2403c57a7977eec982afdd002b1d1c37825d9e953",
     "artifacts\\v2\\feature_registry.json": "e4414657eb89b25d580811eb83ad1f3b13cd9fb81ed15195725637ea2b68efc9",
     "artifacts\\v2\\locked_test_metrics.csv": "ad21cdabde122bad71b1b485a98f2ecc183126a8c5eba4f666c3471415dc3ca5",
-    "artifacts\\v2\\selected_model_map.json": "bd36e32a0e0c08b8dd1ff5e2f09d33fd01f8604b3275222490fb4714cb32ddc7",
+    "artifacts\\v2\\selected_model_map.json": "6e6357eb8ec2eef78abbeb45d8935a62e7fd060ac2c995f4190dfc718e709c0f",
     "artifacts\\v2\\walk_forward_fold_metrics.csv": "918cda9789338253cc09bbc649c3a1ebb6ed8b710d663a6966e74d27bbcfde94",
     "data\\predictions\\v2\\locked_test_predictions.csv": "af424725b626bd1eaf5f48c105e262ecffb0b056493b883d7d6411a3d359d40c"
   },
-  "created_at_utc": "2026-08-07T10:48:18.323099+00:00",
+  "broker": null,
+  "created_at_utc": "2026-08-08T15:35:19.221287+00:00",
+  "export_date": null,
   "limitations": [
     "A 60% threshold is an empirical acceptance goal, not a guaranteed market result.",
-    "Synthetic sample results validate software behavior only.",
     "Backtest output is research-only and is not investment advice."
   ],
   "pipeline_version": "2.0",
-  "source": "data\\processed\\XAUUSD_Daily_20110103_20260731_model.csv",
-  "source_is_market_evidence": true
+  "server": null,
+  "source": "D:\\Me\\Final Project\\Project\\hurst-gated-gold-forecasting\\data\\processed\\XAUUSD_Daily_20110103_20260731_model.csv",
+  "source_end": "2026-07-31T00:00:00",
+  "source_is_market_evidence": true,
+  "source_rows": 4017,
+  "source_sha256": "0c6d0b9ee76377d2d7048b53459fa6fc285af25fc21d76fad569454239f79a16",
+  "source_start": "2011-01-03T00:00:00",
+  "source_type": null,
+  "symbol": null,
+  "timeframe": null,
+  "timezone": null
 }
