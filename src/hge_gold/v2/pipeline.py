@@ -11,6 +11,7 @@ import pandas as pd
 
 from .config import load_config
 from .data import load_ohlcv
+from .data_audit import write_market_data_quality_audit
 from .evaluation import (
     acceptance_status,
     backtest_summary,
@@ -117,6 +118,12 @@ def run_thesis_pipeline(config_path: Path, source_csv: Path | None = None) -> di
     if resolved_source is None and config.data.csv_path:
         resolved_source = (config.project_root / config.data.csv_path).resolve()
     source = load_ohlcv(resolved_source, config.data.min_rows, config.models.random_seed)
+    data_quality_outputs = write_market_data_quality_audit(
+        source,
+        config.targets.horizons,
+        config.features.regime_window,
+        config.project_root / "artifacts" / "data_quality",
+    )
     features, feature_columns = build_feature_matrix(source, config.features)
 
     metric_rows: list[dict[str, Any]] = []
@@ -289,6 +296,7 @@ def run_thesis_pipeline(config_path: Path, source_csv: Path | None = None) -> di
                 backtests_path,
                 selection_path,
                 feature_registry_path,
+                *data_quality_outputs.values(),
             ]
         },
         "acceptance_summary": metrics_frame[
@@ -338,4 +346,5 @@ def run_thesis_pipeline(config_path: Path, source_csv: Path | None = None) -> di
         "selection": selection_path,
         "manifest": manifest_path,
         "backtests": backtests_path,
+        **data_quality_outputs,
     }

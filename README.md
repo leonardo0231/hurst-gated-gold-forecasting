@@ -91,10 +91,16 @@ The execution manifest records the resolved input path, a streaming SHA-256 fing
 * `artifacts/v2/selected_model_map.json`
 * `artifacts/v2/feature_registry.json`
 * `artifacts/v2/execution_manifest.json`
+* `artifacts/data_quality/summary.json`
+* `artifacts/data_quality/yearly_statistics.csv`
+* `artifacts/data_quality/horizon_class_balance.csv`
+* `artifacts/data_quality/suspicious_rows.csv`
 * `data/predictions/v2/locked_test_predictions.csv`
 * `models/v2/horizon_<H>_model_bundle.joblib`
 
 See [thesis_v2_plan.md](docs/thesis_v2_plan.md) for the current thesis design and [quick_validation_report.md](reports/v2/quick_validation_report.md) for software-validation results.
+
+The market-data quality audit is descriptive and does not filter observations or affect model selection. It records calendar anomalies, return and flash-move outliers, volume anomalies, yearly price/return distributions, class balance for each forecasting horizon, and trailing-price bull/bear regimes. Potential missing weekdays include market holidays and should be reviewed rather than treated as errors automatically.
 
 ## Requirements
 

@@ -77,6 +77,7 @@ outputs:
     assert manifest["source_sha256"] is None
     assert manifest["source_rows"] == 1500
     assert manifest["symbol"] is None
+    assert "artifacts\\data_quality\\summary.json" in manifest["artifacts"]
     legacy_compatible = (
         tmp_path / "artifacts" / "metadata" / "phase5_locked_test_metrics_report_v2.csv"
     )
