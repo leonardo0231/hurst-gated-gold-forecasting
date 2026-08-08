@@ -292,7 +292,9 @@ Thresholdهای regime با rolling history و `shift(1)` ساخته می‌شو
 - `ExtraTreesClassifier`
 - `HistGradientBoostingClassifier`
 
-Gate از احتمال‌های OOF مدل‌های پایه و ویژگی‌های regime استفاده می‌کند. Gate فقط زمانی انتخاب می‌شود که روی آخرین fold توسعه از بهترین مدل پایه ضعیف‌تر نباشد؛ در غیر این صورت fallback به بهترین base انجام می‌شود.
+انتخاب مدل پایه فقط بر اساس آخرین Walk-Forward Fold انجام نمی‌شود. برای کاهش حساسیت انتخاب مدل به یک بازه زمانی خاص، Candidateهای پایه با استفاده از Foldهای قبل از Fold نهایی توسعه ارزیابی می‌شوند. معیار اصلی انتخاب، میانه Balanced Accuracy در این Foldها است؛ در صورت برابری، میانه Macro-F1 و سپس پراکندگی کمتر Balanced Accuracy به‌عنوان معیار پایداری استفاده می‌شود.
+
+آخرین Walk-Forward Fold به‌صورت جداگانه برای انتخاب Probability Threshold و مقایسه Learned Regime Gate با Base Candidate منتخب نگه داشته می‌شود. Gate از احتمال‌های OOF مدل‌های پایه و ویژگی‌های regime استفاده می‌کند و تنها در صورتی انتخاب می‌شود که روی این Fold نهایی توسعه از Base Candidate ضعیف‌تر نباشد. Locked Test در هیچ‌یک از مراحل انتخاب Candidate، Threshold یا Gate استفاده نمی‌شود.
 
 ## 11. خروجی‌های V2
 

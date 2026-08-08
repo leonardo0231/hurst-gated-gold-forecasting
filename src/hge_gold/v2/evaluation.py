@@ -139,14 +139,36 @@ def acceptance_status(
     }
 
 
+def _select_non_overlapping_predictions(
+    predictions: pd.DataFrame,
+    horizon: int,
+) -> pd.DataFrame:
+    ordered = predictions.sort_values("row_id").reset_index(drop=True)
+
+    if ordered.empty:
+        return ordered
+
+    minimum_gap = max(1, int(horizon))
+    selected_positions: list[int] = []
+    last_row_id: int | None = None
+
+    for position, row_id in enumerate(ordered["row_id"].to_numpy(dtype=int)):
+        current_row_id = int(row_id)
+
+        if last_row_id is None or current_row_id - last_row_id >= minimum_gap:
+            selected_positions.append(position)
+            last_row_id = current_row_id
+
+    return ordered.iloc[selected_positions].reset_index(drop=True)
+
+
 def backtest_summary(
     predictions: pd.DataFrame,
     horizon: int,
     transaction_cost_bps: float,
     slippage_bps: float,
 ) -> dict[str, float | int]:
-    ordered = predictions.sort_values("row_id").reset_index(drop=True)
-    non_overlapping = ordered.iloc[:: max(1, horizon)].copy()
+    non_overlapping = _select_non_overlapping_predictions(predictions, horizon)
     signal = np.where(non_overlapping["y_pred"].to_numpy() == 1, 1.0, -1.0)
     gross = signal * non_overlapping["forward_log_return"].to_numpy(dtype=float)
     cost = np.log1p((transaction_cost_bps + slippage_bps) / 10_000.0)

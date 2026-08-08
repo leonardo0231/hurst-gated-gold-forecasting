@@ -184,6 +184,48 @@ def _make_meta_frame(
     return pd.DataFrame(payload, index=source.index)
 
 
+def _candidate_stability_summary(
+    fold_metrics: list[dict[str, Any]],
+    candidate_name: str,
+    fold_ids: set[str],
+) -> dict[str, float]:
+    rows = [
+        row
+        for row in fold_metrics
+        if row["candidate"] == candidate_name and row["fold_id"] in fold_ids
+    ]
+    if not rows:
+        raise RuntimeError(f"No fold metrics are available for candidate {candidate_name!r}")
+
+    balanced_accuracy = np.asarray(
+        [float(row["balanced_accuracy"]) for row in rows],
+        dtype=float,
+    )
+    macro_f1 = np.asarray(
+        [float(row["macro_f1"]) for row in rows],
+        dtype=float,
+    )
+    roc_auc = np.asarray(
+        [float(row["roc_auc"]) for row in rows],
+        dtype=float,
+    )
+
+    return {
+        "stability_median_balanced_accuracy": float(np.median(balanced_accuracy)),
+        "stability_median_macro_f1": float(np.median(macro_f1)),
+        "stability_balanced_accuracy_std": float(np.std(balanced_accuracy, ddof=0)),
+        "stability_median_roc_auc": float(np.median(roc_auc)),
+    }
+
+
+def _candidate_stability_key(summary: dict[str, float]) -> tuple[float, float, float]:
+    return (
+        summary["stability_median_balanced_accuracy"],
+        summary["stability_median_macro_f1"],
+        -summary["stability_balanced_accuracy_std"],
+    )
+
+
 def train_and_predict(
     development: pd.DataFrame,
     locked: pd.DataFrame,
@@ -231,14 +273,28 @@ def train_and_predict(
     last_fold_id = folds[-1].fold_id
     selection_mask = common_mask & (oof_fold == last_fold_id)
     meta_train_mask = common_mask & (oof_fold != last_fold_id)
+
+    candidate_selection_fold_ids = {fold.fold_id for fold in folds[:-1]}
+
+    if not candidate_selection_fold_ids:
+        raise RuntimeError(
+            "At least two walk-forward folds are required for stable model selection"
+        )
+
     if selection_mask.sum() < 30 or meta_train_mask.sum() < 60:
         raise RuntimeError("Insufficient rows for leakage-safe meta-model selection")
 
     candidate_metrics: list[dict[str, Any]] = []
     best_candidate = names[0]
-    best_key = (-np.inf, -np.inf)
+    best_key = (-np.inf, -np.inf, -np.inf)
     best_candidate_threshold = 0.5
     for name in names:
+        stability = _candidate_stability_summary(
+            fold_metrics,
+            name,
+            candidate_selection_fold_ids,
+        )
+
         threshold, metrics = tune_probability_threshold(
             y_dev[selection_mask],
             oof_probabilities[name][selection_mask],
@@ -249,10 +305,13 @@ def train_and_predict(
         row = {
             "candidate": name,
             "selection_fold": last_fold_id,
+            "candidate_selection_policy": "median_preselection_folds_v2_1",
+            "candidate_selection_fold_count": len(candidate_selection_fold_ids),
+            **stability,
             **metrics,
         }
         candidate_metrics.append(row)
-        key = (float(metrics["balanced_accuracy"]), float(metrics["macro_f1"]))
+        key = _candidate_stability_key(stability)
         if key > best_key:
             best_key = key
             best_candidate = name
@@ -336,7 +395,10 @@ def train_and_predict(
         "candidate_names": names,
         "base_models": fitted_models,
         "meta_model": final_meta_model,
+        "candidate_selection_policy": "median_preselection_folds_v2_1",
+        "candidate_selection_fold_ids": [fold.fold_id for fold in folds[:-1]],
         "selection_fold": last_fold_id,
+        "strategy_selection_fold": last_fold_id,
         "selection_uses_locked_test": False,
     }
     return ModelingResult(
