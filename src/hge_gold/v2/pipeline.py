@@ -83,8 +83,16 @@ def _source_manifest_metadata(
     if source_type is None and not is_market_evidence:
         source_type = "synthetic research sample"
 
+    if resolved_source is None:
+        source_display = "research_sample"
+    else:
+        try:
+            source_display = str(resolved_source.relative_to(config.project_root))
+        except ValueError:
+            source_display = str(resolved_source)
+
     return {
-        "source": "research_sample" if resolved_source is None else str(resolved_source),
+        "source": source_display,
         "source_is_market_evidence": is_market_evidence,
         "source_sha256": None if resolved_source is None else _sha256(resolved_source),
         "source_rows": len(source),

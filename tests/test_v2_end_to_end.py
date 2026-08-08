@@ -155,7 +155,7 @@ outputs:
 
     assert manifest["source_is_market_evidence"] is True
     assert SYNTHETIC_DISCLAIMER not in manifest["limitations"]
-    assert manifest["source"] == str(source_csv)
+    assert manifest["source"] == str(source_csv.relative_to(tmp_path))
     assert manifest["source_sha256"] == expected_hash
     assert manifest["source_rows"] == len(source_frame)
     assert manifest["source_start"] == source_frame["date"].iloc[0].isoformat()

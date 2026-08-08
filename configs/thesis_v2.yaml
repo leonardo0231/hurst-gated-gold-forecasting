@@ -6,6 +6,15 @@ data:
   min_rows: 700
   decision_hour_utc: 22
 
+  symbol: XAUUSD
+  timeframe: D1
+  source_type: MT5 broker export
+
+  broker: null
+  server: null
+  timezone: null
+  export_date: null
+
 features:
   return_lags: [1, 2, 3, 5, 10, 20]
   windows: [5, 10, 20, 63, 126]
