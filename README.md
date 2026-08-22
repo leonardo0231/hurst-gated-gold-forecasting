@@ -1,82 +1,68 @@
 # HGE Gold Forecasting
 
-Leakage-safe, audit-first research pipeline for multi-horizon binary gold-price direction forecasting. The project runs offline by default, never connects to a broker, and produces research artifacts only—not investment advice.
+Leakage-controlled research software for multi-horizon XAUUSD direction forecasting. The framework separates statistical close-to-close labels from executable next-open labels, uses purged chronological validation, freezes every selection decision before evaluating the historical holdout, and exports fixed signals for MetaTrader 5 Strategy Tester replay. It is research software, not investment advice.
 
-## Method
+## Scientific design
 
-For each valid observation and forecast horizon, the primary target is the sign of the future log return:
+- Primary statistical label: `sign(close[t + H] - close[t])`.
+- Executable return: entry at `open[t + 1]`, exit at `open[t + 1 + H]`.
+- Cost-aware `down / no-trade / up` actionability is diagnostic and never filters the binary modeling sample.
+- The locked boundary is the same calendar date for all horizons. Training labels are purged wherever their information intervals overlap validation or the locked holdout.
+- Candidate, threshold, and stacked-meta selection use development data only.
+- Hurst is treated as a possible regime descriptor—not a directional predictor—and is tested against no-Hurst and legacy-estimator ablations.
+- The 2023–2026 holdout has been seen before. Results are therefore repeated historical out-of-sample evidence, not pristine confirmation.
 
-- `1`: future price is higher than the current price.
-- `0`: future price is unchanged or lower than the current price.
-
-The pipeline uses causal technical, volatility, entropy, volume, and Hurst-regime features; a chronological locked test; purged walk-forward validation; Logistic Regression, Random Forest, Extra Trees, and HistGradientBoosting candidates; and a learned regime gate with a best-base fallback. Candidate selection, threshold selection, and gate selection do not use the locked test.
-
-The default research fixture is synthetic and validates software behavior only. It is not market evidence.
+The default market configuration uses the checked XAUUSD D1 export from MetaQuotes-Demo. Its `volume` is broker tick volume, not centralized exchange volume. Broker server, timezone, holidays, and candle boundaries can change D1 bars, features, labels, and results.
 
 ## Run
 
-Install dependencies:
-
-```bash
-uv sync --extra dev
-```
-
-Run the default thesis configuration:
-
-```bash
+```powershell
+uv sync --extra dev --extra mt5
 uv run hge-gold --config configs/thesis.yaml
 ```
 
-Run quick local validation:
+Software-only smoke test:
 
-```bash
+```powershell
 uv run hge-gold --config configs/thesis_quick.yaml
 ```
 
-Run with an audited OHLCV CSV:
+The quick configuration is synthetic and is never market evidence.
 
-```bash
-uv run hge-gold --config configs/thesis.yaml --source-csv /absolute/path/gold.csv
+## MetaTrader 5 verification
+
+The pipeline writes one frozen signal file per horizon under `data/predictions/v3/market`. Compile and replay a horizon without optimization:
+
+```powershell
+uv run python scripts/run_mt5_backtest.py `
+  --terminal "D:\Programming\MetaTrader\MetaTrader 5\terminal64.exe" `
+  --signals data/predictions/v3/market/mt5_replay_signals_h1.csv `
+  --from-date 2023.07.03 `
+  --to-date 2026.08.01 `
+  --output-dir artifacts/mt5/h1 `
+  --close-running-terminal
 ```
 
-The CSV must contain sorted, unique `date,open,high,low,close,volume` columns. Record available provenance in `data` configuration:
+`mt5/HGE_SignalReplay.mq5` validates execution of already-frozen predictions. It is intentionally not native MQL5 inference and does not tune anything in the tester. See `mt5/README.md` for its contract.
 
-```yaml
-data:
-  source: market_evidence
-  source_type: MT5 broker export
-  symbol: XAUUSD
-  timeframe: D1
-  broker: null
-  server: null
-  timezone: null
-  export_date: null
-```
+## Principal outputs
 
-## Outputs
-
-- `artifacts/v2/execution_manifest.json`
-- `artifacts/v2/locked_test_metrics.csv`
-- `artifacts/v2/candidate_selection_metrics.csv`
-- `artifacts/v2/walk_forward_fold_metrics.csv`
-- `artifacts/v2/backtest_summary.csv`
-- `artifacts/v2/selected_model_map.json`
-- `artifacts/v2/feature_registry.json`
-- `artifacts/data_quality/summary.json`
-- `artifacts/data_quality/yearly_statistics.csv`
-- `artifacts/data_quality/horizon_class_balance.csv`
-- `artifacts/data_quality/suspicious_rows.csv`
-- `data/predictions/v2/locked_test_predictions.csv`
-- `models/v2/horizon_<H>_model_bundle.joblib`
-
-The execution manifest records source provenance, a streaming SHA-256 fingerprint, row span, and output hashes. The descriptive market-data audit records calendar anomalies, return and flash-move outliers, volume anomalies, yearly price/return distributions, class balance, and bull/bear regimes without filtering modeling observations.
+- `artifacts/v3/market/execution_manifest.json`: source/config/code/runtime provenance and artifact hashes.
+- `artifacts/v3/market/locked_test_metrics.csv`: classification metrics and block-bootstrap uncertainty.
+- `artifacts/v3/market/ablation_metrics.csv`: formal Hurst/no-Hurst and stacker/no-stacker comparisons.
+- `artifacts/v3/market/backtest_summary.csv`: cost-aware model, trend, volatility-filtered, long/short/cash, and buy-and-hold benchmarks.
+- `artifacts/v3/market/cpcv_split_manifest.csv`: development-only combinatorial split audit.
+- `artifacts/v3/market/validation_diagnostics.json`: implemented and explicitly deferred statistics.
+- `artifacts/runs/<run-id>/`: immutable evidence copy; a trackable receipt is also written under `artifacts/v3/market`.
+- `artifacts/mt5/mt5_evidence_index.json`: hashed MT5 compiler/tester evidence linked to the pipeline run.
+- `data/predictions/v3/market/mt5_replay_signals_h*.csv`: fixed MT5 replay inputs.
 
 ## Quality checks
 
-```bash
-uv run ruff check src/hge_gold tests
+```powershell
+uv run ruff check .
 uv run mypy src/hge_gold
-uv run pytest --cov=hge_gold --cov-fail-under=80
+uv run pytest --cov=src/hge_gold --cov-report=term-missing
 ```
 
-See [thesis_plan.md](docs/thesis_plan.md) and [quick_validation_report.md](reports/quick_validation_report.md) for the thesis design and validation report.
+The acceptance goal of 60% balanced accuracy is a preregistered threshold, not a promised outcome. See `docs/research_framework_v3_report.md` for the evidence, implemented changes, and deferred work.

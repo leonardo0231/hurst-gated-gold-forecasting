@@ -1,0 +1,103 @@
+{
+  "features": [
+    "return_lag_1",
+    "return_lag_2",
+    "return_lag_3",
+    "return_lag_5",
+    "return_lag_10",
+    "return_lag_20",
+    "return_mean_5",
+    "return_std_5",
+    "momentum_5",
+    "price_zscore_5",
+    "drawdown_5",
+    "trend_slope_5",
+    "sign_entropy_5",
+    "return_mean_10",
+    "return_std_10",
+    "momentum_10",
+    "price_zscore_10",
+    "drawdown_10",
+    "trend_slope_10",
+    "sign_entropy_10",
+    "return_mean_20",
+    "return_std_20",
+    "momentum_20",
+    "price_zscore_20",
+    "drawdown_20",
+    "trend_slope_20",
+    "sign_entropy_20",
+    "return_mean_63",
+    "return_std_63",
+    "momentum_63",
+    "price_zscore_63",
+    "drawdown_63",
+    "trend_slope_63",
+    "sign_entropy_63",
+    "return_mean_126",
+    "return_std_126",
+    "momentum_126",
+    "price_zscore_126",
+    "drawdown_126",
+    "trend_slope_126",
+    "sign_entropy_126",
+    "rsi_14",
+    "atr_14_normalized",
+    "range_log",
+    "close_open_log",
+    "ewma_vol_20",
+    "ewma_vol_63",
+    "vol_ratio_20_63",
+    "rolling_skew_20",
+    "rolling_kurtosis_20",
+    "macd",
+    "macd_signal",
+    "macd_histogram",
+    "volume_change_1",
+    "volume_zscore_20",
+    "volume_zscore_63",
+    "return_volume_interaction",
+    "volatility_zscore",
+    "trend_efficiency_20",
+    "trend_regime",
+    "trend_regime_available",
+    "dow_sin",
+    "dow_cos",
+    "month_sin",
+    "month_cos"
+  ],
+  "outer_selections": [
+    {
+      "calibration": "sigmoid",
+      "margin": 0.05,
+      "outer_fold": "outer_01"
+    },
+    {
+      "calibration": "none",
+      "margin": 0.05,
+      "outer_fold": "outer_02"
+    },
+    {
+      "calibration": "none",
+      "margin": 0.05,
+      "outer_fold": "outer_03"
+    },
+    {
+      "calibration": "sigmoid",
+      "margin": 0.05,
+      "outer_fold": "outer_04"
+    },
+    {
+      "calibration": "none",
+      "margin": 0.05,
+      "outer_fold": "outer_05"
+    }
+  ],
+  "status": "outer_fold_evaluation_specification_only_no_promoted_model",
+  "trial": {
+    "arm": "no_hurst",
+    "horizon": 5,
+    "logistic_c": 0.2,
+    "seed": 42
+  }
+}

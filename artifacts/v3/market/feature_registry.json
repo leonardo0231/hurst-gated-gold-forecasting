@@ -1,0 +1,581 @@
+{
+  "feature_set_id": "causal_gold_features_v3_dfa",
+  "features": [
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "return_lag_1",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "return_lag_2",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "return_lag_3",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "return_lag_5",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "return_lag_10",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "return_lag_20",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "return_mean_5",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "return_std_5",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "momentum_5",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "price_zscore_5",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "drawdown_5",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "trend_slope_5",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "sign_entropy_5",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "return_mean_10",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "return_std_10",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "momentum_10",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "price_zscore_10",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "drawdown_10",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "trend_slope_10",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "sign_entropy_10",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "return_mean_20",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "return_std_20",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "momentum_20",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "price_zscore_20",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "drawdown_20",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "trend_slope_20",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "sign_entropy_20",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "return_mean_63",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "return_std_63",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "momentum_63",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "price_zscore_63",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "drawdown_63",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "trend_slope_63",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "sign_entropy_63",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "return_mean_126",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "return_std_126",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "momentum_126",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "price_zscore_126",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "drawdown_126",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "trend_slope_126",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "sign_entropy_126",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "rsi_14",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "atr_14_normalized",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "range_log",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "close_open_log",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "ewma_vol_20",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "ewma_vol_63",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "vol_ratio_20_63",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "rolling_skew_20",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "rolling_kurtosis_20",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "macd",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "macd_signal",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "macd_histogram",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "volume_change_1",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "volume_zscore_20",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "volume_zscore_63",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "return_volume_interaction",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": "legacy_single_scale",
+      "name": "hurst_rs_single_scale_legacy_64",
+      "primary_model_feature": false,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": "dfa1",
+      "name": "hurst_dfa1_64",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": "legacy_single_scale",
+      "name": "hurst_rs_single_scale_legacy_128",
+      "primary_model_feature": false,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": "dfa1",
+      "name": "hurst_dfa1_128",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": "dfa1",
+      "name": "hurst_dfa1_available",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": "dfa1",
+      "name": "hurst_regime",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "hurst_regime_available",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "volatility_zscore",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "trend_efficiency_20",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "trend_regime",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "trend_regime_available",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "dow_sin",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "dow_cos",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "month_sin",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    },
+    {
+      "causal": true,
+      "hurst_family": null,
+      "name": "month_cos",
+      "primary_model_feature": true,
+      "uses_future_data": false,
+      "uses_target_data": false
+    }
+  ]
+}

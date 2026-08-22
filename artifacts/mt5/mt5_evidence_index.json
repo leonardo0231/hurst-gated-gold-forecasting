@@ -1,0 +1,32 @@
+{
+  "created_at_utc": "2026-08-20T09:38:44.841621+00:00",
+  "files": {
+    "artifacts/mt5/h1/HGE_46a7875ab6651c6a.set": "8217dda4a208c0d90eda5b3d932762d052e2ac6173a2670790bf1916b6d5e40d",
+    "artifacts/mt5/h1/HGE_SignalReplay.ex5": "02dc751b5407f8b14c2838b70eefd41228a6eefba0301de981cbbde3f9e41fda",
+    "artifacts/mt5/h1/HGE_strategy_tester_46a7875ab6651c6a.htm": "bad524950f226b3aed7615d74a8979477ae8cfea1b7305fb412ada5ece2dad02",
+    "artifacts/mt5/h1/compile_evidence.txt": "62011821bde02d7c2c777360ffc0b691d55748acf2fe097e5a9732b229132a8a",
+    "artifacts/mt5/h1/mt5_evidence.json": "66e9ef2289d74d0a5e4b4665cd1d630b2d6efe9f432ad8168fab4f2cda2c2559",
+    "artifacts/mt5/h1/tester.ini": "885ce010e95be6daee494412e78f08986450b61e6296b442cf14d61225f40fd7",
+    "artifacts/mt5/h10/HGE_SignalReplay.ex5": "d6a5c31c1125c7ce8a9fcd10d9a3da039710a4329c414096087bb111eb124d51",
+    "artifacts/mt5/h10/HGE_a6edf9dde740f0d8.set": "7108af51450cac8e6e2207cd6463f1d64f175e238647f5013a2054a75724e81a",
+    "artifacts/mt5/h10/HGE_strategy_tester_a6edf9dde740f0d8.htm": "204fd26f09216b74fe5c3e70b41fb70708c22350dc8c3a3ef1e286ac757897a1",
+    "artifacts/mt5/h10/compile_evidence.txt": "6de62c2733a862d49d3dd06bb24c5b76a2bf5c85833205fd869b43683b0dfade",
+    "artifacts/mt5/h10/mt5_evidence.json": "a754312f258b29e551473fdd25148eecbf45be2b5b9118c1579dc104d4be01d4",
+    "artifacts/mt5/h10/tester.ini": "e1676d7d0c571c743092b012267ec5475e46d2a4810c0ca583656214785c5348",
+    "artifacts/mt5/h20/HGE_SignalReplay.ex5": "950a95fa08baf3bdfe07299ea7ea3d03177928aba5fdfaf4c27cb27cf8e55f47",
+    "artifacts/mt5/h20/HGE_f4a05f02d037566b.set": "67e82d517470ccec4e0b0139a83e3f19283c535d5acab7d42ce439de4f79a09c",
+    "artifacts/mt5/h20/HGE_strategy_tester_f4a05f02d037566b.htm": "2e410ebba32d47c07958752be9cab6e5ca9275283e12133556b0bac2597b707e",
+    "artifacts/mt5/h20/compile_evidence.txt": "7fa59b744b9af102136b7337b609f76cc3b26816676274b14bde8cea93f27f59",
+    "artifacts/mt5/h20/mt5_evidence.json": "9d678319d203138e47bb44a7180fde29cfcdcce13f81237868f6013221d17263",
+    "artifacts/mt5/h20/tester.ini": "bcf9e49b4269e712d55c6a231de476a85722bfd34447ca4ec6fb93f2250f8340",
+    "artifacts/mt5/h5/HGE_SignalReplay.ex5": "1c01a53e495c03d65c7ac4124e6f3f2e641e14c2f3c653b6421e7143d159ef1b",
+    "artifacts/mt5/h5/HGE_e4cba57d2b0ea30b.set": "b2a048f3ba48690735ed156e3c26c434c4522e443a5dbbf96b8dc8bb43d13c80",
+    "artifacts/mt5/h5/HGE_strategy_tester_e4cba57d2b0ea30b.htm": "98dc9f14c2800a6ca64962d55ccd6e90ba56738580a9a839ebaaac79a6248704",
+    "artifacts/mt5/h5/compile_evidence.txt": "b21414c750284bda29513012bcdaa09294dffd34df7bfaf04e411bf309d413c9",
+    "artifacts/mt5/h5/mt5_evidence.json": "e10034a0d99261c5c176dc966f3a2c7a8010c6617379c7cacef4f0e43f9b1d53",
+    "artifacts/mt5/h5/tester.ini": "d451ddecc910aeee57e0fac249e519d142a7a17648c6babc575d13282f485567"
+  },
+  "pipeline_manifest": "artifacts/v3/market/execution_manifest.json",
+  "pipeline_manifest_sha256": "b8d075697d2c2047554c4a42a27f72eca14b6c80aa8e9418a928c8dc97f13b72",
+  "pipeline_run_id": "market_evidence-98f632731a9bdea9"
+}

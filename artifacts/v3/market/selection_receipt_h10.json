@@ -1,0 +1,15 @@
+{
+  "code_sha256": "846592c4661a5822f41fc1d894160819432eb661c670f87644e3ff5d237f7321",
+  "config_sha256": "dbcaf6957aae2100a2ac4d6494838709782f6de88ae338f9944354204fd79daa",
+  "holdout_status": "historical_holdout_v1_previously_revealed",
+  "horizon": 10,
+  "locked_test_start_row": 3221,
+  "model_sha256": "13bd880542bff8a35f6797f2a7413113dabc65ff237f22f43078996ec71b5739",
+  "pipeline_version": "3.0",
+  "run_id": "market_evidence-98f632731a9bdea9",
+  "selected_candidate": "extra_trees",
+  "selected_strategy": "best_base_model",
+  "selection_uses_holdout": false,
+  "source_sha256": "0c6d0b9ee76377d2d7048b53459fa6fc285af25fc21d76fad569454239f79a16",
+  "threshold": 0.51
+}

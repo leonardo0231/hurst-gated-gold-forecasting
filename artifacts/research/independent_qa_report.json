@@ -1,0 +1,266 @@
+{
+  "schema_version": "independent_qa_report_v1",
+  "qa_role": "independent_qa_agent",
+  "created_at_utc": "2026-08-22T15:30:14.9438365Z",
+  "canonical_batch_id": "executable_direction_hurst_ablation_v1-20260822T151315Z",
+  "scope": {
+    "software_protocol_release": "reject",
+    "model_candidate_release": "reject",
+    "negative_result_interpretation": "supported_with_limitations",
+    "final_release_recommendation": "reject"
+  },
+  "evidence_classes": {
+    "development": "Twelve nested purged outer-development experiments on development_reused_previously_exposed data; valid for rejection only.",
+    "one_time_confirmation": "none",
+    "previously_revealed_historical_audit": "Existing V3 2023-07-03 onward evidence only; all horizons failed and it was not rerun for the new batch.",
+    "actual_future_out_of_sample": "none"
+  },
+  "findings": [
+    {
+      "finding_id": "QA-P0-001",
+      "title": "Multi-day economic, benchmark, PBO, DSR, and trade-count evidence is not an executable non-overlapping path",
+      "priority": "P0",
+      "evidence": [
+        "src/hge_gold/research_experiments.py:498-505 constructs the final return matrix directly from every action row rather than build_mt5_signal_schedule.",
+        "src/hge_gold/research_experiments.py:603 labels count_nonzero(net_returns) as n_non_overlapping_trades.",
+        "For no_hurst H5/H10/H20, registered action counts are 1089/2351/2331 while a chronological one-position schedule contains 264/236/117 trades.",
+        "artifacts/research/qa/post_run_economic_overlap_audit.json acknowledges that H5/H10/H20 registered economic paths overlap and that benchmark deltas, economic confidence intervals, PBO, and DSR were not corrected.",
+        "build_mt5_signal_schedule extends busy_until when it rejects an overlapping signal, so a rejected signal incorrectly delays later eligibility; the existing unit test encodes this behavior."
+      ],
+      "affected_files": [
+        "src/hge_gold/research_experiments.py",
+        "tests/test_mt5_parity.py",
+        "artifacts/research/registry/experiments.jsonl",
+        "artifacts/research/runs/executable_direction_hurst_ablation_v1-20260822T151315Z/*/economic_benchmarks.json",
+        "artifacts/research/runs/executable_direction_hurst_ablation_v1-20260822T151315Z/*/promotion_decision.json"
+      ],
+      "risks": [
+        "Registered economics and multiple-testing diagnostics cannot support promotion or profitability.",
+        "The inner no-trade margin was selected using a schedule that does not match a normal one-position replay."
+      ],
+      "recommended_action": "Do not alter the exhausted v1 registry. Fix the scheduler and final return-path construction, add independent schedule/trade fixtures, and preregister a separate v2 family with corrected same-schedule benchmarks, block uncertainty, PBO, and DSR.",
+      "implementation_status": "deferred; an honest post-run audit was implemented and preserves the rejection disposition"
+    },
+    {
+      "finding_id": "QA-P0-002",
+      "title": "No model candidate qualifies for freeze, confirmation, historical audit, or MT5",
+      "priority": "P0",
+      "evidence": [
+        "The registry contains 12 unique, hash-valid records and all decisions are reject.",
+        "The highest pooled balanced accuracy is robust_hurst_regime H20 at 0.5113 with macro-F1 0.4585 and 95% block interval [0.4725, 0.5451].",
+        "Every one of the 12 balanced-accuracy intervals includes 0.50.",
+        "No artifacts/research/candidates directory or candidate freeze exists."
+      ],
+      "affected_files": [
+        "artifacts/research/registry/experiments.jsonl",
+        "artifacts/research/runs/executable_direction_hurst_ablation_v1-20260822T151315Z/experiment_inventory.json"
+      ],
+      "risks": [
+        "Any candidate, confirmation, audit, profitability, or future-OOS claim would be unsupported."
+      ],
+      "recommended_action": "Keep all 12 trials closed as rejected. Do not freeze a model or run confirmation/audit/MT5 for this family.",
+      "implementation_status": "implemented"
+    },
+    {
+      "finding_id": "QA-P1-003",
+      "title": "The canonical run receipt does not make run outputs immutable or fully reproducible",
+      "priority": "P1",
+      "evidence": [
+        "run_receipt.json has no file inventory or hashes for its 62 run files, 12 prediction CSVs, or 12 model-spec JSON files.",
+        "The receipt's code_sha256 covers only src/hge_gold/research_experiments.py, not calibration.py, research_validation.py, statistics.py, features.py, targets.py, data.py, or other imported implementation files.",
+        "The current runner cannot perform a read-only deterministic replay because the nonempty registry guard aborts before computation.",
+        "The first trial in the incomplete 151330Z run is byte-identical to its canonical counterpart, which is useful partial reproducibility evidence but not a complete independent replay."
+      ],
+      "affected_files": [
+        "artifacts/research/runs/executable_direction_hurst_ablation_v1-20260822T151315Z/run_receipt.json",
+        "src/hge_gold/research_experiments.py"
+      ],
+      "risks": [
+        "Post-run artifact mutation cannot be detected from the receipt.",
+        "The exact imported code state cannot be reconstructed from the receipt alone."
+      ],
+      "recommended_action": "For the next family, stage outputs in a creation-exclusive directory, hash every output and the complete relevant code/dependency/runtime set, atomically finalize a receipt, and provide a no-registry dry-run verification mode.",
+      "implementation_status": "deferred"
+    },
+    {
+      "finding_id": "QA-P1-004",
+      "title": "Concurrent execution can leave unreceipted runs and the JSONL registry lacks an inter-process lock",
+      "priority": "P1",
+      "evidence": [
+        "The 151330Z directory contains one experiment's five run files, one prediction, and one model spec but has no inventory or run receipt.",
+        "Both processes can pass the empty-registry check before either appends; AppendOnlyExperimentRegistry performs read-then-append without a file lock.",
+        "The canonical chain happened to remain valid at 12 records, but the filesystem contains ambiguous noncanonical evidence."
+      ],
+      "affected_files": [
+        "src/hge_gold/research_protocol.py",
+        "src/hge_gold/research_experiments.py",
+        "artifacts/research/runs/executable_direction_hurst_ablation_v1-20260822T151330Z",
+        "data/predictions/research/executable_direction_hurst_ablation_v1-20260822T151330Z",
+        "models/research/executable_direction_hurst_ablation_v1-20260822T151330Z"
+      ],
+      "risks": [
+        "Two simultaneous writers could append incompatible sequence/hash heads or leave partial artifact trees."
+      ],
+      "recommended_action": "Add an inter-process batch/registry lock, write failed-run receipts, and quarantine or explicitly index incomplete attempts without deleting evidence silently.",
+      "implementation_status": "deferred and transparently registered as a deferred cleanup item"
+    },
+    {
+      "finding_id": "QA-P1-005",
+      "title": "Audit isolation is semantically strong for modeling but not literally byte-isolated",
+      "priority": "P1",
+      "evidence": [
+        "load_development_source uses pandas.read_csv(nrows=3213), and all saved OOF decision dates precede 2023-07-03; split inspection found zero chronological/purge violations across 12 manifests.",
+        "The development run nevertheless opens a single CSV whose filename and contents extend through 2026 and hashes the entire file at receipt creation.",
+        "qa_flags audit_isolated=true and run_receipt historical_audit_accessed=false are self-asserted rather than enforced by a physically separate protected partition."
+      ],
+      "affected_files": [
+        "src/hge_gold/research_experiments.py",
+        "artifacts/research/runs/executable_direction_hurst_ablation_v1-20260822T151315Z/run_receipt.json"
+      ],
+      "risks": [
+        "There is no evidence that audit outcomes influenced the model, but the literal no-load claim is stronger than the implementation proves."
+      ],
+      "recommended_action": "Materialize and hash a development-only source object before experimentation; keep audit bytes behind a separate loader/claim boundary and derive the receipt from the protected manifest rather than reading the combined file.",
+      "implementation_status": "deferred"
+    },
+    {
+      "finding_id": "QA-P1-006",
+      "title": "The registry is structurally valid but incomplete as a self-contained experiment-return ledger",
+      "priority": "P1",
+      "evidence": [
+        "All 12 registry lines validate their sequence, previous hash, canonical record hash, unique ID, and fixed family budget.",
+        "train_metrics contains selection labels and chosen calibration/margins but no numeric inner-fold candidate scores.",
+        "The registry stores aggregate economics, not aligned per-observation trial returns; external prediction files are not hashed by the run receipt.",
+        "PBO is computed from three arms separately within each horizon, while DSR declares 12 trials but estimates Sharpe-distribution moments from only the three same-horizon arms."
+      ],
+      "affected_files": [
+        "artifacts/research/registry/experiments.jsonl",
+        "src/hge_gold/research_experiments.py",
+        "artifacts/research/deferred_items.jsonl"
+      ],
+      "risks": [
+        "The trial_return_registry_complete=true gate input is not supported as a self-contained, immutable ledger.",
+        "PBO/DSR do not fully represent the horizon/target search and are additionally invalidated by overlapping economic paths."
+      ],
+      "recommended_action": "Persist and receipt-hash numeric inner selection scores and synchronized net-return artifacts for every attempted trial; predefine whether multiple-testing adjustment is within horizon or across the full family.",
+      "implementation_status": "deferred"
+    },
+    {
+      "finding_id": "QA-P1-007",
+      "title": "The initial hypothesis card controls the budget but does not fully freeze the executable specification",
+      "priority": "P1",
+      "evidence": [
+        "The card fixes three arm names, four horizons, a 12-trial budget, calibration choices, and margins.",
+        "It does not specify the robust regime window/minimum periods, exact feature membership, logistic C/seed, fold minimum sizes, bootstrap iterations/block lengths, or cost/benchmark formulas.",
+        "The executable code and its hash appear in the post-run receipt rather than a separately time-anchored pre-run freeze."
+      ],
+      "affected_files": [
+        "protocol/hypothesis_cards/executable_direction_hurst_ablation_v1.json",
+        "artifacts/research/runs/executable_direction_hurst_ablation_v1-20260822T151315Z/run_receipt.json"
+      ],
+      "risks": [
+        "The batch is budget-controlled, but the label preregistered overstates how many implementation degrees of freedom were independently frozen before evaluation."
+      ],
+      "recommended_action": "In the next card, include or hash an exact executable config covering transforms, features, model, split geometry, calibration, costs, benchmarks, uncertainty, and promotion criteria before any run starts.",
+      "implementation_status": "deferred"
+    },
+    {
+      "finding_id": "QA-P1-008",
+      "title": "MT5 evidence is historical V3 signal replay, not new-candidate or inference parity",
+      "priority": "P1",
+      "evidence": [
+        "No new candidate was frozen, so no new MT5 run was authorized or produced.",
+        "Existing artifacts/mt5 evidence is labeled historical_holdout_v1_previously_revealed_signal_replay and uses Open Prices Only; real-tick archives and native MQL5 inference are explicitly absent.",
+        "tests/test_mt5_parity.py compares build_mt5_signal_schedule to replay_mt5_schedule, which validates and returns a copy; it does not compare terminal trade/fill records."
+      ],
+      "affected_files": [
+        "tests/test_mt5_parity.py",
+        "artifacts/mt5/mt5_evidence_index.json",
+        "docs/research_improvement_loop_report.md"
+      ],
+      "risks": [
+        "Calling the unit test Python-to-MT5 trade parity would be unsupported."
+      ],
+      "recommended_action": "Retain the narrow deterministic schedule-contract claim. For any future frozen candidate, reconcile exported signals, MT5 orders, fills, exits, costs, and timestamps row by row and archive real-tick evidence when available.",
+      "implementation_status": "implemented as a limitation; terminal parity remains deferred"
+    },
+    {
+      "finding_id": "QA-P0-009",
+      "title": "Exposure classification and absence of confirmation are correctly disclosed",
+      "priority": "P0",
+      "evidence": [
+        "The baseline freeze records V3 fold five ending in June 2023 and its selection use.",
+        "The data availability manifest labels 2022 through H1 2023 development_reused_previously_exposed.",
+        "2023-07-03 onward is consistently labeled historical_audit_previously_revealed.",
+        "No confirmation, candidate-freeze claim, historical-audit claim, or future-OOS artifact exists for the new batch."
+      ],
+      "affected_files": [
+        "artifacts/research/baselines/baseline-market-evidence-98f632731a9bdea9/baseline_manifest.json",
+        "protocol/data_availability_manifest.json",
+        "docs/research_protocol.md"
+      ],
+      "risks": [
+        "Only future, never-inspected data can supply genuine confirmation."
+      ],
+      "recommended_action": "Preserve these labels and do not relabel any historical interval as locked or confirmation.",
+      "implementation_status": "implemented"
+    }
+  ],
+  "hurst_ablation_conclusion": {
+    "status": "no_incremental_value_demonstrated",
+    "evidence": "No-Hurst is numerically best at H1 and H10; robust Hurst is numerically best at H5 and H20; every arm-horizon interval includes chance and every trial is rejected."
+  },
+  "verification": [
+    {
+      "command": "uv run ruff check .",
+      "outcome": "pass: All checks passed"
+    },
+    {
+      "command": "uv run mypy src/hge_gold",
+      "outcome": "pass: no issues in 20 source files"
+    },
+    {
+      "command": "uv run pytest -q",
+      "outcome": "pass: 66 tests in 63.53 seconds"
+    },
+    {
+      "command": "independent registry canonical-hash-chain verification",
+      "outcome": "pass: 12 unique records, sequences 0-11, fixed budget 12, head 2e2adf78501ac0c844b5bd2354d3b3bc1b97a7147e941ffea8a72b7222671e3e"
+    },
+    {
+      "command": "independent baseline artifact hash verification",
+      "outcome": "pass: all 27 registered baseline artifacts exist and match SHA-256"
+    },
+    {
+      "command": "independent split-manifest chronology and closed-interval purge verification",
+      "outcome": "pass: 12 manifests, zero outer/inner violations"
+    },
+    {
+      "command": "independent prediction boundary verification",
+      "outcome": "pass: all 12 OOF prediction files end before 2023-07-03"
+    },
+    {
+      "command": "uv run python scripts/run_research_batch.py --bootstrap-iterations 1",
+      "outcome": "expected fail-closed: RuntimeError that the append-only batch has already executed; no new artifacts written"
+    }
+  ],
+  "limitations": [
+    "The 2022 through June 2023 period was previously used and is not confirmation.",
+    "The 2023-2026 historical audit was previously revealed.",
+    "No fresh historical confirmation or actual future OOS evidence exists.",
+    "Broker/session metadata is reconstructed and cross-broker provenance is incomplete.",
+    "Registered multi-day economics, PBO, and DSR are invalid as promotion evidence.",
+    "No new-candidate MT5 or real-tick/native-inference parity evidence exists."
+  ],
+  "unsupported_claims_prohibited": [
+    "A candidate passed development promotion.",
+    "Hurst adds stable incremental value.",
+    "The new batch demonstrates profitability.",
+    "The new batch has MT5 trade parity.",
+    "2022-June 2023 is confirmation.",
+    "2023-2026 is pristine locked test evidence.",
+    "Any result is actual future out-of-sample evidence."
+  ],
+  "final_release_recommendation": "reject",
+  "recommendation_reason": "The negative development conclusion is supported, but P0 economic/execution defects and P1 immutability, concurrency, preregistration, and audit-isolation gaps prevent release of the protocol as complete and prevent any model candidate release."
+}

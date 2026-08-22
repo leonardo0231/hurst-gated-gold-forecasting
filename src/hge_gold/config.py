@@ -10,15 +10,22 @@ import yaml
 @dataclass(frozen=True)
 class DataConfig:
     source: str = "sample"
+    source_kind: str = "synthetic"
     csv_path: str | None = None
+    source_manifest_path: str | None = None
+    raw_source_path: str | None = None
     min_rows: int = 700
-    decision_hour_utc: int = 22
+    decision_hour_utc: int = 0
     symbol: str | None = None
     timeframe: str | None = None
     source_type: str | None = None
     broker: str | None = None
     server: str | None = None
     timezone: str | None = None
+    candle_boundary: str | None = None
+    session_definition: str | None = None
+    decision_timestamp_convention: str | None = None
+    volume_type: str | None = None
     export_date: str | None = None
 
 
@@ -40,6 +47,9 @@ class TargetConfig:
     threshold_floor_bps: float = 8.0
     transaction_cost_bps: float = 3.0
     slippage_bps: float = 2.0
+    actionable_cost_buffer_bps: float = 2.0
+    execution_lag_bars: int = 1
+    cost_convention: str = "round_trip_total"
 
 
 @dataclass(frozen=True)
@@ -48,6 +58,9 @@ class SplitConfig:
     n_walk_forward_folds: int = 5
     min_train_rows: int = 280
     min_validation_rows: int = 45
+    locked_test_start: str | None = None
+    holdout_status: str = "historical_holdout_v1_previously_revealed"
+    embargo_rows: int = 0
 
 
 @dataclass(frozen=True)
@@ -58,6 +71,8 @@ class ModelConfig:
     probability_threshold_max: float = 0.65
     probability_threshold_steps: int = 61
     gate_tolerance: float = 0.005
+    no_trade_probability_margin: float = 0.05
+    run_ablations: bool = True
 
 
 @dataclass(frozen=True)
@@ -81,7 +96,7 @@ class OutputConfig:
 @dataclass(frozen=True)
 class ThesisConfig:
     project_root: Path
-    project_name: str = "HGE Gold Forecasting Thesis V2"
+    project_name: str = "HGE Gold Forecasting Thesis V3"
     data: DataConfig = field(default_factory=DataConfig)
     features: FeatureConfig = field(default_factory=FeatureConfig)
     targets: TargetConfig = field(default_factory=TargetConfig)
@@ -136,18 +151,27 @@ def load_config(path: Path) -> ThesisConfig:
 
     config = ThesisConfig(
         project_root=project_root,
-        project_name=str(payload.get("project_name", "HGE Gold Forecasting Thesis V2")),
+        project_name=str(payload.get("project_name", "HGE Gold Forecasting Thesis V3")),
         data=DataConfig(
             source=str(data_raw.get("source", "sample")),
+            source_kind=str(data_raw.get("source_kind", "synthetic")),
             csv_path=data_raw.get("csv_path"),
+            source_manifest_path=data_raw.get("source_manifest_path"),
+            raw_source_path=data_raw.get("raw_source_path"),
             min_rows=int(data_raw.get("min_rows", 700)),
-            decision_hour_utc=int(data_raw.get("decision_hour_utc", 22)),
+            decision_hour_utc=int(data_raw.get("decision_hour_utc", 0)),
             symbol=_optional_string(data_raw.get("symbol")),
             timeframe=_optional_string(data_raw.get("timeframe")),
             source_type=_optional_string(data_raw.get("source_type")),
             broker=_optional_string(data_raw.get("broker")),
             server=_optional_string(data_raw.get("server")),
             timezone=_optional_string(data_raw.get("timezone")),
+            candle_boundary=_optional_string(data_raw.get("candle_boundary")),
+            session_definition=_optional_string(data_raw.get("session_definition")),
+            decision_timestamp_convention=_optional_string(
+                data_raw.get("decision_timestamp_convention")
+            ),
+            volume_type=_optional_string(data_raw.get("volume_type")),
             export_date=_optional_string(data_raw.get("export_date")),
         ),
         features=FeatureConfig(
@@ -165,12 +189,20 @@ def load_config(path: Path) -> ThesisConfig:
             threshold_floor_bps=float(target_raw.get("threshold_floor_bps", 8.0)),
             transaction_cost_bps=float(target_raw.get("transaction_cost_bps", 3.0)),
             slippage_bps=float(target_raw.get("slippage_bps", 2.0)),
+            actionable_cost_buffer_bps=float(target_raw.get("actionable_cost_buffer_bps", 2.0)),
+            execution_lag_bars=int(target_raw.get("execution_lag_bars", 1)),
+            cost_convention=str(target_raw.get("cost_convention", "round_trip_total")),
         ),
         splits=SplitConfig(
             locked_test_fraction=float(split_raw.get("locked_test_fraction", 0.20)),
             n_walk_forward_folds=int(split_raw.get("n_walk_forward_folds", 5)),
             min_train_rows=int(split_raw.get("min_train_rows", 280)),
             min_validation_rows=int(split_raw.get("min_validation_rows", 45)),
+            locked_test_start=_optional_string(split_raw.get("locked_test_start")),
+            holdout_status=str(
+                split_raw.get("holdout_status", "historical_holdout_v1_previously_revealed")
+            ),
+            embargo_rows=int(split_raw.get("embargo_rows", 0)),
         ),
         models=ModelConfig(
             random_seed=int(model_raw.get("random_seed", 42)),
@@ -179,6 +211,8 @@ def load_config(path: Path) -> ThesisConfig:
             probability_threshold_max=float(model_raw.get("probability_threshold_max", 0.65)),
             probability_threshold_steps=int(model_raw.get("probability_threshold_steps", 61)),
             gate_tolerance=float(model_raw.get("gate_tolerance", 0.005)),
+            no_trade_probability_margin=float(model_raw.get("no_trade_probability_margin", 0.05)),
+            run_ablations=bool(model_raw.get("run_ablations", True)),
         ),
         evaluation=EvaluationConfig(
             primary_metric=str(evaluation_raw.get("primary_metric", "balanced_accuracy")),
@@ -212,3 +246,15 @@ def _validate_config(config: ThesisConfig) -> None:
         raise ValueError("V2 currently registers balanced_accuracy as its primary metric")
     if config.models.probability_threshold_min >= config.models.probability_threshold_max:
         raise ValueError("Invalid probability threshold search interval")
+    if config.data.source_kind not in {"synthetic", "market_evidence"}:
+        raise ValueError("source_kind must be 'synthetic' or 'market_evidence'")
+    if not 0 <= config.data.decision_hour_utc <= 23:
+        raise ValueError("decision_hour_utc must be between 0 and 23")
+    if config.targets.execution_lag_bars < 1:
+        raise ValueError("execution_lag_bars must be at least 1")
+    if config.targets.cost_convention != "round_trip_total":
+        raise ValueError("cost_convention must be 'round_trip_total'")
+    if config.splits.embargo_rows < 0:
+        raise ValueError("embargo_rows cannot be negative")
+    if not 0.0 <= config.models.no_trade_probability_margin < 0.5:
+        raise ValueError("no_trade_probability_margin must be in [0, 0.5)")

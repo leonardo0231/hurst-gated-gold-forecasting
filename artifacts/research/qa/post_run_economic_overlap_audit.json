@@ -1,0 +1,26 @@
+{
+  "audit_id": "post_run_economic_overlap_audit_v1",
+  "canonical_batch_id": "executable_direction_hurst_ablation_v1-20260822T151315Z",
+  "finding": "The registered outer economic return paths charge and realize overlapping horizon returns for H5, H10, and H20. The registered field n_non_overlapping_trades therefore counts action rows, not non-overlapping trades.",
+  "scientific_disposition": "All 12 experiments remain rejected because every candidate independently failed mandatory classification, uncertainty, calibration, and/or stability gates. Registered economic, PBO, and DSR values must not be used as valid promotion evidence. No profitability claim is permitted.",
+  "correction_policy": "Audit-only recomputation; no registry record, hypothesis, threshold, model, or decision was changed. Abstention is applied first, followed by chronological selection requiring row_id gap >= horizon. Costs are round-trip total.",
+  "results": [
+    {"experiment_id":"executable_direction_hurst_ablation_v1-current_dfa_hurst-h1","registered_action_rows":1340,"correct_non_overlapping_trades":1340,"corrected_net_log_return_5bps":-0.9438024493510855,"corrected_net_log_return_10bps":-1.6133003398706158},
+    {"experiment_id":"executable_direction_hurst_ablation_v1-current_dfa_hurst-h5","registered_action_rows":1696,"correct_non_overlapping_trades":366,"corrected_net_log_return_5bps":-0.13822793461317492,"corrected_net_log_return_10bps":-0.32109079127746454},
+    {"experiment_id":"executable_direction_hurst_ablation_v1-current_dfa_hurst-h10","registered_action_rows":2351,"correct_non_overlapping_trades":236,"corrected_net_log_return_5bps":0.05955151460587269,"corrected_net_log_return_10bps":-0.05836005417219397},
+    {"experiment_id":"executable_direction_hurst_ablation_v1-current_dfa_hurst-h20","registered_action_rows":1866,"correct_non_overlapping_trades":95,"corrected_net_log_return_5bps":-0.38737385136801816,"corrected_net_log_return_10bps":-0.4348382540541042},
+    {"experiment_id":"executable_direction_hurst_ablation_v1-no_hurst-h1","registered_action_rows":820,"correct_non_overlapping_trades":820,"corrected_net_log_return_5bps":-0.4228277494719034,"corrected_net_log_return_10bps":-0.8325204884465415},
+    {"experiment_id":"executable_direction_hurst_ablation_v1-no_hurst-h5","registered_action_rows":1089,"correct_non_overlapping_trades":264,"corrected_net_log_return_5bps":-0.07513169150857257,"corrected_net_log_return_10bps":-0.20703276844674873},
+    {"experiment_id":"executable_direction_hurst_ablation_v1-no_hurst-h10","registered_action_rows":2351,"correct_non_overlapping_trades":236,"corrected_net_log_return_5bps":-0.06033740388288916,"corrected_net_log_return_10bps":-0.17824897266095568},
+    {"experiment_id":"executable_direction_hurst_ablation_v1-no_hurst-h20","registered_action_rows":2331,"correct_non_overlapping_trades":117,"corrected_net_log_return_5bps":-0.9347249354802228,"corrected_net_log_return_10bps":-0.9931810945778234},
+    {"experiment_id":"executable_direction_hurst_ablation_v1-robust_hurst_regime-h1","registered_action_rows":1715,"correct_non_overlapping_trades":1715,"corrected_net_log_return_5bps":-0.892263088404198,"corrected_net_log_return_10bps":-1.7491204632109105},
+    {"experiment_id":"executable_direction_hurst_ablation_v1-robust_hurst_regime-h5","registered_action_rows":1947,"correct_non_overlapping_trades":396,"corrected_net_log_return_5bps":0.5319464268511681,"corrected_net_log_return_10bps":0.33409481144390374},
+    {"experiment_id":"executable_direction_hurst_ablation_v1-robust_hurst_regime-h10","registered_action_rows":1589,"correct_non_overlapping_trades":167,"corrected_net_log_return_5bps":-0.10523796858284476,"corrected_net_log_return_10bps":-0.18867539225206992},
+    {"experiment_id":"executable_direction_hurst_ablation_v1-robust_hurst_regime-h20","registered_action_rows":2331,"correct_non_overlapping_trades":117,"corrected_net_log_return_5bps":-0.3122102649089219,"corrected_net_log_return_10bps":-0.3706664240065225}
+  ],
+  "limitations": [
+    "Corrected values are deterministic post-run QA diagnostics, not registered selection evidence.",
+    "Same-schedule benchmark deltas, moving-block economic confidence intervals, PBO, and DSR were not recomputed on corrected non-overlapping paths.",
+    "The robust-Hurst H5 corrected return is positive at both cost settings but is not a promotable result because its classification and uncertainty gates fail and corrected benchmark/statistical evidence is incomplete."
+  ]
+}

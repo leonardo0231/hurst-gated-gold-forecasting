@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import numpy as np
+import pandas as pd
 import pytest
 
 from hge_gold.config import FeatureConfig, ModelConfig, SplitConfig, TargetConfig
@@ -9,9 +11,14 @@ from hge_gold.features import build_feature_matrix
 from hge_gold.modeling import (
     _candidate_stability_key,
     _candidate_stability_summary,
+    _purged_meta_train_mask,
     train_and_predict,
 )
-from hge_gold.splits import build_purged_walk_forward_folds, split_development_and_locked_test
+from hge_gold.splits import (
+    WalkForwardFold,
+    build_purged_walk_forward_folds,
+    split_development_and_locked_test,
+)
 from hge_gold.targets import build_horizon_dataset
 
 
@@ -84,11 +91,64 @@ def test_candidate_stability_uses_preselection_folds() -> None:
     assert stable["stability_median_balanced_accuracy"] == pytest.approx(0.56)
     assert volatile["stability_median_balanced_accuracy"] == pytest.approx(0.56)
 
-    assert stable["stability_balanced_accuracy_std"] < volatile[
-        "stability_balanced_accuracy_std"
-    ]
+    assert stable["stability_balanced_accuracy_std"] < volatile["stability_balanced_accuracy_std"]
 
     assert _candidate_stability_key(stable) > _candidate_stability_key(volatile)
+
+
+def test_meta_training_labels_are_purged_before_selection_fold() -> None:
+    development = pd.DataFrame({"label_end_index": [8, 10, 11, 12, 15]})
+    common_mask = np.ones(5, dtype=bool)
+    oof_fold = np.array(["wf_01", "wf_01", "wf_02", "wf_03", "wf_03"], dtype=object)
+    selection_fold = WalkForwardFold(
+        fold_id="wf_03",
+        train_indices=np.array([0, 1]),
+        validation_indices=np.array([3, 4]),
+        validation_start_row=12,
+        validation_end_row=20,
+    )
+
+    mask = _purged_meta_train_mask(development, common_mask, oof_fold, selection_fold)
+
+    assert mask.tolist() == [True, True, True, False, False]
+    assert development.loc[mask, "label_end_index"].max() < selection_fold.validation_start_row
+
+
+def test_modeling_can_disable_stacked_meta_classifier() -> None:
+    source = normalize_and_validate(generate_research_sample(900, seed=13), min_rows=700)
+    feature_config = FeatureConfig(regime_window=160)
+    features, columns = build_feature_matrix(source, feature_config)
+    dataset = build_horizon_dataset(
+        source,
+        features,
+        columns,
+        5,
+        TargetConfig(horizons=(5,), threshold_k=0.25),
+        feature_config,
+    )
+    eligible = dataset[dataset["is_modeling_eligible"]].reset_index(drop=True)
+    split_config = SplitConfig(
+        locked_test_fraction=0.20,
+        n_walk_forward_folds=4,
+        min_train_rows=220,
+        min_validation_rows=40,
+    )
+    development, locked, _ = split_development_and_locked_test(eligible, split_config)
+    folds = build_purged_walk_forward_folds(development, split_config)
+
+    result = train_and_predict(
+        development,
+        locked,
+        columns,
+        folds,
+        ModelConfig(random_seed=13, fast_mode=True),
+        allow_meta_model=False,
+    )
+
+    assert result.selected_strategy == "best_base_model"
+    assert result.bundle["meta_model_allowed"] is False
+    assert result.bundle["meta_model"] is None
+    assert result.bundle["meta_training_rows"] == 0
 
 
 def test_modeling_pipeline_can_learn_registered_synthetic_signal() -> None:

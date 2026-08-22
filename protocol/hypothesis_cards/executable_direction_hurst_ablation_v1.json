@@ -1,0 +1,44 @@
+{
+  "schema_version": "hypothesis_card_v1",
+  "hypothesis_id": "executable_direction_hurst_ablation_v1",
+  "status": "preregistered",
+  "registered_at_utc": "2026-08-21T00:00:00Z",
+  "scientific_question": "Does a causal Hurst representation add stable outer-development value beyond an otherwise identical executable-direction model?",
+  "partition_policy": {
+    "development": "development_reused_previously_exposed",
+    "historical_confirmation": "unavailable_already_exposed",
+    "historical_audit": "historical_audit_previously_revealed",
+    "future_confirmation": "actual_future_out_of_sample_only_after_candidate_freeze"
+  },
+  "target": "executable_direction",
+  "fixed_horizons": [1, 5, 10, 20],
+  "arms": [
+    {
+      "arm_id": "no_hurst",
+      "description": "Identical causal feature set with all Hurst-family fields removed."
+    },
+    {
+      "arm_id": "current_dfa_hurst",
+      "description": "Current causal DFA1 Hurst representation; legacy single-scale R/S excluded."
+    },
+    {
+      "arm_id": "robust_hurst_regime",
+      "description": "Pre-specified robust Hurst/regime alternative with causal availability and missing-state handling."
+    }
+  ],
+  "declared_arm_horizon_experiments": 12,
+  "family_trial_budget": 12,
+  "inner_selection_only": {
+    "calibration": ["none", "sigmoid"],
+    "no_trade_probability_margin": [0.0, 0.05]
+  },
+  "outer_evaluation": {
+    "folds": 5,
+    "chronology": "expanding purged walk-forward",
+    "selection_on_outer_labels": false,
+    "reporting": ["per_fold", "pooled_outer_oof", "moving_block_bootstrap"]
+  },
+  "budget_rule": "Every arm-horizon run consumes one trial whether successful, rejected, or failed. Inner calibration and margin choices do not create extra outer trials.",
+  "stop_rule": "After 12 arm-horizon records, reject or defer this family; do not expand features, horizons, thresholds, or models.",
+  "audit_prohibition": "No file containing historical-audit or future-confirmation labels, predictions, returns, or metrics may be loaded during development selection."
+}

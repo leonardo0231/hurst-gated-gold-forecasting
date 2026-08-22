@@ -1,0 +1,1 @@
+0	2026.08.20 13:08:25.153	Compile	C:\Users\Jalil\AppData\Roaming\MetaQuotes\Terminal\3DD192946BBB971D4D284AF0FE664E69\MQL5\Experts\HGE\HGE_SignalReplay.mq5 - 0 errors, 0 warnings, 715 ms elapsed, cpu='X64 Regular'

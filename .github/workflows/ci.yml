@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main, "agent/**"]
+    branches: [main, "agent/**", "codex/**", "thesis-**"]
   pull_request:
 
 jobs:
@@ -18,6 +18,25 @@ jobs:
         with:
           python-version: "3.12"
       - run: uv sync --frozen --extra dev
-      - run: uv run ruff check src/hge_gold tests
+      - run: uv run ruff check .
       - run: uv run mypy src/hge_gold
       - run: uv run pytest --cov=hge_gold --cov-fail-under=80
+
+  windows-mt5-contract:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.8.14"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: uv sync --frozen --extra dev --extra mt5
+      - run: >-
+          uv run pytest
+          tests/test_data_targets_v3.py
+          tests/test_mt5_contract.py
+          tests/test_provenance_v3.py
+          tests/test_end_to_end.py

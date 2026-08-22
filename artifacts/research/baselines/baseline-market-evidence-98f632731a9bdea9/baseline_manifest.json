@@ -1,0 +1,86 @@
+{
+  "schema_version": "baseline_freeze_v1",
+  "baseline_id": "baseline-market-evidence-98f632731a9bdea9",
+  "frozen_at_utc": "2026-08-21T00:00:00Z",
+  "baseline_run_id": "market_evidence-98f632731a9bdea9",
+  "identity": {
+    "pipeline_version": "3.0",
+    "git_commit": "b61658f4ac0d43933d9ef171f4122d3a26460aa6",
+    "git_dirty_at_run": true,
+    "source_sha256": "0c6d0b9ee76377d2d7048b53459fa6fc285af25fc21d76fad569454239f79a16",
+    "raw_source_sha256": "36eac4639864f8f9dec7abc3d3b32e301d5f8a02414374585d8bfc22c6393fd8",
+    "source_manifest_sha256": "e4a316dfe7c361795ccfce3fba4b604f1e2ad49e2fac6bdfd635983e549efb34",
+    "resolved_config_sha256": "dbcaf6957aae2100a2ac4d6494838709782f6de88ae338f9944354204fd79daa",
+    "config_file_sha256_at_freeze": "890a65240096bc04965c9a1f8090ea0276c5a0bce19bfb4ce026d3c4eb7cd4d8",
+    "pre_improvement_code_tree_sha256": "846592c4661a5822f41fc1d894160819432eb661c670f87644e3ff5d237f7321",
+    "runtime_sha256": "025eda872c1cc1502056010f7943b9ee8c7d52d10a26ee15086b2c662d13ae00"
+  },
+  "partition_exposure": {
+    "development_through_2023_06": "development_reused_previously_exposed",
+    "historical_confirmation": "unavailable_already_exposed",
+    "from_2023_07_03": "historical_audit_previously_revealed",
+    "future_data": "actual_future_out_of_sample_only_after_candidate_freeze"
+  },
+  "development_fold_five_exposure": {
+    "h1": ["2021-04-05", "2023-06-29"],
+    "h5": ["2021-03-30", "2023-06-23"],
+    "h10": ["2021-03-25", "2023-06-16"],
+    "h20": ["2021-03-17", "2023-06-02"],
+    "selection_use": "threshold and stacked-meta versus base-strategy selection"
+  },
+  "baseline_outcome": {
+    "development_promotion_status": "not_demonstrated",
+    "historical_audit_status": "all_horizons_fail",
+    "historical_audit_balanced_accuracy": {
+      "h1": 0.5038709057727404,
+      "h5": 0.5219422043010753,
+      "h10": 0.5046710272120108,
+      "h20": 0.5037899194875939
+    }
+  },
+  "artifacts": {
+    "artifacts/v3/market/ablation_metrics.csv": "9f6ae9da0d1b95fd0fa53fdf800bc294e00325032aa528c628a3e88fa9a59e29",
+    "artifacts/v3/market/backtest_summary.csv": "ad065bcd11f3630d3158c1f611a1db0a7f5182fc5f4a3be2f425fa93e88b96b9",
+    "artifacts/v3/market/candidate_selection_metrics.csv": "1b505d9513825684ddf0e6029a280b8dddfc558881a296a69d61c3f9fe50750f",
+    "artifacts/v3/market/cpcv_split_manifest.csv": "0af9edfafdeb638bd5e7da076bcc8a9e5f0c4e9b44daffab22f89dc1539dbd7e",
+    "artifacts/v3/market/execution_manifest.json": "b8d075697d2c2047554c4a42a27f72eca14b6c80aa8e9418a928c8dc97f13b72",
+    "artifacts/v3/market/feature_registry.json": "702d923a4c8c2e2a71213feb79025945be76884def544d33adf99a8bac2c7d99",
+    "artifacts/v3/market/locked_test_metrics.csv": "7d07868000e6ef006667435c6ebb1c5abd64ebb338ed0277a465fc69619ac487",
+    "artifacts/v3/market/selected_model_map.json": "958468ffb2c7bfff1145be8aec9435f7d821e6afc53795b044d78cce33615f5f",
+    "artifacts/v3/market/selection_receipt_h1.json": "3372e8b7a8592a5bfe40f7928b44b42b4e3d9ad20bb8daedc5ee466c5f409aee",
+    "artifacts/v3/market/selection_receipt_h5.json": "bb4c144386b2f8a7d530be7ee3b651c12fe296e4c04f0906e72df0f16fc6ee81",
+    "artifacts/v3/market/selection_receipt_h10.json": "2c8df051bddcc8b6ad743ad21b009f08ba42190ac7423104f6aebdd7e95fcfb1",
+    "artifacts/v3/market/selection_receipt_h20.json": "5f505a215957ecdc218df85b2ef2146f6fc010d5ac27e1f2e3324d11cb91a772",
+    "artifacts/v3/market/validation_diagnostics.json": "5f1deaa2ab4c0367843c9dd8436352bc8f3cecc406ba588ca272b527357225fe",
+    "artifacts/v3/market/walk_forward_fold_metrics.csv": "e9dd6b71c0e77b1cfc64f756f61d38b22f663cbc2b0cdaf3e27b66c876e82de7",
+    "data/predictions/v3/market/locked_test_predictions.csv": "ef9d686c97012f9e1aa483f90789c294e8cda0e18e7f555534a1e9f23906e783",
+    "data/predictions/v3/market/mt5_replay_signals_h1.csv": "46a7875ab6651c6a648070a9028dff367a19e36909c7287c036f7d7db2bde12f",
+    "data/predictions/v3/market/mt5_replay_signals_h5.csv": "e4cba57d2b0ea30bd25c605363b1cea0ce2afb18dd97af8d26c7a2aefccbdb6d",
+    "data/predictions/v3/market/mt5_replay_signals_h10.csv": "a6edf9dde740f0d8cbdd50992d54ff43ac4dc586626792d4091a987cbf0d273c",
+    "data/predictions/v3/market/mt5_replay_signals_h20.csv": "f4a05f02d037566bda704e8e31530cc30da0a838c227c981418f29bdb30ede1e",
+    "models/v3/market/horizon_1_model_bundle.joblib": "d5f987be4d6cb3843d7ffadf555eabffa6f3cdb8a1568f0934efc32143ac28fb",
+    "models/v3/market/horizon_5_model_bundle.joblib": "ac602f53f9b8700156411959c875dcbc1d0d0057d35eb4ed82af8606fdffbe39",
+    "models/v3/market/horizon_10_model_bundle.joblib": "13bd880542bff8a35f6797f2a7413113dabc65ff237f22f43078996ec71b5739",
+    "models/v3/market/horizon_20_model_bundle.joblib": "4cbb8e27cb5ae19e3e9ad71077996bf9b7d5a8367caca8fcf3f701789f6ec004",
+    "artifacts/mt5/mt5_evidence_index.json": "b36bd525e89e6a844be812b0971c92cfa27436d273f1596afa105ad448527a5e",
+    "artifacts/runs/model_experiments_agent/manifest.json": "73c4a43aa11895a7cfe96669c7a45d24321382d12a27a85e3e8a9113267b5b0a",
+    "artifacts/v2/execution_manifest.json": "fe7db4878450a191dfc911e57bc38e1afc09f20b1955fc3ec175ac40e3d82fc3",
+    "docs/research_framework_v3_report.md": "a4fadc07f0faaac816f967523f51ffc4301b4766b6326ee7ddf399dab12fdb5d"
+  },
+  "immutable_directories": [
+    "artifacts/v2",
+    "models/v2",
+    "data/predictions/v2",
+    "artifacts/v3/market",
+    "models/v3/market",
+    "data/predictions/v3/market",
+    "artifacts/mt5",
+    "artifacts/runs/market_evidence-98f632731a9bdea9",
+    "artifacts/runs/market_evidence-c3c782ea68018f2e",
+    "artifacts/runs/market_evidence-e5a3c863c3850cc0",
+    "artifacts/runs/model_experiments_agent",
+    "artifacts/runs/v3_mt5",
+    "artifacts/runs/v4_mt5",
+    "artifacts/runs/v4_retrospective"
+  ]
+}

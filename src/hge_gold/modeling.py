@@ -19,7 +19,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.utils.class_weight import compute_sample_weight
 
 from .config import ModelConfig
-from .evaluation import classification_metrics, tune_probability_threshold
+from .evaluation import ClassificationMetrics, classification_metrics, tune_probability_threshold
 from .splits import WalkForwardFold
 
 
@@ -226,12 +226,30 @@ def _candidate_stability_key(summary: dict[str, float]) -> tuple[float, float, f
     )
 
 
+def _purged_meta_train_mask(
+    development: pd.DataFrame,
+    common_mask: np.ndarray,
+    oof_fold: np.ndarray,
+    selection_fold: WalkForwardFold,
+) -> np.ndarray:
+    """Exclude meta labels whose information interval reaches the selection fold."""
+    return np.asarray(
+        common_mask
+        & (oof_fold != selection_fold.fold_id)
+        & (
+            development["label_end_index"].to_numpy(dtype=int) < selection_fold.validation_start_row
+        ),
+        dtype=bool,
+    )
+
+
 def train_and_predict(
     development: pd.DataFrame,
     locked: pd.DataFrame,
     feature_columns: list[str],
     folds: list[WalkForwardFold],
     config: ModelConfig,
+    allow_meta_model: bool = True,
 ) -> ModelingResult:
     x_dev = development[feature_columns]
     y_dev = development["direction_binary"].to_numpy(dtype=int)
@@ -270,9 +288,15 @@ def train_and_predict(
     if common_mask.sum() < 100:
         raise RuntimeError("Insufficient out-of-fold predictions for model selection")
 
-    last_fold_id = folds[-1].fold_id
+    selection_fold = folds[-1]
+    last_fold_id = selection_fold.fold_id
     selection_mask = common_mask & (oof_fold == last_fold_id)
-    meta_train_mask = common_mask & (oof_fold != last_fold_id)
+    meta_train_mask = _purged_meta_train_mask(
+        development,
+        common_mask,
+        oof_fold,
+        selection_fold,
+    )
 
     candidate_selection_fold_ids = {fold.fold_id for fold in folds[:-1]}
 
@@ -281,7 +305,7 @@ def train_and_predict(
             "At least two walk-forward folds are required for stable model selection"
         )
 
-    if selection_mask.sum() < 30 or meta_train_mask.sum() < 60:
+    if selection_mask.sum() < 30 or (allow_meta_model and meta_train_mask.sum() < 60):
         raise RuntimeError("Insufficient rows for leakage-safe meta-model selection")
 
     candidate_metrics: list[dict[str, Any]] = []
@@ -317,33 +341,46 @@ def train_and_predict(
             best_candidate = name
             best_candidate_threshold = threshold
 
+    best_metrics = next(row for row in candidate_metrics if row["candidate"] == best_candidate)
     meta_columns = _meta_columns(development)
     all_meta = _make_meta_frame(oof_probabilities, development, names, meta_columns)
-    meta_model = Pipeline(
-        [
-            ("imputer", SimpleImputer(strategy="median", add_indicator=True)),
-            ("scale", StandardScaler()),
-            (
-                "model",
-                LogisticRegression(
-                    C=0.5, class_weight="balanced", max_iter=2000, random_state=config.random_seed
+    meta_threshold = 0.5
+    meta_metrics: ClassificationMetrics | None = None
+    use_meta_model = False
+    if allow_meta_model:
+        selection_meta_model = Pipeline(
+            [
+                ("imputer", SimpleImputer(strategy="median", add_indicator=True)),
+                ("scale", StandardScaler()),
+                (
+                    "model",
+                    LogisticRegression(
+                        C=0.5,
+                        class_weight="balanced",
+                        max_iter=2000,
+                        random_state=config.random_seed,
+                    ),
                 ),
-            ),
-        ]
-    )
-    _fit(meta_model, all_meta.loc[meta_train_mask], y_dev[meta_train_mask])
-    gate_probability_selection = _positive_probability(meta_model, all_meta.loc[selection_mask])
-    gate_threshold, gate_metrics = tune_probability_threshold(
-        y_dev[selection_mask],
-        gate_probability_selection,
-        config.probability_threshold_min,
-        config.probability_threshold_max,
-        config.probability_threshold_steps,
-    )
-    best_metrics = next(row for row in candidate_metrics if row["candidate"] == best_candidate)
-    use_gate = float(gate_metrics["balanced_accuracy"]) + config.gate_tolerance >= float(
-        best_metrics["balanced_accuracy"]
-    ) and float(gate_metrics["macro_f1"]) + 0.01 >= float(best_metrics["macro_f1"])
+            ]
+        )
+        _fit(
+            selection_meta_model,
+            all_meta.loc[meta_train_mask],
+            y_dev[meta_train_mask],
+        )
+        meta_probability_selection = _positive_probability(
+            selection_meta_model, all_meta.loc[selection_mask]
+        )
+        meta_threshold, meta_metrics = tune_probability_threshold(
+            y_dev[selection_mask],
+            meta_probability_selection,
+            config.probability_threshold_min,
+            config.probability_threshold_max,
+            config.probability_threshold_steps,
+        )
+        use_meta_model = float(meta_metrics["balanced_accuracy"]) + config.gate_tolerance >= float(
+            best_metrics["balanced_accuracy"]
+        ) and float(meta_metrics["macro_f1"]) + 0.01 >= float(best_metrics["macro_f1"])
 
     fitted_models: dict[str, Pipeline] = {}
     locked_base_probabilities: dict[str, np.ndarray] = {}
@@ -355,7 +392,7 @@ def train_and_predict(
     final_meta_model: Pipeline | None = None
     validation_metrics: dict[str, Any]
 
-    if use_gate:
+    if use_meta_model:
         final_meta_model = Pipeline(
             [
                 ("imputer", SimpleImputer(strategy="median", add_indicator=True)),
@@ -374,9 +411,11 @@ def train_and_predict(
         _fit(final_meta_model, all_meta.loc[common_mask], y_dev[common_mask])
         locked_meta = _make_meta_frame(locked_base_probabilities, locked, names, meta_columns)
         locked_probability = _positive_probability(final_meta_model, locked_meta)
-        selected_strategy = "learned_regime_gate"
-        threshold = gate_threshold
-        validation_metrics = dict(gate_metrics)
+        selected_strategy = "stacked_meta_classifier"
+        threshold = meta_threshold
+        if meta_metrics is None:  # pragma: no cover - guarded by use_meta_model
+            raise RuntimeError("Meta-model metrics are unavailable")
+        validation_metrics = dict(meta_metrics)
     else:
         locked_probability = locked_base_probabilities[best_candidate]
         selected_strategy = "best_base_model"
@@ -395,6 +434,14 @@ def train_and_predict(
         "candidate_names": names,
         "base_models": fitted_models,
         "meta_model": final_meta_model,
+        "meta_model_allowed": allow_meta_model,
+        "meta_training_rows": int(meta_train_mask.sum()) if allow_meta_model else 0,
+        "meta_training_purge_boundary_row": selection_fold.validation_start_row,
+        "meta_training_max_label_end_index": (
+            int(development.loc[meta_train_mask, "label_end_index"].max())
+            if allow_meta_model and meta_train_mask.any()
+            else None
+        ),
         "candidate_selection_policy": "median_preselection_folds_v2_1",
         "candidate_selection_fold_ids": [fold.fold_id for fold in folds[:-1]],
         "selection_fold": last_fold_id,

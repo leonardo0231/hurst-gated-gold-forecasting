@@ -1,5 +1,7 @@
 # Project Brief — HGE Gold Forecasting Thesis V2
 
+> **V3 correction (2026-08-20):** The authoritative current design and evidence are documented in `research_framework_v3_report.md`. Targets now distinguish close-to-close statistical labels from next-open executable returns; the gate is described as a stacked meta-classifier; Hurst/no-Hurst ablations are mandatory; the common locked period is explicitly marked previously revealed; and fixed-signal MT5 Strategy Tester replay is now in scope. Conflicting V2 text below is retained only as historical design context.
+
 ## 1. تعریف پروژه
 
 این سامانه پژوهشی و قابل بازتولید برای پیش‌بینی جهت حرکت قیمت طلا در افق‌های چندروزه است.

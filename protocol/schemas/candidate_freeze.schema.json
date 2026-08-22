@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "hge-gold/candidate-freeze-v1",
+  "title": "Frozen candidate manifest",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "candidate_id",
+    "experiment_id",
+    "development_promotion_passed",
+    "promotion_gate",
+    "code_sha256",
+    "config_sha256",
+    "data_sha256",
+    "dependency_sha256",
+    "frozen_at_utc",
+    "frozen_artifacts",
+    "historical_confirmation_available",
+    "historical_audit_role"
+  ],
+  "properties": {
+    "candidate_id": {"type": "string", "minLength": 1},
+    "development_promotion_passed": {"const": true},
+    "historical_confirmation_available": {"const": false},
+    "historical_audit_role": {"const": "historical_audit_previously_revealed"},
+    "frozen_artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "sha256", "size_bytes"],
+        "properties": {
+          "path": {"type": "string"},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "size_bytes": {"type": "integer", "minimum": 0}
+        }
+      }
+    }
+  }
+}

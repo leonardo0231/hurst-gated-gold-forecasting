@@ -1,0 +1,251 @@
+{
+  "created_at_utc": "2026-08-20T09:36:55.551576+00:00",
+  "models": [
+    {
+      "acceptance": {
+        "checks": {
+          "balanced_accuracy": false,
+          "macro_f1": false,
+          "minimum_test_samples": true,
+          "recall_down": false,
+          "recall_up": true
+        },
+        "registered_thresholds": {
+          "bootstrap_block_length": 10,
+          "bootstrap_iterations": 400,
+          "macro_f1_threshold": 0.55,
+          "min_test_samples": 80,
+          "minimum_class_recall": 0.5,
+          "primary_metric": "balanced_accuracy",
+          "primary_threshold": 0.6
+        },
+        "status": "FAIL"
+      },
+      "holdout_status": "historical_holdout_v1_previously_revealed",
+      "horizon": 1,
+      "locked_test_start_date": "2023-07-03T00:00:00",
+      "locked_test_start_row": 3221,
+      "model_path": "models/v3/market/horizon_1_model_bundle.joblib",
+      "model_sha256": "d5f987be4d6cb3843d7ffadf555eabffa6f3cdb8a1568f0934efc32143ac28fb",
+      "selected_candidate": "random_forest",
+      "selected_strategy": "stacked_meta_classifier",
+      "selection_uses_locked_test": false,
+      "threshold": 0.5,
+      "validation_metrics": {
+        "accuracy": 0.5509499136442142,
+        "balanced_accuracy": 0.5439847466947187,
+        "brier_score": 0.2489080554106154,
+        "confusion_matrix": [
+          [
+            106,
+            171
+          ],
+          [
+            89,
+            213
+          ]
+        ],
+        "expected_calibration_error": 0.032173218102589475,
+        "log_loss": 0.6909620528885063,
+        "macro_f1": 0.5350718980085981,
+        "mcc": 0.09298063954555315,
+        "n_samples": 579,
+        "precision_down": 0.5435897435897435,
+        "precision_up": 0.5546875,
+        "recall_down": 0.38267148014440433,
+        "recall_up": 0.7052980132450332,
+        "roc_auc": 0.5359934970234538,
+        "threshold": 0.5
+      }
+    },
+    {
+      "acceptance": {
+        "checks": {
+          "balanced_accuracy": false,
+          "macro_f1": false,
+          "minimum_test_samples": true,
+          "recall_down": true,
+          "recall_up": false
+        },
+        "registered_thresholds": {
+          "bootstrap_block_length": 10,
+          "bootstrap_iterations": 400,
+          "macro_f1_threshold": 0.55,
+          "min_test_samples": 80,
+          "minimum_class_recall": 0.5,
+          "primary_metric": "balanced_accuracy",
+          "primary_threshold": 0.6
+        },
+        "status": "FAIL"
+      },
+      "holdout_status": "historical_holdout_v1_previously_revealed",
+      "horizon": 5,
+      "locked_test_start_date": "2023-07-03T00:00:00",
+      "locked_test_start_row": 3221,
+      "model_path": "models/v3/market/horizon_5_model_bundle.joblib",
+      "model_sha256": "ac602f53f9b8700156411959c875dcbc1d0d0057d35eb4ed82af8606fdffbe39",
+      "selected_candidate": "extra_trees",
+      "selected_strategy": "best_base_model",
+      "selection_uses_locked_test": false,
+      "threshold": 0.5,
+      "validation_metrics": {
+        "accuracy": 0.5294117647058824,
+        "balanced_accuracy": 0.5419924337957125,
+        "brier_score": 0.25131827081172875,
+        "candidate_selection_fold_count": 4,
+        "candidate_selection_policy": "median_preselection_folds_v2_1",
+        "confusion_matrix": [
+          [
+            210,
+            63
+          ],
+          [
+            209,
+            96
+          ]
+        ],
+        "expected_calibration_error": 0.05471096872943091,
+        "log_loss": 0.6958339499275119,
+        "macro_f1": 0.5103647598166234,
+        "mcc": 0.0938915938383574,
+        "n_samples": 578,
+        "precision_down": 0.5011933174224343,
+        "precision_up": 0.6037735849056604,
+        "recall_down": 0.7692307692307693,
+        "recall_up": 0.31475409836065577,
+        "roc_auc": 0.5394703656998738,
+        "selection_fold": "wf_05",
+        "stability_balanced_accuracy_std": 0.013942666940857672,
+        "stability_median_balanced_accuracy": 0.5193605599502992,
+        "stability_median_macro_f1": 0.45247365113663923,
+        "stability_median_roc_auc": 0.5590943697453006,
+        "threshold": 0.5
+      }
+    },
+    {
+      "acceptance": {
+        "checks": {
+          "balanced_accuracy": false,
+          "macro_f1": false,
+          "minimum_test_samples": true,
+          "recall_down": true,
+          "recall_up": false
+        },
+        "registered_thresholds": {
+          "bootstrap_block_length": 10,
+          "bootstrap_iterations": 400,
+          "macro_f1_threshold": 0.55,
+          "min_test_samples": 80,
+          "minimum_class_recall": 0.5,
+          "primary_metric": "balanced_accuracy",
+          "primary_threshold": 0.6
+        },
+        "status": "FAIL"
+      },
+      "holdout_status": "historical_holdout_v1_previously_revealed",
+      "horizon": 10,
+      "locked_test_start_date": "2023-07-03T00:00:00",
+      "locked_test_start_row": 3221,
+      "model_path": "models/v3/market/horizon_10_model_bundle.joblib",
+      "model_sha256": "13bd880542bff8a35f6797f2a7413113dabc65ff237f22f43078996ec71b5739",
+      "selected_candidate": "extra_trees",
+      "selected_strategy": "best_base_model",
+      "selection_uses_locked_test": false,
+      "threshold": 0.51,
+      "validation_metrics": {
+        "accuracy": 0.5434027777777778,
+        "balanced_accuracy": 0.5564484942234253,
+        "brier_score": 0.25102580807959884,
+        "candidate_selection_fold_count": 4,
+        "candidate_selection_policy": "median_preselection_folds_v2_1",
+        "confusion_matrix": [
+          [
+            226,
+            48
+          ],
+          [
+            215,
+            87
+          ]
+        ],
+        "expected_calibration_error": 0.05288781911560784,
+        "log_loss": 0.6952177895204179,
+        "macro_f1": 0.5151685842761358,
+        "mcc": 0.1330990424579555,
+        "n_samples": 576,
+        "precision_down": 0.5124716553287982,
+        "precision_up": 0.6444444444444445,
+        "recall_down": 0.8248175182481752,
+        "recall_up": 0.28807947019867547,
+        "roc_auc": 0.5258012278242374,
+        "selection_fold": "wf_05",
+        "stability_balanced_accuracy_std": 0.02285339809029487,
+        "stability_median_balanced_accuracy": 0.540956285921629,
+        "stability_median_macro_f1": 0.516647718264255,
+        "stability_median_roc_auc": 0.538569187738626,
+        "threshold": 0.51
+      }
+    },
+    {
+      "acceptance": {
+        "checks": {
+          "balanced_accuracy": false,
+          "macro_f1": false,
+          "minimum_test_samples": true,
+          "recall_down": true,
+          "recall_up": false
+        },
+        "registered_thresholds": {
+          "bootstrap_block_length": 10,
+          "bootstrap_iterations": 400,
+          "macro_f1_threshold": 0.55,
+          "min_test_samples": 80,
+          "minimum_class_recall": 0.5,
+          "primary_metric": "balanced_accuracy",
+          "primary_threshold": 0.6
+        },
+        "status": "FAIL"
+      },
+      "holdout_status": "historical_holdout_v1_previously_revealed",
+      "horizon": 20,
+      "locked_test_start_date": "2023-07-03T00:00:00",
+      "locked_test_start_row": 3221,
+      "model_path": "models/v3/market/horizon_20_model_bundle.joblib",
+      "model_sha256": "4cbb8e27cb5ae19e3e9ad71077996bf9b7d5a8367caca8fcf3f701789f6ec004",
+      "selected_candidate": "extra_trees",
+      "selected_strategy": "stacked_meta_classifier",
+      "selection_uses_locked_test": false,
+      "threshold": 0.505,
+      "validation_metrics": {
+        "accuracy": 0.6416083916083916,
+        "balanced_accuracy": 0.6339743589743589,
+        "brier_score": 0.23246866324092214,
+        "confusion_matrix": [
+          [
+            143,
+            117
+          ],
+          [
+            88,
+            224
+          ]
+        ],
+        "expected_calibration_error": 0.09093654594214941,
+        "log_loss": 0.6573702417437088,
+        "macro_f1": 0.6342745217903893,
+        "mcc": 0.27191456746935816,
+        "n_samples": 572,
+        "precision_down": 0.6190476190476191,
+        "precision_up": 0.656891495601173,
+        "recall_down": 0.55,
+        "recall_up": 0.717948717948718,
+        "roc_auc": 0.6789447731755426,
+        "threshold": 0.505
+      }
+    }
+  ],
+  "pipeline_version": "3.0",
+  "project_name": "HGE Gold Forecasting Thesis V3",
+  "run_id": "market_evidence-98f632731a9bdea9",
+  "selection_uses_locked_test": false
+}

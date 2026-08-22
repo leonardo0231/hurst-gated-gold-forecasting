@@ -1,0 +1,8 @@
+{
+  "baseline_id": "baseline-market-evidence-98f632731a9bdea9",
+  "baseline_manifest_sha256": "e6e472d05b10b09181d5a620d0013e6b2baff7e825cf7945137c22d79a0f3f27",
+  "freeze_status": "immutable_reference_created",
+  "pre_improvement_code_tree_sha256": "846592c4661a5822f41fc1d894160819432eb661c670f87644e3ff5d237f7321",
+  "git_commit": "b61658f4ac0d43933d9ef171f4122d3a26460aa6",
+  "note": "Existing baseline artifacts remain in place; this receipt anchors their registered SHA-256 values and exposure status."
+}

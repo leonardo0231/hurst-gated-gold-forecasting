@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 
 import pandas as pd
+import pytest
 
 from hge_gold.data import generate_research_sample
 from hge_gold.pipeline import run_thesis_pipeline
@@ -49,6 +50,7 @@ models:
   probability_threshold_max: 0.65
   probability_threshold_steps: 31
   gate_tolerance: 0.005
+  run_ablations: false
 evaluation:
   primary_metric: balanced_accuracy
   primary_threshold: 0.60
@@ -70,13 +72,16 @@ outputs:
     metrics = pd.read_csv(outputs["metrics"])
     assert metrics.loc[0, "balanced_accuracy"] >= 0.60
     manifest = json.loads(outputs["manifest"].read_text(encoding="utf-8"))
-    assert manifest["pipeline_version"] == "2.0"
+    assert manifest["pipeline_version"] == "3.0"
+    assert manifest["source_kind"] == "synthetic"
     assert manifest["source_is_market_evidence"] is False
     assert SYNTHETIC_DISCLAIMER in manifest["limitations"]
     assert manifest["source_sha256"] is None
     assert manifest["source_rows"] == 1500
     assert manifest["symbol"] is None
-    assert "artifacts/data_quality/summary.json" in manifest["artifacts"]
+    assert "artifacts/v2/data_quality/summary.json" in manifest["artifacts"]
+    with pytest.raises(FileExistsError, match="refusing to overwrite mutable outputs"):
+        run_thesis_pipeline(config)
 
 
 def test_market_source_manifest_has_fingerprint_and_metadata(tmp_path: Path) -> None:
@@ -94,12 +99,17 @@ project_name: Market Evidence Test
 
 data:
   source: market_evidence
+  source_kind: market_evidence
   min_rows: 700
   symbol: XAUUSD
   timeframe: D1
   source_type: MT5 broker export
   broker: Test Broker
+  server: CSV Test Server
   timezone: UTC
+  candle_boundary: Test broker D1 boundary
+  decision_timestamp_convention: Decide after close; enter next open
+  volume_type: tick_volume
   export_date: 2026-08-08
 features:
   return_lags: [1, 2, 3, 5, 10]
@@ -127,6 +137,7 @@ models:
   probability_threshold_max: 0.65
   probability_threshold_steps: 31
   gate_tolerance: 0.005
+  run_ablations: false
 evaluation:
   primary_metric: balanced_accuracy
   primary_threshold: 0.60
@@ -162,3 +173,6 @@ outputs:
     assert manifest["server"] == "CSV Test Server"
     assert manifest["timezone"] == "UTC"
     assert manifest["export_date"] == "2026-08-08"
+    assert manifest["candle_boundary"] == "Test broker D1 boundary"
+    assert manifest["decision_timestamp_convention"] == "Decide after close; enter next open"
+    assert manifest["volume_type"] == "tick_volume"

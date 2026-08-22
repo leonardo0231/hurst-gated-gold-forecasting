@@ -1,0 +1,443 @@
+
+=== DIRECTORY TREE (max depth 3, source files only) ===
+.coverage
+.github
+.github\workflows
+.github\workflows\ci.yml
+.gitignore
+.mypy_cache
+.mypy_cache\.gitignore
+.mypy_cache\3.11
+.mypy_cache\3.11\@plugins_snapshot.json
+.mypy_cache\3.11\__future__.data.json
+.mypy_cache\3.11\__future__.meta.json
+.mypy_cache\3.11\_ast.data.json
+.mypy_cache\3.11\_ast.meta.json
+.mypy_cache\3.11\_asyncio.data.json
+.mypy_cache\3.11\_asyncio.meta.json
+.mypy_cache\3.11\_bisect.data.json
+.mypy_cache\3.11\_bisect.meta.json
+.mypy_cache\3.11\_blake2.data.json
+.mypy_cache\3.11\_blake2.meta.json
+.mypy_cache\3.11\_bz2.data.json
+.mypy_cache\3.11\_bz2.meta.json
+.mypy_cache\3.11\_codecs.data.json
+.mypy_cache\3.11\_codecs.meta.json
+.mypy_cache\3.11\_collections_abc.data.json
+.mypy_cache\3.11\_collections_abc.meta.json
+.mypy_cache\3.11\_compression.data.json
+.mypy_cache\3.11\_compression.meta.json
+.mypy_cache\3.11\_contextvars.data.json
+.mypy_cache\3.11\_contextvars.meta.json
+.mypy_cache\3.11\_ctypes.data.json
+.mypy_cache\3.11\_ctypes.meta.json
+.mypy_cache\3.11\_decimal.data.json
+.mypy_cache\3.11\_decimal.meta.json
+.mypy_cache\3.11\_frozen_importlib.data.json
+.mypy_cache\3.11\_frozen_importlib.meta.json
+.mypy_cache\3.11\_frozen_importlib_external.data.json
+.mypy_cache\3.11\_frozen_importlib_external.meta.json
+.mypy_cache\3.11\_hashlib.data.json
+.mypy_cache\3.11\_hashlib.meta.json
+.mypy_cache\3.11\_io.data.json
+.mypy_cache\3.11\_io.meta.json
+.mypy_cache\3.11\_operator.data.json
+.mypy_cache\3.11\_operator.meta.json
+.mypy_cache\3.11\_pickle.data.json
+.mypy_cache\3.11\_pickle.meta.json
+.mypy_cache\3.11\_queue.data.json
+.mypy_cache\3.11\_queue.meta.json
+.mypy_cache\3.11\_random.data.json
+.mypy_cache\3.11\_random.meta.json
+.mypy_cache\3.11\_sitebuiltins.data.json
+.mypy_cache\3.11\_sitebuiltins.meta.json
+.mypy_cache\3.11\_socket.data.json
+.mypy_cache\3.11\_socket.meta.json
+.mypy_cache\3.11\_ssl.data.json
+.mypy_cache\3.11\_ssl.meta.json
+.mypy_cache\3.11\_stat.data.json
+.mypy_cache\3.11\_stat.meta.json
+.mypy_cache\3.11\_thread.data.json
+.mypy_cache\3.11\_thread.meta.json
+.mypy_cache\3.11\_typeshed
+.mypy_cache\3.11\_typeshed\__init__.data.json
+.mypy_cache\3.11\_typeshed\__init__.meta.json
+.mypy_cache\3.11\_typeshed\importlib.data.json
+.mypy_cache\3.11\_typeshed\importlib.meta.json
+.mypy_cache\3.11\_warnings.data.json
+.mypy_cache\3.11\_warnings.meta.json
+.mypy_cache\3.11\_weakref.data.json
+.mypy_cache\3.11\_weakref.meta.json
+.mypy_cache\3.11\_weakrefset.data.json
+.mypy_cache\3.11\_weakrefset.meta.json
+.mypy_cache\3.11\_winapi.data.json
+.mypy_cache\3.11\_winapi.meta.json
+.mypy_cache\3.11\abc.data.json
+.mypy_cache\3.11\abc.meta.json
+.mypy_cache\3.11\argparse.data.json
+.mypy_cache\3.11\argparse.meta.json
+.mypy_cache\3.11\array.data.json
+.mypy_cache\3.11\array.meta.json
+.mypy_cache\3.11\ast.data.json
+.mypy_cache\3.11\ast.meta.json
+.mypy_cache\3.11\asyncio
+.mypy_cache\3.11\asyncio\__init__.data.json
+.mypy_cache\3.11\asyncio\__init__.meta.json
+.mypy_cache\3.11\asyncio\base_events.data.json
+.mypy_cache\3.11\asyncio\base_events.meta.json
+.mypy_cache\3.11\asyncio\constants.data.json
+.mypy_cache\3.11\asyncio\constants.meta.json
+.mypy_cache\3.11\asyncio\coroutines.data.json
+.mypy_cache\3.11\asyncio\coroutines.meta.json
+.mypy_cache\3.11\asyncio\events.data.json
+.mypy_cache\3.11\asyncio\events.meta.json
+.mypy_cache\3.11\asyncio\exceptions.data.json
+.mypy_cache\3.11\asyncio\exceptions.meta.json
+.mypy_cache\3.11\asyncio\futures.data.json
+.mypy_cache\3.11\asyncio\futures.meta.json
+.mypy_cache\3.11\asyncio\locks.data.json
+.mypy_cache\3.11\asyncio\locks.meta.json
+.mypy_cache\3.11\asyncio\mixins.data.json
+.mypy_cache\3.11\asyncio\mixins.meta.json
+.mypy_cache\3.11\asyncio\proactor_events.data.json
+.mypy_cache\3.11\asyncio\proactor_events.meta.json
+.mypy_cache\3.11\asyncio\protocols.data.json
+.mypy_cache\3.11\asyncio\protocols.meta.json
+.mypy_cache\3.11\asyncio\queues.data.json
+.mypy_cache\3.11\asyncio\queues.meta.json
+.mypy_cache\3.11\asyncio\runners.data.json
+.mypy_cache\3.11\asyncio\runners.meta.json
+.mypy_cache\3.11\asyncio\selector_events.data.json
+.mypy_cache\3.11\asyncio\selector_events.meta.json
+.mypy_cache\3.11\asyncio\streams.data.json
+.mypy_cache\3.11\asyncio\streams.meta.json
+.mypy_cache\3.11\asyncio\subprocess.data.json
+.mypy_cache\3.11\asyncio\subprocess.meta.json
+.mypy_cache\3.11\asyncio\taskgroups.data.json
+.mypy_cache\3.11\asyncio\taskgroups.meta.json
+.mypy_cache\3.11\asyncio\tasks.data.json
+.mypy_cache\3.11\asyncio\tasks.meta.json
+.mypy_cache\3.11\asyncio\threads.data.json
+.mypy_cache\3.11\asyncio\threads.meta.json
+.mypy_cache\3.11\asyncio\timeouts.data.json
+.mypy_cache\3.11\asyncio\timeouts.meta.json
+.mypy_cache\3.11\asyncio\transports.data.json
+.mypy_cache\3.11\asyncio\transports.meta.json
+.mypy_cache\3.11\asyncio\unix_events.data.json
+.mypy_cache\3.11\asyncio\unix_events.meta.json
+.mypy_cache\3.11\asyncio\windows_events.data.json
+.mypy_cache\3.11\asyncio\windows_events.meta.json
+.mypy_cache\3.11\asyncio\windows_utils.data.json
+.mypy_cache\3.11\asyncio\windows_utils.meta.json
+.mypy_cache\3.11\bisect.data.json
+.mypy_cache\3.11\bisect.meta.json
+.mypy_cache\3.11\builtins.data.json
+.mypy_cache\3.11\builtins.meta.json
+.mypy_cache\3.11\bz2.data.json
+.mypy_cache\3.11\bz2.meta.json
+.mypy_cache\3.11\click
+.mypy_cache\3.11\click\__init__.data.json
+.mypy_cache\3.11\click\__init__.meta.json
+.mypy_cache\3.11\click\_compat.data.json
+.mypy_cache\3.11\click\_compat.meta.json
+.mypy_cache\3.11\click\_termui_impl.data.json
+.mypy_cache\3.11\click\_termui_impl.meta.json
+.mypy_cache\3.11\click\_utils.data.json
+.mypy_cache\3.11\click\_utils.meta.json
+.mypy_cache\3.11\click\_winconsole.data.json
+.mypy_cache\3.11\click\_winconsole.meta.json
+.mypy_cache\3.11\click\core.data.json
+.mypy_cache\3.11\click\core.meta.json
+.mypy_cache\3.11\click\decorators.data.json
+.mypy_cache\3.11\click\decorators.meta.json
+.mypy_cache\3.11\click\exceptions.data.json
+.mypy_cache\3.11\click\exceptions.meta.json
+.mypy_cache\3.11\click\formatting.data.json
+.mypy_cache\3.11\click\formatting.meta.json
+.mypy_cache\3.11\click\globals.data.json
+.mypy_cache\3.11\click\globals.meta.json
+.mypy_cache\3.11\click\parser.data.json
+.mypy_cache\3.11\click\parser.meta.json
+.mypy_cache\3.11\click\shell_completion.data.json
+.mypy_cache\3.11\click\shell_completion.meta.json
+.mypy_cache\3.11\click\termui.data.json
+.mypy_cache\3.11\click\termui.meta.json
+.mypy_cache\3.11\click\types.data.json
+.mypy_cache\3.11\click\types.meta.json
+.mypy_cache\3.11\click\utils.data.json
+.mypy_cache\3.11\click\utils.meta.json
+.mypy_cache\3.11\codecs.data.json
+.mypy_cache\3.11\codecs.meta.json
+.mypy_cache\3.11\collections
+.mypy_cache\3.11\collections\__init__.data.json
+.mypy_cache\3.11\collections\__init__.meta.json
+.mypy_cache\3.11\collections\abc.data.json
+.mypy_cache\3.11\collections\abc.meta.json
+.mypy_cache\3.11\colorsys.data.json
+.mypy_cache\3.11\colorsys.meta.json
+.mypy_cache\3.11\concurrent
+.mypy_cache\3.11\concurrent\__init__.data.json
+.mypy_cache\3.11\concurrent\__init__.meta.json
+.mypy_cache\3.11\concurrent\futures
+.mypy_cache\3.11\configparser.data.json
+.mypy_cache\3.11\configparser.meta.json
+.mypy_cache\3.11\contextlib.data.json
+.mypy_cache\3.11\contextlib.meta.json
+.mypy_cache\3.11\contextvars.data.json
+.mypy_cache\3.11\contextvars.meta.json
+.mypy_cache\3.11\copy.data.json
+.mypy_cache\3.11\copy.meta.json
+.mypy_cache\3.11\copyreg.data.json
+.mypy_cache\3.11\copyreg.meta.json
+.mypy_cache\3.11\ctypes
+.mypy_cache\3.11\ctypes\__init__.data.json
+.mypy_cache\3.11\ctypes\__init__.meta.json
+.mypy_cache\3.11\ctypes\_endian.data.json
+.mypy_cache\3.11\ctypes\_endian.meta.json
+.mypy_cache\3.11\ctypes\wintypes.data.json
+.mypy_cache\3.11\ctypes\wintypes.meta.json
+.mypy_cache\3.11\dataclasses.data.json
+.mypy_cache\3.11\dataclasses.meta.json
+.mypy_cache\3.11\datetime.data.json
+.mypy_cache\3.11\datetime.meta.json
+
+=== STACK DETECTION (manifest files) ===
+
+--- pyproject.toml ---
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hge-hybrid-gold"
+version = "0.1.0"
+description = "Leakage-safe, audit-first multi-horizon gold forecasting research pipeline"
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+  "joblib==1.5.3",
+  "numpy==2.3.5",
+  "pandas==2.2.3",
+  "pyyaml==6.0.3",
+  "scikit-learn==1.8.0",
+  "typer==0.16.1",
+]
+
+[project.optional-dependencies]
+dev = [
+  "bandit==1.8.6",
+  "mypy==1.17.1",
+  "pip-audit==2.9.0",
+  "pytest==9.1.1",
+  "pytest-cov==6.2.1",
+  "ruff==0.12.11",
+]
+mt5 = [
+  "MetaTrader5==5.0.6090; platform_system == 'Windows'",
+]
+
+[project.scripts]
+hge-gold = "hge_gold.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/hge_gold"]
+
+[tool.pytest.ini_options]
+addopts = "-ra --strict-markers"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+packages = ["hge_gold"]
+ignore_missing_imports = true
+disable_error_code = ["import-untyped"]
+
+[tool.coverage.run]
+source = ["hge_gold"]
+branch = true
+
+--- uv.lock ---
+version = 1
+revision = 3
+requires-python = ">=3.11, <3.14"
+resolution-markers = [
+    "python_full_version >= '3.12'",
+    "python_full_version < '3.12'",
+]
+
+[[package]]
+name = "bandit"
+version = "1.8.6"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "colorama", marker = "sys_platform == 'win32'" },
+    { name = "pyyaml" },
+    { name = "rich" },
+    { name = "stevedore" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/fb/b5/7eb834e213d6f73aace21938e5e90425c92e5f42abafaf8a6d5d21beed51/bandit-1.8.6.tar.gz", hash = "sha256:dbfe9c25fc6961c2078593de55fd19f2559f9e45b99f1272341f5b95dea4e56b", size = 4240271, upload-time = "2025-07-06T03:10:50.9Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/48/ca/ba5f909b40ea12ec542d5d7bdd13ee31c4d65f3beed20211ef81c18fa1f3/bandit-1.8.6-py3-none-any.whl", hash = "sha256:3348e934d736fcdb68b6aa4030487097e23a501adf3e7827b63658df464dddd0", size = 133808, upload-time = "2025-07-06T03:10:49.134Z" },
+]
+
+[[package]]
+name = "boolean-py"
+version = "5.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/c4/cf/85379f13b76f3a69bca86b60237978af17d6aa0bc5998978c3b8cf05abb2/boolean_py-5.0.tar.gz", hash = "sha256:60cbc4bad079753721d32649545505362c754e121570ada4658b852a3a318d95", size = 37047, upload-time = "2025-04-03T10:39:49.734Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/e5/ca/78d423b324b8d77900030fa59c4aa9054261ef0925631cd2501dd015b7b7/boolean_py-5.0-py3-none-any.whl", hash = "sha256:ef28a70bd43115208441b53a045d1549e2f0ec6e3d08a9d142cbc41c1938e8d9", size = 26577, upload-time = "2025-04-03T10:39:48.449Z" },
+]
+
+[[package]]
+name = "cachecontrol"
+version = "0.14.4"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "msgpack" },
+    { name = "requests" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/2d/f6/c972b32d80760fb79d6b9eeb0b3010a46b89c0b23cf6329417ff7886cd22/cachecontrol-0.14.4.tar.gz", hash = "sha256:e6220afafa4c22a47dd0badb319f84475d79108100d04e26e8542ef7d3ab05a1", size = 16150, upload-time = "2025-11-14T04:32:13.138Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ef/79/c45f2d53efe6ada1110cf6f9fca095e4ff47a0454444aefdde6ac4789179/cachecontrol-0.14.4-py3-none-any.whl", hash = "sha256:b7ac014ff72ee199b5f8af1de29d60239954f223e948196fa3d84adaffc71d2b", size = 22247, upload-time = "2025-11-14T04:32:11.733Z" },
+]
+
+[package.optional-dependencies]
+filecache = [
+    { name = "filelock" },
+]
+
+[[package]]
+name = "certifi"
+version = "2026.6.17"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/c9/c7/424b75da314c1045981bd9777432fad05a9e0c69daa4ed7e308bbaffe405/certifi-2026.6.17.tar.gz", hash = "sha256:024c88eeec92ca068db80f02b8b07c9cef7b9fe261d1d535abfd5abd6f6af432", size = 134594, upload-time = "2026-06-17T10:31:07.894Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ef/2f/c5464532e965badff2f4c4c1a3a83f5697f0d7c407ed0cda44aaa99bb451/certifi-2026.6.17-py3-none-any.whl", hash = "sha256:2227dcbaafe0d2f59279d1762ddddc37783ed4354594f194ffc31d20f41fc3db", size = 133289, upload-time = "2026-06-17T10:31:06.348Z" },
+]
+
+[[package]]
+name = "charset-normalizer"
+version = "3.4.9"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/bd/2a/23f34ec9d04624958e137efdc394888716353190e75f25dd22c7a2c7a8aa/charset_normalizer-3.4.9.tar.gz", hash = "sha256:673611bbd43f0810bec0b0f028ddeaaa501190339cac411f347ac76917c3ae7b", size = 152439, upload-time = "2026-07-07T14:34:58.454Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/0b/e3/85ec501f206fb049259288c1f3506e53876937fb00edb47009348e66756b/charset_normalizer-3.4.9-cp311-cp311-macosx_10_9_universal2.whl", hash = "sha256:0e94703ec9684807f20cfb5eed95c70f67f2a8f21ad620146d7b5a13677b93e5", size = 317075, upload-time = "2026-07-07T14:32:56.021Z" },
+    { url = "https://files.pythonhosted.org/packages/c3/69/2a5385192e67175f7d8bd5ce4f57c24bc956439adeae5c13a99aa28a53d1/charset_normalizer-3.4.9-cp311-cp311-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:2a441ea71902098ffe78c5abe6c494f44160b4af614ed16c3d9a3b1d17fd8ee2", size = 213837, upload-time = "2026-07-07T14:32:57.78Z" },
+    { url = "https://files.pythonhosted.org/packages/b3/46/03ddc7da576d814fe0a36dd1f0fd3258e95404b4b2e3c026b7923d7e133f/charset_normalizer-3.4.9-cp311-cp311-manylinux2014_ppc64le.manylinux_2_17_ppc64le.manylinux_2_28_ppc64le.whl", hash = "sha256:304b13570067b2547562e308af560b3963857b1fa90bd6afd978130130fe2d6a", size = 235503, upload-time = "2026-07-07T14:32:59.205Z" },
+    { url = "https://files.pythonhosted.org/packages/4e/6e/de0229a7ef40f6f9d28a837eebf4ec47bdca5dab4e900c84f22919af636a/charset_normalizer-3.4.9-cp311-cp311-manylinux2014_s390x.manylinux_2_17_s390x.manylinux_2_28_s390x.whl", hash = "sha256:4773092f8019072343a7447203308b176e10199920eb02d6195e81bbb3274c29", size = 229944, upload-time = "2026-07-07T14:33:00.803Z" },
+    { url = "https://files.pythonhosted.org/packages/a5/34/49b9060e8418b14fb5cba9cf6bfb383111e2538a03a1fb18e66a95aeb3d5/charset_normalizer-3.4.9-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:04ce310cb89c15df659582aee80a0603788732a5e017d5bd5c81158106ce249c", size = 221276, upload-time = "2026-07-07T14:33:02.199Z" },
+    { url = "https://files.pythonhosted.org/packages/44/95/80282cce0fae9c3061203d723ee87da996aed79679e65d8935050ee7ca1f/charset_normalizer-3.4.9-cp311-cp311-manylinux_2_31_armv7l.whl", hash = "sha256:c0323c9daef75ef2e5083624b4585018a0c9d5e3b40f607eed81a311270b934b", size = 205260, upload-time = "2026-07-07T14:33:03.698Z" },
+    { url = "https://files.pythonhosted.org/packages/0c/74/2f62c8821b969ea3bd67cc2e6976834f48ca5d12664d2559ebcd9bcfbed7/charset_normalizer-3.4.9-cp311-cp311-manylinux_2_31_riscv64.manylinux_2_39_riscv64.whl", hash = "sha256:871ff67ea1aad4dfd91736464934d56b32dac49f9fbe16cddba36198a7b3a0db", size = 217786, upload-time = "2026-07-07T14:33:05.12Z" },
+    { url = "https://files.pythonhosted.org/packages/d9/8d/feabb82cb49fcad14515b1d7d1ca4787b0da7fc723a212bf89bc9e0fac52/charset_normalizer-3.4.9-cp311-cp311-musllinux_1_2_aarch64.whl", hash = "sha256:67830fc78e67501f47bb950471b2dcb9b35b140084429318e862895a8e89c993", size = 216798, upload-time = "2026-07-07T14:33:06.629Z" },
+    { url = "https://files.pythonhosted.org/packages/a5/ff/c946d63bc3786d5b84d960b0f7ab7e25b828486a946b5aa997625bcaf6a6/charset_normalizer-3.4.9-cp311-cp311-musllinux_1_2_armv7l.whl", hash = "sha256:3d92613ec25e43b05f042302531ec0f00b8445190e43325880cbd6ab7c2581da", size = 206429, upload-time = "2026-07-07T14:33:08.006Z" },
+    { url = "https://files.pythonhosted.org/packages/af/ba/5e5007c370702f85d2ef75791fac7943ed41e080364a673b20142e430e3e/charset_normalizer-3.4.9-cp311-cp311-musllinux_1_2_x86_64.whl", hash = "sha256:280081916dc341820640489a66e4696049401ef1cf6dd672f672e70ad915aca3", size = 223066, upload-time = "2026-07-07T14:33:09.783Z" },
+    { url = "https://files.pythonhosted.org/packages/83/d5/9096aa3cf532dfad237861544eb47a0f20d5adbf1039760fed8eaae935d9/charset_normalizer-3.4.9-cp311-cp311-win32.whl", hash = "sha256:ac351b3b8014eead140e77e9717e2992c6bbe30b63bc3422422eb84865412e3d", size = 150456, upload-time = "2026-07-07T14:33:11.217Z" },
+    { url = "https://files.pythonhosted.org/packages/ed/a1/e29995109e455dc8eff8d0fac6ae509be39561318a7cfeac5d33ad029213/charset_normalizer-3.4.9-cp311-cp311-win_amd64.whl", hash = "sha256:6366a16e1a25018694d6a5d784d09b046edc9eac40ea2b54065c3052672516a1", size = 161410, upload-time = "2026-07-07T14:33:12.743Z" },
+    { url = "https://files.pythonhosted.org/packages/4f/8d/1569f4d0032d6ba2a4fe4591c35bf87868c600c41a71eb5c2e1ffa8464c2/charset_normalizer-3.4.9-cp311-cp311-win_arm64.whl", hash = "sha256:1d22856ffbe153a602df38e4a5464f0b748a54002e0d69ac6d2ad0a197cc99ec", size = 152649, upload-time = "2026-07-07T14:33:14.173Z" },
+    { url = "https://files.pythonhosted.org/packages/70/4a/ecbd131485c07fcdfad54e28946d513e3da22ef3b4bd854dcafae54ec739/charset_normalizer-3.4.9-cp312-cp312-macosx_10_13_universal2.whl", hash = "sha256:45b0cc4e3556cd875e09102988d1ab8356c998b596c9fced84547c8138b487a0", size = 319300, upload-time = "2026-07-07T14:33:15.666Z" },
+    { url = "https://files.pythonhosted.org/packages/ec/96/5d9364e3342d69f3a045e1777bc47c85c383e6e9466d561b33fdb419d1f9/charset_normalizer-3.4.9-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:9b2aff1c7b3884512b9512c3eaadd9bab39fb45042ffaaa1dd08ff2b9f8109d9", size = 215802, upload-time = "2026-07-07T14:33:17.031Z" },
+
+[TRUNCATED] Showing first 80 of 1010 lines.
+
+=== ENTRY POINTS ===
+No common entry points found. Check 'main' or 'scripts.start' in manifest files above.
+
+=== LINTING AND FORMATTING CONFIG ===
+No linting or formatting config files found in project root.
+
+=== ENVIRONMENT VARIABLE TEMPLATES ===
+No .env.example or .env.template found. Identify required environment variables by searching the code and config for environment variable reads.
+
+=== TODO / FIXME / HACK (production code only, test dirs excluded) ===
+None found.
+
+=== GIT RECENT COMMITS (last 20) ===
+b61658f Make thesis branch V2-only
+49ced72 Fix cross-platform manifest paths and refresh V2 artifacts
+df9e450 Add V2 market data quality audit
+2d4c4aa Finalize V2 real-data provenance
+88f0d0b Stabilize V2 model selection and fix backtest overlap
+48ca378 Stabilize V2 model selection and fix backtest overlap
+7aadc89 Add outputs
+4d6fe2d Move XAUUSD dataset to raw data directory
+d865840 add data
+c9a9c24 Align V2 target policy metadata
+4a66b59 Finalize V2 target fix and pass quality checks
+67dbc79 Align V2 target fix code quality checks
+406bfdd add docs of new updates
+853333f fix matadata from target
+800c895 Fix V2 binary target and remove future selection bias
+0f6706d delete path
+d502fc4 v2
+fa82e97 add outputs of v2
+c1d4f18 Add Files.
+8317f9b Initial commit
+
+=== HIGH-CHURN FILES (last 90 days, top 20) ===
+  10 src/hge_gold/v2/pipeline.py
+   7 tests/test_v2_end_to_end.py
+   6 README.md
+   6 src/hge_gold/v2/targets.py
+   6 artifacts/v2/execution_manifest.json
+   6 artifacts/v2/selected_model_map.json
+   5 artifacts/metadata/phase4_selected_model_map_v2.json
+   5 artifacts/metadata/phase5_locked_test_metrics_report_v2.csv
+   5 data/predictions/phase4/phase4_locked_test_predictions_v2.csv
+   5 src/hge_gold/v2/evaluation.py
+   5 src/hge_gold/v2/modeling.py
+   4 artifacts/v2/backtest_summary.csv
+   4 artifacts/v2/candidate_selection_metrics.csv
+   4 artifacts/v2/locked_test_metrics.csv
+   4 data/predictions/v2/locked_test_predictions.csv
+   4 models/v2/horizon_10_model_bundle.joblib
+   4 models/v2/horizon_1_model_bundle.joblib
+   4 models/v2/horizon_20_model_bundle.joblib
+   4 models/v2/horizon_5_model_bundle.joblib
+   3 pyproject.toml
+
+=== MONOREPO SIGNALS ===
+No monorepo signals detected.
+
+=== CODE METRICS ===
+Total files scanned: 1527
+Total lines of code: 243783
+
+Files by language:
+  Other: 1486
+  Python: 40
+  JavaScript: 1
+
+Top 10 largest files:
+artifacts\runs\market_evidence-98f632731a9bdea9\files\models\v3\market\horizon_5_model_bundle.joblib: 11750.1KB
+artifacts\runs\market_evidence-c3c782ea68018f2e\files\models\v3\market\horizon_5_model_bundle.joblib: 11750.1KB
+artifacts\runs\market_evidence-e5a3c863c3850cc0\files\models\v3\market\horizon_5_model_bundle.joblib: 11750.1KB
+models\v3\market\horizon_5_model_bundle.joblib: 11750.1KB
+models\v2\horizon_5_model_bundle.joblib: 11677.6KB
+artifacts\runs\market_evidence-98f632731a9bdea9\files\models\v3\market\horizon_10_model_bundle.joblib: 11552.6KB
+artifacts\runs\market_evidence-c3c782ea68018f2e\files\models\v3\market\horizon_10_model_bundle.joblib: 11552.6KB
+artifacts\runs\market_evidence-e5a3c863c3850cc0\files\models\v3\market\horizon_10_model_bundle.joblib: 11552.6KB
+models\v3\market\horizon_10_model_bundle.joblib: 11552.6KB
+models\v2\horizon_10_model_bundle.joblib: 11490.7KB
+
+=== CI/CD PIPELINES ===
+CI/CD: GitHub Actions
+
+=== CONTAINERS & ORCHESTRATION ===
+No containerization configs detected.
+
+=== SECURITY & COMPLIANCE ===
+No security configs detected.
+
+=== PERFORMANCE & TESTING ===
+No performance testing configs detected.
+
+=== SCAN COMPLETE ===

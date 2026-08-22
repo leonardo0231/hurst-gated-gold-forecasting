@@ -1,18 +1,25 @@
-project_name: HGE Gold Forecasting Thesis V2
+project_name: HGE Gold Forecasting Thesis V3
 
 data:
-  source: sample
-  csv_path: null
+  source: mt5_metaquotes_demo_20260731
+  source_kind: market_evidence
+  csv_path: data/processed/XAUUSD_Daily_20110103_20260731_model.csv
+  source_manifest_path: data/manifests/XAUUSD_Daily_20110103_20260731_manifest.json
+  raw_source_path: data/raw/XAUUSD_Daily_20110103_20260731.csv
   min_rows: 700
-  decision_hour_utc: 22
+  decision_hour_utc: 0
 
   symbol: XAUUSD
   timeframe: D1
   source_type: MT5 broker export
 
-  broker: null
-  server: null
-  timezone: null
+  broker: MetaQuotes Ltd.
+  server: MetaQuotes-Demo
+  timezone: UTC
+  candle_boundary: "Broker D1 bars observed at 00:00 UTC; next observed D1 bar closes the session"
+  session_definition: "MetaQuotes-Demo XAUUSD broker session; holidays and broker breaks retained"
+  decision_timestamp_convention: "After D1 bar t is complete; earliest entry is the open/first tick of t+1"
+  volume_type: tick_volume
   export_date: null
 
 features:
@@ -30,12 +37,18 @@ targets:
   threshold_floor_bps: 8.0
   transaction_cost_bps: 3.0
   slippage_bps: 2.0
+  actionable_cost_buffer_bps: 2.0
+  execution_lag_bars: 1
+  cost_convention: round_trip_total
 
 splits:
   locked_test_fraction: 0.20
   n_walk_forward_folds: 5
   min_train_rows: 280
   min_validation_rows: 45
+  locked_test_start: 2023-07-03
+  holdout_status: historical_holdout_v1_previously_revealed
+  embargo_rows: 0
 
 models:
   random_seed: 42
@@ -44,6 +57,8 @@ models:
   probability_threshold_max: 0.65
   probability_threshold_steps: 61
   gate_tolerance: 0.005
+  no_trade_probability_margin: 0.05
+  run_ablations: true
 
 evaluation:
   primary_metric: balanced_accuracy
@@ -55,6 +70,6 @@ evaluation:
   bootstrap_block_length: 10
 
 outputs:
-  artifact_dir: artifacts/v2
-  model_dir: models/v2
-  prediction_dir: data/predictions/v2
+  artifact_dir: artifacts/v3/market
+  model_dir: models/v3/market
+  prediction_dir: data/predictions/v3/market

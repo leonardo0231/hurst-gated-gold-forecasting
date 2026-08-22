@@ -26,6 +26,9 @@ dev = [
   "pytest-cov==6.2.1",
   "ruff==0.12.11",
 ]
+mt5 = [
+  "MetaTrader5==5.0.6090; platform_system == 'Windows'",
+]
 
 [project.scripts]
 hge-gold = "hge_gold.cli:app"

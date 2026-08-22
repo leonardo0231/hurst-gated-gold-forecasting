@@ -6,6 +6,17 @@ import numpy as np
 import pandas as pd
 
 REQUIRED_COLUMNS = ("date", "open", "high", "low", "close", "volume")
+MT5_VOLUME_COLUMNS = ("tick_volume", "real_volume")
+MT5_TAB_COLUMN_MAP = {
+    "<DATE>": "date",
+    "<OPEN>": "open",
+    "<HIGH>": "high",
+    "<LOW>": "low",
+    "<CLOSE>": "close",
+    "<TICKVOL>": "tick_volume",
+    "<VOL>": "real_volume",
+    "<SPREAD>": "spread",
+}
 
 
 def generate_research_sample(n_rows: int = 1500, seed: int = 42) -> pd.DataFrame:
@@ -48,16 +59,91 @@ def generate_research_sample(n_rows: int = 1500, seed: int = 42) -> pd.DataFrame
     )
 
 
-def load_ohlcv(source_csv: Path | None, min_rows: int, seed: int = 42) -> pd.DataFrame:
+def canonicalize_mt5_volume(
+    frame: pd.DataFrame,
+    volume_column: str,
+) -> pd.DataFrame:
+    """Map one explicitly selected MT5 volume field to canonical ``volume``.
+
+    MT5 exposes both broker tick counts and, for some instruments and periods,
+    exchange-reported volume.  They are not interchangeable, so this function
+    never falls back from one field to the other.
+    """
+    if volume_column not in MT5_VOLUME_COLUMNS:
+        raise ValueError(
+            f"volume_column must be one of {list(MT5_VOLUME_COLUMNS)}; received {volume_column!r}"
+        )
+    if volume_column not in frame.columns:
+        raise ValueError(f"Selected MT5 volume column is missing: {volume_column}")
+
+    result = frame.copy()
+    selected = pd.to_numeric(result[volume_column], errors="coerce")
+    if "volume" in result.columns:
+        canonical = pd.to_numeric(result["volume"], errors="coerce")
+        comparable = selected.notna() & canonical.notna()
+        if not np.allclose(
+            selected.loc[comparable].to_numpy(dtype=float),
+            canonical.loc[comparable].to_numpy(dtype=float),
+            rtol=0.0,
+            atol=0.0,
+        ):
+            raise ValueError(
+                "Canonical volume conflicts with the explicitly selected MT5 volume column"
+            )
+    result["volume"] = selected
+    return result
+
+
+def load_mt5_tab_export(path: Path, min_rows: int = 1) -> pd.DataFrame:
+    """Deterministically transform a native MT5 tab export into canonical OHLCV."""
+    raw = pd.read_csv(path, sep="\t")
+    unknown_required = {
+        "<DATE>",
+        "<OPEN>",
+        "<HIGH>",
+        "<LOW>",
+        "<CLOSE>",
+        "<TICKVOL>",
+    } - set(raw.columns)
+    if unknown_required:
+        raise ValueError(f"MT5 tab export is missing columns: {sorted(unknown_required)}")
+    renamed = raw.rename(columns=MT5_TAB_COLUMN_MAP)
+    canonical = normalize_and_validate(
+        renamed,
+        min_rows=min_rows,
+        volume_column="tick_volume",
+    )
+    return canonical
+
+
+def load_ohlcv(
+    source_csv: Path | None,
+    min_rows: int,
+    seed: int = 42,
+    volume_column: str | None = None,
+) -> pd.DataFrame:
     frame = (
         generate_research_sample(max(min_rows, 1500), seed)
         if source_csv is None
         else pd.read_csv(source_csv)
     )
-    return normalize_and_validate(frame, min_rows=min_rows)
+    return normalize_and_validate(frame, min_rows=min_rows, volume_column=volume_column)
 
 
-def normalize_and_validate(frame: pd.DataFrame, min_rows: int) -> pd.DataFrame:
+def normalize_and_validate(
+    frame: pd.DataFrame,
+    min_rows: int,
+    volume_column: str | None = None,
+) -> pd.DataFrame:
+    if volume_column is not None:
+        frame = canonicalize_mt5_volume(frame, volume_column)
+    elif "volume" not in frame.columns and any(
+        column in frame.columns for column in MT5_VOLUME_COLUMNS
+    ):
+        raise ValueError(
+            "MT5 input requires an explicit volume_column='tick_volume' or "
+            "volume_column='real_volume'; implicit mixing is forbidden"
+        )
     missing = set(REQUIRED_COLUMNS) - set(frame.columns)
     if missing:
         raise ValueError(f"Missing OHLCV columns: {sorted(missing)}")

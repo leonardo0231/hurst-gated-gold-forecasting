@@ -1,0 +1,210 @@
+{
+  "acceptance_summary": [
+    {
+      "acceptance_status": "FAIL",
+      "balanced_accuracy": 0.5038709057727404,
+      "horizon": 1,
+      "macro_f1": 0.5003932672644329
+    },
+    {
+      "acceptance_status": "FAIL",
+      "balanced_accuracy": 0.5219422043010753,
+      "horizon": 5,
+      "macro_f1": 0.45822910475543566
+    },
+    {
+      "acceptance_status": "FAIL",
+      "balanced_accuracy": 0.5046710272120108,
+      "horizon": 10,
+      "macro_f1": 0.4034954407294833
+    },
+    {
+      "acceptance_status": "FAIL",
+      "balanced_accuracy": 0.5037899194875939,
+      "horizon": 20,
+      "macro_f1": 0.48204040127169767
+    }
+  ],
+  "artifacts": {
+    "artifacts/v3/market/ablation_metrics.csv": "9f6ae9da0d1b95fd0fa53fdf800bc294e00325032aa528c628a3e88fa9a59e29",
+    "artifacts/v3/market/backtest_summary.csv": "ad065bcd11f3630d3158c1f611a1db0a7f5182fc5f4a3be2f425fa93e88b96b9",
+    "artifacts/v3/market/candidate_selection_metrics.csv": "1b505d9513825684ddf0e6029a280b8dddfc558881a296a69d61c3f9fe50750f",
+    "artifacts/v3/market/cpcv_split_manifest.csv": "0af9edfafdeb638bd5e7da076bcc8a9e5f0c4e9b44daffab22f89dc1539dbd7e",
+    "artifacts/v3/market/data_quality/horizon_class_balance.csv": "0b0d8cc26d9f8f6475b4e3d07a5410f8d220d305f8f4a60e8520d5c22600f909",
+    "artifacts/v3/market/data_quality/summary.json": "de4ec04dc6e19adfdd3caa91a40b849f3048d9be9e9be28de86f953f1977a4f3",
+    "artifacts/v3/market/data_quality/suspicious_rows.csv": "b7da3245bc04b1c5b076b1d0268cab53947f9ad9ee8fa309664a85e21d7f8743",
+    "artifacts/v3/market/data_quality/yearly_statistics.csv": "3e727322928d6c2cf92a0789edd8791f5d64492f945fafecb2e2089fa204b2d8",
+    "artifacts/v3/market/feature_registry.json": "702d923a4c8c2e2a71213feb79025945be76884def544d33adf99a8bac2c7d99",
+    "artifacts/v3/market/locked_test_metrics.csv": "7d07868000e6ef006667435c6ebb1c5abd64ebb338ed0277a465fc69619ac487",
+    "artifacts/v3/market/selected_model_map.json": "958468ffb2c7bfff1145be8aec9435f7d821e6afc53795b044d78cce33615f5f",
+    "artifacts/v3/market/selection_receipt_h1.json": "3372e8b7a8592a5bfe40f7928b44b42b4e3d9ad20bb8daedc5ee466c5f409aee",
+    "artifacts/v3/market/selection_receipt_h10.json": "2c8df051bddcc8b6ad743ad21b009f08ba42190ac7423104f6aebdd7e95fcfb1",
+    "artifacts/v3/market/selection_receipt_h20.json": "5f505a215957ecdc218df85b2ef2146f6fc010d5ac27e1f2e3324d11cb91a772",
+    "artifacts/v3/market/selection_receipt_h5.json": "bb4c144386b2f8a7d530be7ee3b651c12fe296e4c04f0906e72df0f16fc6ee81",
+    "artifacts/v3/market/validation_diagnostics.json": "5f1deaa2ab4c0367843c9dd8436352bc8f3cecc406ba588ca272b527357225fe",
+    "artifacts/v3/market/walk_forward_fold_metrics.csv": "e9dd6b71c0e77b1cfc64f756f61d38b22f663cbc2b0cdaf3e27b66c876e82de7",
+    "data/predictions/v3/market/locked_test_predictions.csv": "ef9d686c97012f9e1aa483f90789c294e8cda0e18e7f555534a1e9f23906e783",
+    "data/predictions/v3/market/mt5_replay_signals_h1.csv": "46a7875ab6651c6a648070a9028dff367a19e36909c7287c036f7d7db2bde12f",
+    "data/predictions/v3/market/mt5_replay_signals_h10.csv": "a6edf9dde740f0d8cbdd50992d54ff43ac4dc586626792d4091a987cbf0d273c",
+    "data/predictions/v3/market/mt5_replay_signals_h20.csv": "f4a05f02d037566bda704e8e31530cc30da0a838c227c981418f29bdb30ede1e",
+    "data/predictions/v3/market/mt5_replay_signals_h5.csv": "e4cba57d2b0ea30bd25c605363b1cea0ce2afb18dd97af8d26c7a2aefccbdb6d",
+    "models/v3/market/horizon_10_model_bundle.joblib": "13bd880542bff8a35f6797f2a7413113dabc65ff237f22f43078996ec71b5739",
+    "models/v3/market/horizon_1_model_bundle.joblib": "d5f987be4d6cb3843d7ffadf555eabffa6f3cdb8a1568f0934efc32143ac28fb",
+    "models/v3/market/horizon_20_model_bundle.joblib": "4cbb8e27cb5ae19e3e9ad71077996bf9b7d5a8367caca8fcf3f701789f6ec004",
+    "models/v3/market/horizon_5_model_bundle.joblib": "ac602f53f9b8700156411959c875dcbc1d0d0057d35eb4ed82af8606fdffbe39"
+  },
+  "broker": "MetaQuotes Ltd.",
+  "candle_boundary": "Broker D1 bars observed at 00:00 UTC; next observed D1 bar closes the session",
+  "code_sha256": "846592c4661a5822f41fc1d894160819432eb661c670f87644e3ff5d237f7321",
+  "config_sha256": "dbcaf6957aae2100a2ac4d6494838709782f6de88ae338f9944354204fd79daa",
+  "created_at_utc": "2026-08-20T09:36:55.554577+00:00",
+  "decision_hour_utc": 0,
+  "decision_timestamp_convention": "After D1 bar t is complete; earliest entry is the open/first tick of t+1",
+  "export_date": "2026-08-07",
+  "limitations": [
+    "A 60% threshold is an empirical acceptance goal, not a guaranteed market result.",
+    "Backtest output is research-only and is not investment advice.",
+    "The 2023-2026 holdout was previously revealed; redesigned results are repeated historical OOS evidence, not pristine confirmation.",
+    "PBO and DSR code is implemented and tested, but official values are deferred until per-trial development return paths are registered.",
+    "Macro drivers are not integrated; claims are limited to broker-specific univariate XAUUSD OHLC tick-volume data."
+  ],
+  "metadata_evidence_status": "reconstructed_on_2026-08-20_from_file_metadata_exact_live_mt5_match_and_configuration",
+  "pipeline_version": "3.0",
+  "raw_source": "data/raw/XAUUSD_Daily_20110103_20260731.csv",
+  "raw_source_sha256": "36eac4639864f8f9dec7abc3d3b32e301d5f8a02414374585d8bfc22c6393fd8",
+  "raw_to_canonical_lineage_verified": true,
+  "resolved_config": {
+    "data": {
+      "broker": "MetaQuotes Ltd.",
+      "candle_boundary": "Broker D1 bars observed at 00:00 UTC; next observed D1 bar closes the session",
+      "csv_path": "data/processed/XAUUSD_Daily_20110103_20260731_model.csv",
+      "decision_hour_utc": 0,
+      "decision_timestamp_convention": "After D1 bar t is complete; earliest entry is the open/first tick of t+1",
+      "export_date": null,
+      "min_rows": 700,
+      "raw_source_path": "data/raw/XAUUSD_Daily_20110103_20260731.csv",
+      "server": "MetaQuotes-Demo",
+      "session_definition": "MetaQuotes-Demo XAUUSD broker session; holidays and broker breaks retained",
+      "source": "mt5_metaquotes_demo_20260731",
+      "source_kind": "market_evidence",
+      "source_manifest_path": "data/manifests/XAUUSD_Daily_20110103_20260731_manifest.json",
+      "source_type": "MT5 broker export",
+      "symbol": "XAUUSD",
+      "timeframe": "D1",
+      "timezone": "UTC",
+      "volume_type": "tick_volume"
+    },
+    "evaluation": {
+      "bootstrap_block_length": 10,
+      "bootstrap_iterations": 400,
+      "macro_f1_threshold": 0.55,
+      "min_test_samples": 80,
+      "minimum_class_recall": 0.5,
+      "primary_metric": "balanced_accuracy",
+      "primary_threshold": 0.6
+    },
+    "features": {
+      "hurst_windows": [
+        64,
+        128
+      ],
+      "min_feature_coverage": 0.7,
+      "regime_window": 252,
+      "return_lags": [
+        1,
+        2,
+        3,
+        5,
+        10,
+        20
+      ],
+      "windows": [
+        5,
+        10,
+        20,
+        63,
+        126
+      ]
+    },
+    "models": {
+      "fast_mode": false,
+      "gate_tolerance": 0.005,
+      "no_trade_probability_margin": 0.05,
+      "probability_threshold_max": 0.65,
+      "probability_threshold_min": 0.35,
+      "probability_threshold_steps": 61,
+      "random_seed": 42,
+      "run_ablations": true
+    },
+    "outputs": {
+      "artifact_dir": "artifacts/v3/market",
+      "model_dir": "models/v3/market",
+      "prediction_dir": "data/predictions/v3/market"
+    },
+    "project_name": "HGE Gold Forecasting Thesis V3",
+    "project_root": "D:/Me/Final Project/Project/hurst-gated-gold-forecasting",
+    "splits": {
+      "embargo_rows": 0,
+      "holdout_status": "historical_holdout_v1_previously_revealed",
+      "locked_test_fraction": 0.2,
+      "locked_test_start": "2023-07-03",
+      "min_train_rows": 280,
+      "min_validation_rows": 45,
+      "n_walk_forward_folds": 5
+    },
+    "targets": {
+      "actionable_cost_buffer_bps": 2.0,
+      "cost_convention": "round_trip_total",
+      "execution_lag_bars": 1,
+      "horizons": [
+        1,
+        5,
+        10,
+        20
+      ],
+      "slippage_bps": 2.0,
+      "threshold_floor_bps": 8.0,
+      "threshold_k": 0.35,
+      "transaction_cost_bps": 3.0,
+      "volatility_min_periods": 40,
+      "volatility_window": 63
+    }
+  },
+  "run_id": "market_evidence-98f632731a9bdea9",
+  "runtime": {
+    "git_commit": "b61658f4ac0d43933d9ef171f4122d3a26460aa6",
+    "git_dirty": true,
+    "packages": {
+      "joblib": "1.5.3",
+      "numpy": "2.3.5",
+      "pandas": "2.2.3",
+      "scikit_learn": "1.8.0"
+    },
+    "platform": "Windows-10-10.0.19045-SP0",
+    "python": "3.12.10",
+    "thread_environment": {
+      "MKL_NUM_THREADS": null,
+      "OMP_NUM_THREADS": null,
+      "OPENBLAS_NUM_THREADS": null
+    }
+  },
+  "runtime_sha256": "025eda872c1cc1502056010f7943b9ee8c7d52d10a26ee15086b2c662d13ae00",
+  "server": "MetaQuotes-Demo",
+  "session_definition": "MetaQuotes-Demo XAUUSD broker session; holidays and broker breaks retained",
+  "source": "data/processed/XAUUSD_Daily_20110103_20260731_model.csv",
+  "source_end": "2026-07-31T00:00:00",
+  "source_is_market_evidence": true,
+  "source_kind": "market_evidence",
+  "source_manifest": "data/manifests/XAUUSD_Daily_20110103_20260731_manifest.json",
+  "source_manifest_created_at_utc": "2026-08-20T00:00:00Z",
+  "source_manifest_sha256": "e4a316dfe7c361795ccfce3fba4b604f1e2ad49e2fac6bdfd635983e549efb34",
+  "source_rows": 4017,
+  "source_sha256": "0c6d0b9ee76377d2d7048b53459fa6fc285af25fc21d76fad569454239f79a16",
+  "source_start": "2011-01-03T00:00:00",
+  "source_type": "MT5 broker export",
+  "symbol": "XAUUSD",
+  "timeframe": "D1",
+  "timezone": "UTC",
+  "transformation_id": "mt5_tab_export_to_canonical_ohlcv_v1",
+  "volume_type": "tick_volume"
+}

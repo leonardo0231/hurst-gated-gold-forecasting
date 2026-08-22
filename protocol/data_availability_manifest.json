@@ -1,0 +1,134 @@
+{
+  "schema_version": "data_availability_manifest_v1",
+  "created_at_utc": "2026-08-21T00:00:00Z",
+  "scientific_status": "protocol_only_no_external_source_admitted",
+  "decision_convention": {
+    "timezone": "UTC",
+    "policy": "Features from completed bar t are evaluated after that bar is complete; earliest entry is the next observed XAUUSD D1 bar open.",
+    "join_rule": "backward_asof_only",
+    "required_inequality": "source_available_at <= decision_timestamp",
+    "future_backfill": "forbidden",
+    "missing_value_policy": "Do not backfill from later releases; retain missingness, staleness, and coverage fields."
+  },
+  "sources": [
+    {
+      "source_id": "mt5_metaquotes_demo_xauusd_d1_legacy",
+      "status": "admissible_existing_univariate_source_with_reconstructed_timestamp_evidence",
+      "symbol": "XAUUSD",
+      "timeframe": "D1",
+      "broker": "MetaQuotes Ltd.",
+      "server": "MetaQuotes-Demo",
+      "source_type": "MT5 broker export",
+      "actual_source_start": "2011-01-03T00:00:00",
+      "actual_source_end": "2026-07-31T00:00:00",
+      "rows": 4017,
+      "raw_sha256": "36eac4639864f8f9dec7abc3d3b32e301d5f8a02414374585d8bfc22c6393fd8",
+      "canonical_sha256": "0c6d0b9ee76377d2d7048b53459fa6fc285af25fc21d76fad569454239f79a16",
+      "timestamp_evidence": "reconstructed_utc_and_session_convention_supported_by_a_later_exact_MT5_history_match; the legacy tab export itself contains DATE without an explicit timezone or close timestamp",
+      "observation_timestamp_semantics": "legacy broker D1 bar-open date",
+      "availability_policy": "available only after the bar is complete, represented conservatively by the next observed broker D1 bar open",
+      "revision_policy": "The frozen raw and canonical hashes define this research vintage; any changed broker history requires a new source ID and manifest.",
+      "vintage_policy": "single frozen legacy snapshot; not a contemporaneous daily vintage archive",
+      "volume_semantics": "<TICKVOL> mapped to broker tick volume; not centralized exchange volume; <VOL> is not spliced or used",
+      "limitations": [
+        "Daily OHLC and tick volume are broker/session specific.",
+        "UTC and session metadata were reconstructed after the original export.",
+        "Cross-broker transferability is not established."
+      ]
+    }
+  ],
+  "partitions": [
+    {
+      "partition_id": "development_pre_2022",
+      "actual_start": "2011-01-03",
+      "actual_end": "2021-12-31",
+      "status": "development_previously_used",
+      "permitted_use": "nested_purged_development_only"
+    },
+    {
+      "partition_id": "development_2022_through_2023_h1",
+      "actual_start": "2022-01-03",
+      "actual_end": "2023-06-30",
+      "status": "development_reused_previously_exposed",
+      "permitted_use": "nested_purged_development_only_not_confirmation",
+      "exposure_evidence": [
+        "V3 wf_05 outer validation spans 2021-2023 for every horizon.",
+        "V2 persisted predictions and metrics expose June 2023 outcomes."
+      ]
+    },
+    {
+      "partition_id": "historical_audit_v1",
+      "actual_start": "2023-07-03",
+      "actual_end": "2026-07-31",
+      "status": "historical_audit_previously_revealed",
+      "permitted_use": "frozen_candidate_historical_audit_only_never_selection"
+    }
+  ],
+  "target_horizon_source_tail": [
+    {
+      "horizon_bars": 1,
+      "last_usable_decision_date": "2026-07-29",
+      "entry_date": "2026-07-30",
+      "exit_date": "2026-07-31"
+    },
+    {
+      "horizon_bars": 5,
+      "last_usable_decision_date": "2026-07-23",
+      "entry_date": "2026-07-24",
+      "exit_date": "2026-07-31"
+    },
+    {
+      "horizon_bars": 10,
+      "last_usable_decision_date": "2026-07-16",
+      "entry_date": "2026-07-17",
+      "exit_date": "2026-07-31"
+    },
+    {
+      "horizon_bars": 20,
+      "last_usable_decision_date": "2026-07-02",
+      "entry_date": "2026-07-03",
+      "exit_date": "2026-07-31"
+    }
+  ],
+  "external_sources": [
+    {
+      "family": "existing_ignored_mt5_cross_asset_captures",
+      "symbols": [
+        "XAGUSD",
+        "US500",
+        "GLD",
+        "USO",
+        "EURUSD",
+        "USDJPY",
+        "USDX",
+        "WTI"
+      ],
+      "status": "deferred_not_admissible",
+      "reasons": [
+        "Not registered in the frozen baseline or immutable run identity.",
+        "Existing capture manifests do not uniformly satisfy the current timestamp, availability, revision, and vintage contract.",
+        "ETF histories require a point-in-time corporate-action adjustment policy.",
+        "USDX history begins too late for the pre-2023 development protocol."
+      ],
+      "admission_requirements": [
+        "Pre-register the source family and experiment budget before examining candidate metrics.",
+        "Freeze raw hashes, provider/broker identity, timezone, session, observation timestamp, source_available_at, and staleness policy.",
+        "Use backward as-of joins only and test that no future release fills an earlier decision.",
+        "Document revisions/vintages and corporate-action adjustments."
+      ]
+    },
+    {
+      "family": "official_usd_rates_volatility_or_comex_sources",
+      "symbols": [
+        "USD index or broad trade-weighted USD",
+        "US real yields",
+        "VIX",
+        "COMEX-derived data"
+      ],
+      "status": "deferred_not_admissible",
+      "reasons": [
+        "No licensed or official point-in-time source with release timestamps and revision/vintage policy is integrated."
+      ]
+    }
+  ]
+}

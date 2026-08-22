@@ -1,0 +1,17 @@
+{
+  "baseline_cost_bps": 5.0,
+  "benchmark_deltas": {
+    "always_long": -1.536837421325973,
+    "always_short": 2.6022195557029457,
+    "cash": -0.6475139061496384,
+    "momentum": -27.256916440127927,
+    "trend": -5.755118176105427
+  },
+  "candidate_net_log_return": -0.6475139061496384,
+  "cost_convention": "round_trip_total",
+  "dsr_probability": 6.42911063585272e-05,
+  "pbo": 0.11428571428571428,
+  "stress_cost_bps": 10.0,
+  "stress_net_log_return": -1.1916058485196155,
+  "trade_count": 1089
+}

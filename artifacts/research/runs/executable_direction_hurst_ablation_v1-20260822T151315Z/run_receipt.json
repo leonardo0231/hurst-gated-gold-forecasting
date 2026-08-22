@@ -1,0 +1,21 @@
+{
+  "batch_id": "executable_direction_hurst_ablation_v1-20260822T151315Z",
+  "bootstrap_iterations": 2000,
+  "code_sha256": "e25ba05d03b4e3cd5260174fd01252334f22bd9c85f62182f4f435341e74af61",
+  "config_sha256": "890a65240096bc04965c9a1f8090ea0276c5a0bce19bfb4ce026d3c4eb7cd4d8",
+  "created_at_utc": "2026-08-22T15:21:23.570445+00:00",
+  "dependency_sha256": "ebc2f0aaeaaf96a08170ee5cef66e71db104faab9f9a3594995010715ece8212",
+  "development_boundary_exclusive": "2023-07-03",
+  "development_frame_sha256": "6187941049667b5338d177c05aef74f2d25727575b9f8243f6b1730f56fce0d6",
+  "development_rows": 3213,
+  "historical_audit_accessed": false,
+  "historical_confirmation_available": false,
+  "hypothesis_card_sha256": "96eb2b33bef978aac82f6b95290b7e84d19d269cc285046abba8f91c20f29623",
+  "partition": "development_reused_previously_exposed",
+  "registry_head": {
+    "record_hash": "2e2adf78501ac0c844b5bd2354d3b3bc1b97a7147e941ffea8a72b7222671e3e",
+    "sequence": 11
+  },
+  "source_file_sha256": "0c6d0b9ee76377d2d7048b53459fa6fc285af25fc21d76fad569454239f79a16",
+  "source_last_date": "2023-06-20"
+}

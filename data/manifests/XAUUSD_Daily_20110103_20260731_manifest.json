@@ -1,0 +1,40 @@
+{
+  "manifest_version": "reconstructed_source_lineage_v1",
+  "manifest_created_at_utc": "2026-08-20T00:00:00Z",
+  "metadata_evidence_status": "reconstructed_on_2026-08-20_from_file_metadata_exact_live_mt5_match_and_configuration",
+  "downloaded_at_utc": "2026-08-07",
+  "source_type": "MT5 broker export",
+  "timeframe": "D1",
+  "daily_candle_policy": "Broker D1 bars observed at 00:00 UTC; next observed D1 bar closes the session",
+  "account": {
+    "company": "MetaQuotes Ltd.",
+    "server": "MetaQuotes-Demo"
+  },
+  "raw_file": {
+    "file": "XAUUSD_Daily_20110103_20260731.csv",
+    "sha256": "36eac4639864f8f9dec7abc3d3b32e301d5f8a02414374585d8bfc22c6393fd8",
+    "rows": 4017,
+    "filesystem_last_write_utc": "2026-08-07T09:48:12Z",
+    "format": "MT5 tab-delimited export",
+    "volume_mapping": "<TICKVOL> -> volume"
+  },
+  "transformation": {
+    "id": "mt5_tab_export_to_canonical_ohlcv_v1",
+    "implementation": "src/hge_gold/data.py::load_mt5_tab_export",
+    "parameters": {
+      "delimiter": "tab",
+      "date_format": "%Y.%m.%d",
+      "volume_source": "tick_volume"
+    }
+  },
+  "files": [
+    {
+      "file": "XAUUSD_Daily_20110103_20260731_model.csv",
+      "sha256": "0c6d0b9ee76377d2d7048b53459fa6fc285af25fc21d76fad569454239f79a16",
+      "symbol": "XAUUSD",
+      "rows": 4017,
+      "start": "2011-01-03T00:00:00",
+      "end": "2026-07-31T00:00:00"
+    }
+  ]
+}

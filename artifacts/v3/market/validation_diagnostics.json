@@ -1,0 +1,25 @@
+{
+  "cpcv": {
+    "groups": 8,
+    "scope": "development_only_diagnostic_not_deployment_estimate",
+    "splits_per_horizon": 28,
+    "test_groups": 2
+  },
+  "deflated_sharpe_ratio": {
+    "implementation": "src/hge_gold/statistics.py",
+    "official_value": null,
+    "reason": "Requires the same complete development-only trial return registry as PBO.",
+    "status": "deferred"
+  },
+  "embargo_rationale": "Zero is appropriate for strictly forward walk-forward folds because no post-validation observations enter training; CPCV applies the configured post-test embargo.",
+  "embargo_rows": 0,
+  "holdout_status": "historical_holdout_v1_previously_revealed",
+  "pbo": {
+    "implementation": "src/hge_gold/statistics.py",
+    "official_value": null,
+    "reason": "Per-observation development net-return paths for every registered trial are not yet persisted.",
+    "status": "deferred"
+  },
+  "selection_uses_holdout": false,
+  "walk_forward": "chronological expanding-window with closed-interval event purging"
+}

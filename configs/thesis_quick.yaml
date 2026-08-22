@@ -2,9 +2,10 @@ project_name: HGE Gold Forecasting Thesis V2
 
 data:
   source: sample
+  source_kind: synthetic
   csv_path: null
   min_rows: 700
-  decision_hour_utc: 22
+  decision_hour_utc: 0
 
 features:
   return_lags: [1, 2, 3, 5, 10, 20]
@@ -21,12 +22,18 @@ targets:
   threshold_floor_bps: 8.0
   transaction_cost_bps: 3.0
   slippage_bps: 2.0
+  actionable_cost_buffer_bps: 2.0
+  execution_lag_bars: 1
+  cost_convention: round_trip_total
 
 splits:
   locked_test_fraction: 0.20
   n_walk_forward_folds: 4
   min_train_rows: 280
   min_validation_rows: 45
+  locked_test_start: null
+  holdout_status: synthetic_software_fixture
+  embargo_rows: 0
 
 models:
   random_seed: 42
@@ -35,6 +42,8 @@ models:
   probability_threshold_max: 0.65
   probability_threshold_steps: 61
   gate_tolerance: 0.005
+  no_trade_probability_margin: 0.05
+  run_ablations: false
 
 evaluation:
   primary_metric: balanced_accuracy
@@ -46,6 +55,6 @@ evaluation:
   bootstrap_block_length: 10
 
 outputs:
-  artifact_dir: artifacts/v2
-  model_dir: models/v2
-  prediction_dir: data/predictions/v2
+  artifact_dir: artifacts/v3/synthetic
+  model_dir: models/v3/synthetic
+  prediction_dir: data/predictions/v3/synthetic
