@@ -1,0 +1,13 @@
+{
+  "boundary_exclusive": "2023-07-03",
+  "end_date": "2023-06-30",
+  "frozen_at_utc": "2026-08-22T16:42:32.765772+00:00",
+  "legacy_combined_source": "D:/Me/Final Project/Project/hurst-gated-gold-forecasting/data/processed/XAUUSD_Daily_20110103_20260731_model.csv",
+  "legacy_combined_source_sha256": "0c6d0b9ee76377d2d7048b53459fa6fc285af25fc21d76fad569454239f79a16",
+  "partition_role": "development_reused_previously_exposed",
+  "path": "prices.csv",
+  "row_count": 3221,
+  "schema_version": "physical_research_partition_v1",
+  "sha256": "e5d90295a128fc37924f6d144a2f03701caf78490152335bcfe82311d974adfa",
+  "start_date": "2011-01-03"
+}

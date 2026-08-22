@@ -1,0 +1,34 @@
+{
+  "schema_version": "independent_qa_attestation_receipt_v1",
+  "generated_at_utc": "2026-08-22T18:00:00Z",
+  "release_recommendation": "reject",
+  "hash_algorithm": "sha256_streaming",
+  "files": [
+    {
+      "path": "docs/independent_qa_remediation_v2.md",
+      "sha256": "a1db8992b63a637eaa083b6b506f24680cd29f76de951c03e20e9a0c58262769"
+    },
+    {
+      "path": "docs/qa_remediation_v2_report.md",
+      "sha256": "26a1758da89c93e2aeb9ee19e7be3c0bae335ff1901644d4004656212dea03c5"
+    },
+    {
+      "path": "artifacts/research/qa/independent_qa_remediation_v2.json",
+      "sha256": "3ed1548a91222ef5a55016612027e13199c7521a7d81d5391520f1e7a0dbd0e0"
+    },
+    {
+      "path": "artifacts/research/qa/qa_remediation_v2_report.json",
+      "sha256": "ff235ff29d37850666261bb3bb3edc17d4e66bfa8bf92222505e99977352d929"
+    },
+    {
+      "path": "artifacts/research/runs/executable_direction_hurst_ablation_v2-20260822T165905Z/run_receipt.json",
+      "sha256": "bd6bf37c85cd495cf2c3114b043d6733557feecdb765d78d538aa5f2b5b02482"
+    },
+    {
+      "path": "artifacts/research/registry/executable_direction_hurst_ablation_v2.jsonl",
+      "sha256": "2340ab37fa44e548d02f03c45718225a7630aa361493bb608065d82d0a460dc0"
+    }
+  ],
+  "registry_head_sha256": "183fb0604debc7eca7791b96d1de331e9ca24acb50d1903a963dda0f7d4074b6",
+  "note": "This receipt supersedes unsupported interpretation claims without mutating the frozen v2 run or registry. Git commit identity provides the repository-level anchor."
+}

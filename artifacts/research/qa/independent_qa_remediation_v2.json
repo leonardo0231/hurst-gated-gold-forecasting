@@ -1,0 +1,47 @@
+{
+  "schema_version": "independent_qa_remediation_v2",
+  "generated_at_utc": "2026-08-22T18:00:00Z",
+  "canonical_batch": "executable_direction_hurst_ablation_v2-20260822T165905Z",
+  "release_recommendation": "reject",
+  "model_release_approved": false,
+  "artifact_publication_scope": "negative_reproducible_research_evidence_with_explicit_limitations_only",
+  "candidate_frozen": false,
+  "confirmation_run": false,
+  "historical_audit_candidate_run": false,
+  "future_out_of_sample_evidence": false,
+  "critical_findings": [
+    {
+      "priority": "P0",
+      "id": "inner_calibration_label_endpoint_purge",
+      "status": "deferred_new_family_required",
+      "risk": "All 60 outer selections use a calibration/evaluation boundary not purged on executable_label_end_index; metrics are not promotion-valid or leakage-free."
+    },
+    {
+      "priority": "P0",
+      "id": "no_release_candidate",
+      "status": "implemented_fail_closed",
+      "risk": "All 12 trials rejected; no candidate, confirmation, audit candidate, or MT5 candidate verification exists."
+    },
+    {
+      "priority": "P1",
+      "id": "statistical_inference_gaps",
+      "status": "deferred_new_family_required",
+      "risk": "No paired Hurst inference, exact common-calendar folds, familywise classification inference, or event-boundary-safe PBO/DSR."
+    },
+    {
+      "priority": "P1",
+      "id": "candidate_freeze_authoritative_eligibility_verification",
+      "status": "deferred_before_any_future_candidate",
+      "risk": "Candidate freeze immutability is enforced, but eligibility is not independently resolved from registry/finalization evidence."
+    }
+  ],
+  "verified_strengths": [
+    "physical audit isolation",
+    "registry hash chain",
+    "run receipt covering 110 outputs and 21 runtime sources",
+    "recoverable quarantine",
+    "single-position non-overlapping economic schedule",
+    "explicitly limited MT5 reconciliation contract"
+  ],
+  "scientific_conclusion": "Reject model release and all profitability, Hurst-advantage, native-MQL5-parity, confirmation, or future-OOS claims. Preserve v2 unchanged as negative reproducible development evidence and fix the statistical defects only in a separately preregistered family."
+}

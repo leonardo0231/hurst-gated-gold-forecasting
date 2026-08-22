@@ -1,5 +1,9 @@
 # Independent QA report
 
+> **SUPERSEDED / HISTORICAL:** این recommendation مربوط به قبل از remediation v2 است.
+> گزارش QA نهاییِ پس از اصلاح در `docs/independent_qa_remediation_v2.md` منتشر می‌شود؛
+> این فایل برای حفظ زنجیرهٔ ممیزی بازنویسی نشده است.
+
 Date: 2026-08-22  
 Canonical batch: `executable_direction_hurst_ablation_v1-20260822T151315Z`  
 Final release recommendation: **reject**

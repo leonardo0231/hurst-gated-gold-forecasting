@@ -1,0 +1,52 @@
+{
+  "schema_version": "qa_remediation_report_v2",
+  "generated_at_utc": "2026-08-22T17:15:00Z",
+  "canonical_batch": "executable_direction_hurst_ablation_v2-20260822T165905Z",
+  "evidence_class": "development_reused_previously_exposed",
+  "candidate_promoted": false,
+  "experiment_count": 12,
+  "promoted_count": 0,
+  "rejected_count": 12,
+  "historical_confirmation_available": false,
+  "historical_audit_accessed": false,
+  "future_out_of_sample_evidence": false,
+  "independent_qa_release_recommendation": "reject",
+  "independent_qa_report": "docs/independent_qa_remediation_v2.md",
+  "best_development_trial": {
+    "experiment_id": "executable_direction_hurst_ablation_v2-no_hurst-h1",
+    "pooled_balanced_accuracy": 0.5203472591332696,
+    "macro_f1": 0.5161772625291106,
+    "balanced_accuracy_nominal_ci_95": [0.5018888327730177, 0.5383681103843684],
+    "net_log_return_5bps": -0.5901086470116947,
+    "net_log_return_10bps": -1.1207107065129946,
+    "decision": "reject"
+  },
+  "hurst_conclusion": "No stable or promotion-eligible incremental Hurst value; paired Hurst-versus-no-Hurst inference is deferred.",
+  "receipt": {
+    "sha256": "bd6bf37c85cd495cf2c3114b043d6733557feecdb765d78d538aa5f2b5b02482",
+    "output_files": 110,
+    "runtime_sources": 21,
+    "validated": true
+  },
+  "registry": {
+    "records": 12,
+    "head_sha256": "183fb0604debc7eca7791b96d1de331e9ca24acb50d1903a963dda0f7d4074b6",
+    "validated": true
+  },
+  "mt5": {
+    "new_candidate_run": false,
+    "reconciliation_contract": "signal_order_entry_fill_exit_fill_cost_v2",
+    "native_mql5_inference": false
+  },
+  "post_freeze_limitations": [
+    "inner OOF calibration/evaluation boundary is not purged on executable label end; all 60 outer selections are affected",
+    "outer folds are not frozen on identical calendar boundaries across horizons",
+    "classification confidence intervals lack familywise adjustment across 12 trials",
+    "PBO partitions do not purge multi-day events crossing partition boundaries",
+    "DSR is not dependence-robust in event time",
+    "Hurst arms lack paired block inference versus no-Hurst",
+    "legacy source timestamp/session provenance is reconstructed",
+    "candidate freeze eligibility is not independently resolved from finalized registry, receipt, and QA evidence"
+  ],
+  "scientific_disposition": "The immutable v2 runner recorded 12 rejections, but calibration-boundary leakage prevents treating its metrics as promotion-valid or leakage-free evidence. It does not support profitability, Hurst advantage, confirmation, historical-audit novelty, MT5 parity, or future out-of-sample claims."
+}

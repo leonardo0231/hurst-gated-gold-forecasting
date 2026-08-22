@@ -1,0 +1,26 @@
+{
+  "batch_id": "executable_direction_hurst_ablation_v2-20260822T165905Z",
+  "finalized_at_utc": "2026-08-22T17:08:41.636631+00:00",
+  "record_hashes": [
+    "0cc8f79775aebc54c7153681678f07273b09b1b2ecb01d6797dcf7d8825de1e9",
+    "8923f809b75dffbe150eee66bb7000ac2d944a6f98b4a7c4793a22660d783670",
+    "fef500b3f7d0e3b9a9bfad5b2aea5d130c18f2830e95960cb8fdcd16991df1ac",
+    "699736fd09fe4b37a3d679ace70ff46d90254f566f4c4d85f60e76e0a9802b2f",
+    "3854671ffcdd9e3e1b45e9eafff19ad0d2601683a90ae883a5af393ea9b106e3",
+    "21b17153f67ab65e25dbebe4176832cbe6667c89faac3cbc1cbf74cff4240ec2",
+    "20f51f09aa7e12ad51c8b45e0d4eb0697f56d4ff94d7a510b3bda32d2818a0da",
+    "7aa317ed69cda3ca8c238223f6824a1cde57d0fd4b1a44ad71a93017bdf2eb94",
+    "68265bec683eb93a13988099a86b16c7e6f4eddfa806034b1287a463fe8da27e",
+    "aa437b65bc60e5e785eb26784337337bc272b14c18fa5468821e2654b47fa7e9",
+    "8c87b24d641822410016923c082c8f616299aebf68a39c82f749d4e3f8bac74a",
+    "183fb0604debc7eca7791b96d1de331e9ca24acb50d1903a963dda0f7d4074b6"
+  ],
+  "registry_head": {
+    "record_hash": "183fb0604debc7eca7791b96d1de331e9ca24acb50d1903a963dda0f7d4074b6",
+    "sequence": 11
+  },
+  "registry_path": "artifacts/research/registry/executable_direction_hurst_ablation_v2.jsonl",
+  "run_receipt_sha256": "bd6bf37c85cd495cf2c3114b043d6733557feecdb765d78d538aa5f2b5b02482",
+  "schema_version": "research_batch_finalization_v2",
+  "state": "finalized"
+}

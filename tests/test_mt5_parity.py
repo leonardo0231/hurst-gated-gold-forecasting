@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pandas as pd
 
-from hge_gold.research_experiments import build_mt5_signal_schedule, replay_mt5_schedule
+from hge_gold.execution_v2 import build_mt5_signal_schedule, replay_mt5_schedule
 
 
 def test_python_and_mt5_bar_open_schedule_are_signal_by_signal_identical() -> None:
@@ -19,8 +19,8 @@ def test_python_and_mt5_bar_open_schedule_are_signal_by_signal_identical() -> No
     mt5_replay = replay_mt5_schedule(python_schedule)
 
     pd.testing.assert_frame_equal(python_schedule, mt5_replay)
-    assert python_schedule["entry_row_index"].tolist() == [11, 16]
-    assert python_schedule["signal"].tolist() == [1, -1]
+    assert python_schedule["entry_row_index"].tolist() == [11, 13, 16]
+    assert python_schedule["signal"].tolist() == [1, 1, -1]
 
 
 def test_schedule_is_deterministic_and_uses_close_before_next_open() -> None:

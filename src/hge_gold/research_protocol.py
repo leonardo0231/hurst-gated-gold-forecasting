@@ -144,6 +144,10 @@ class AppendOnlyExperimentRegistry:
     def __init__(self, path: Path) -> None:
         self.path = path
 
+    @property
+    def lock_path(self) -> Path:
+        return self.path.with_suffix(self.path.suffix + ".lock")
+
     def read_and_validate(self) -> list[dict[str, Any]]:
         if not self.path.exists():
             return []
@@ -181,39 +185,42 @@ class AppendOnlyExperimentRegistry:
         return RegistryHead(sequence=int(last["sequence"]), record_hash=str(last["record_hash"]))
 
     def append(self, payload: Mapping[str, Any]) -> dict[str, Any]:
-        validate_experiment_payload(payload)
-        existing = self.read_and_validate()
-        experiment_id = str(payload["experiment_id"])
-        if any(str(record["experiment_id"]) == experiment_id for record in existing):
-            raise ProtocolViolation(f"Duplicate experiment_id: {experiment_id}")
-        family = str(payload["hypothesis_family"])
-        family_records = [r for r in existing if str(r["hypothesis_family"]) == family]
-        budget = int(payload["declared_family_budget"])
-        if len(family_records) >= budget:
-            raise ProtocolViolation(f"Trial budget exhausted for hypothesis family {family!r}")
-        if any(int(r["declared_family_budget"]) != budget for r in family_records):
-            raise ProtocolViolation("A hypothesis family's declared budget cannot change")
+        from .research_run import ExclusiveFileLock
 
-        previous = GENESIS_HASH if not existing else str(existing[-1]["record_hash"])
-        record: dict[str, Any] = dict(payload)
-        record["sequence"] = len(existing)
-        record["previous_record_hash"] = previous
-        record_hash = _payload_hash(record)
-        record["record_hash"] = record_hash
-        self.path.parent.mkdir(parents=True, exist_ok=True)
-        encoded = canonical_json(record) + b"\n"
-        mode = "xb" if not self.path.exists() else "ab"
-        try:
-            with self.path.open(mode) as handle:
-                handle.write(encoded)
-                handle.flush()
-                os.fsync(handle.fileno())
-        except FileExistsError as exc:
-            raise ProtocolViolation(
-                "Concurrent registry creation detected; retry after audit"
-            ) from exc
-        self.read_and_validate()
-        return record
+        validate_experiment_payload(payload)
+        with ExclusiveFileLock(self.lock_path):
+            existing = self.read_and_validate()
+            experiment_id = str(payload["experiment_id"])
+            if any(str(record["experiment_id"]) == experiment_id for record in existing):
+                raise ProtocolViolation(f"Duplicate experiment_id: {experiment_id}")
+            family = str(payload["hypothesis_family"])
+            family_records = [r for r in existing if str(r["hypothesis_family"]) == family]
+            budget = int(payload["declared_family_budget"])
+            if len(family_records) >= budget:
+                raise ProtocolViolation(f"Trial budget exhausted for hypothesis family {family!r}")
+            if any(int(r["declared_family_budget"]) != budget for r in family_records):
+                raise ProtocolViolation("A hypothesis family's declared budget cannot change")
+
+            previous = GENESIS_HASH if not existing else str(existing[-1]["record_hash"])
+            record: dict[str, Any] = dict(payload)
+            record["sequence"] = len(existing)
+            record["previous_record_hash"] = previous
+            record_hash = _payload_hash(record)
+            record["record_hash"] = record_hash
+            self.path.parent.mkdir(parents=True, exist_ok=True)
+            encoded = canonical_json(record) + b"\n"
+            mode = "xb" if not self.path.exists() else "ab"
+            try:
+                with self.path.open(mode) as handle:
+                    handle.write(encoded)
+                    handle.flush()
+                    os.fsync(handle.fileno())
+            except FileExistsError as exc:
+                raise ProtocolViolation(
+                    "Concurrent registry creation detected; retry after audit"
+                ) from exc
+            self.read_and_validate()
+            return record
 
 
 def assert_trial_budget(

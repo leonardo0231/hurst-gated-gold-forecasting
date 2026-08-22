@@ -1,0 +1,34 @@
+{
+  "arms": [
+    "no_hurst",
+    "current_dfa_hurst",
+    "robust_hurst_regime"
+  ],
+  "audit_prohibition": "No historical_audit_previously_revealed file or metric may be loaded during v2.",
+  "code_manifest_sha256": "0a42a20237a50e4929d5ce9c09090a19e1fda52de701ee2321db910f7274f877",
+  "confirmation_policy": "No fresh historical confirmation exists; only actual future observations can be future out of sample after candidate freeze.",
+  "data_availability_manifest_sha256": "e5369482c11fa3b3522aee52c11edf10a4bd07d63949d3d749e9a72fb10b8b41",
+  "declared_family_budget": 12,
+  "development_data_sha256": "e5d90295a128fc37924f6d144a2f03701caf78490152335bcfe82311d974adfa",
+  "development_manifest_sha256": "ac8bd9e07a9ec68664abb16a5badf0244440eeeb79b0903b6705b606f1e885c7",
+  "executable_config_sha256": "0c0cf90d060cc7329805c6e561e68b6899ab2a1da5e0d2e4d561a06822b818df",
+  "horizons": [
+    1,
+    5,
+    10,
+    20
+  ],
+  "hypothesis_family": "executable_direction_hurst_ablation_v2",
+  "partition_policy": {
+    "audit_access_during_selection": "forbidden",
+    "historical_confirmation": "unavailable_already_exposed",
+    "physical_path": "data/partitions/v2/development/prices.csv",
+    "role": "development_reused_previously_exposed"
+  },
+  "registered_at_utc": "2026-08-22T16:58:51.547482+00:00",
+  "schema_version": "hypothesis_card_v2",
+  "scientific_question": "Does either preregistered causal Hurst representation add stable outer-development value over the identical no-Hurst executable-direction model after corrected non-overlapping costs?",
+  "status": "preregistered_before_execution",
+  "stop_rule": "Run exactly the 12 registered arm-horizon trials once; do not expand v2.",
+  "v1_status": "immutable_exhausted_historical_family_not_rerun"
+}

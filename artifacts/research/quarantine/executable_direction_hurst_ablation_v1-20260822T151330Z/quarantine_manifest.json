@@ -1,0 +1,28 @@
+{
+  "schema_version": "research_quarantine_manifest_v1",
+  "status": "NON_CANONICAL_FAILED_RUN",
+  "quarantined_at_utc": "2026-08-22T17:12:00Z",
+  "hypothesis_family": "executable_direction_hurst_ablation_v1",
+  "batch_timestamp": "20260822T151330Z",
+  "reason": "Incomplete interrupted run: only one of the preregistered twelve experiments exists and no complete immutable run receipt or complete registry batch exists.",
+  "recoverability": "Files were moved without modification and can be restored to their original paths.",
+  "original_roots": {
+    "run": "artifacts/research/runs/executable_direction_hurst_ablation_v1-20260822T151330Z",
+    "predictions": "data/predictions/research/executable_direction_hurst_ablation_v1-20260822T151330Z",
+    "model_specs": "models/research/executable_direction_hurst_ablation_v1-20260822T151330Z"
+  },
+  "quarantine_roots": {
+    "run": "artifacts/research/quarantine/executable_direction_hurst_ablation_v1-20260822T151330Z/run",
+    "predictions": "artifacts/research/quarantine/executable_direction_hurst_ablation_v1-20260822T151330Z/predictions",
+    "model_specs": "artifacts/research/quarantine/executable_direction_hurst_ablation_v1-20260822T151330Z/model_specs"
+  },
+  "files": [
+    {"original_path": "artifacts/research/runs/executable_direction_hurst_ablation_v1-20260822T151330Z/executable_direction_hurst_ablation_v1-no_hurst-h1/calibration_uncertainty.json", "sha256": "56c7f301d3c353d63a0b17d5f56c8f8f5c71b365d35347e84f86f9c9851e54f0", "bytes": 393},
+    {"original_path": "artifacts/research/runs/executable_direction_hurst_ablation_v1-20260822T151330Z/executable_direction_hurst_ablation_v1-no_hurst-h1/economic_benchmarks.json", "sha256": "42ba09f23bef7919c15e6d53822a2285c116d0e014e54b7113fdb02306a548bf", "bytes": 520},
+    {"original_path": "artifacts/research/runs/executable_direction_hurst_ablation_v1-20260822T151330Z/executable_direction_hurst_ablation_v1-no_hurst-h1/outer_fold_metrics.json", "sha256": "e96746b0a052358f423fc7eda9968c0caf4afcfa6eec154a1a3509a6fb9a4606", "bytes": 1600},
+    {"original_path": "artifacts/research/runs/executable_direction_hurst_ablation_v1-20260822T151330Z/executable_direction_hurst_ablation_v1-no_hurst-h1/promotion_decision.json", "sha256": "5de4e246bedb554d4d06f5e4cf2eeb75623dbd5d5e5649cef18c112134d81b81", "bytes": 1762},
+    {"original_path": "artifacts/research/runs/executable_direction_hurst_ablation_v1-20260822T151330Z/executable_direction_hurst_ablation_v1-no_hurst-h1/split_manifest.json", "sha256": "2916f8d7a98efebe6ba6684aa11d6c2d85c12478173f358fae2978d30a80fd83", "bytes": 1072537},
+    {"original_path": "data/predictions/research/executable_direction_hurst_ablation_v1-20260822T151330Z/executable_direction_hurst_ablation_v1-no_hurst-h1.csv", "sha256": "86a10300d18152d10a1f820bea19d22e94a2d8f0c40eef88a9c0136daaa29629", "bytes": 218025},
+    {"original_path": "models/research/executable_direction_hurst_ablation_v1-20260822T151330Z/executable_direction_hurst_ablation_v1-no_hurst-h1.json", "sha256": "f984fee38fed438f3180a149839f51e8749d147824efd0d1a73b8082c12bd165", "bytes": 2185}
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "balanced_accuracy_ci": [
+    0.43867379000341816,
+    0.5143615343733876
+  ],
+  "baseline_brier": 0.25096265797260137,
+  "baseline_ece": 0.028685647411541088,
+  "bootstrap_iterations": 2000,
+  "candidate_brier": 0.25923708083616,
+  "candidate_ece": 0.20925520748648974,
+  "intercept": 0.05692582879706637,
+  "slope": 0.026587496769655158
+}

@@ -1,0 +1,33 @@
+# Byte-stable frozen V2 evidence and every runtime source covered by its receipt.
+# These paths are intentionally stored without Git line-ending normalization so
+# streaming SHA-256 values remain identical on Windows and Unix checkouts.
+/artifacts/research/finalizations/executable_direction_hurst_ablation_v2-20260822T165905Z.json -text whitespace=cr-at-eol
+/artifacts/research/qa/independent_qa_remediation_v2.json -text whitespace=cr-at-eol
+/artifacts/research/qa/independent_qa_remediation_v2_receipt.json -text whitespace=cr-at-eol
+/artifacts/research/qa/qa_remediation_v2_report.json -text whitespace=cr-at-eol
+/artifacts/research/quarantine/executable_direction_hurst_ablation_v1-20260822T151330Z/** -text whitespace=cr-at-eol
+/artifacts/research/registry/executable_direction_hurst_ablation_v2.jsonl -text whitespace=cr-at-eol
+/artifacts/research/runs/executable_direction_hurst_ablation_v2-20260822T165905Z/** -text whitespace=cr-at-eol
+/data/partitions/v2/** -text whitespace=cr-at-eol
+/docs/independent_qa_remediation_v2.md -text whitespace=-trailing-space,cr-at-eol
+/docs/qa_remediation_v2_report.md -text whitespace=-trailing-space,cr-at-eol
+/protocol/code_manifests/executable_direction_hurst_ablation_v2.json -text whitespace=cr-at-eol
+/protocol/data_availability_manifest.json -text whitespace=cr-at-eol
+/protocol/executable_configs/executable_direction_hurst_ablation_v2.json -text whitespace=cr-at-eol
+/protocol/hypothesis_cards/executable_direction_hurst_ablation_v2.json -text whitespace=cr-at-eol
+/pyproject.toml -text whitespace=cr-at-eol
+/uv.lock -text whitespace=cr-at-eol
+/scripts/run_research_batch_v2.py -text whitespace=cr-at-eol
+/src/hge_gold/calibration.py -text whitespace=cr-at-eol
+/src/hge_gold/config.py -text whitespace=cr-at-eol
+/src/hge_gold/data.py -text whitespace=cr-at-eol
+/src/hge_gold/execution_v2.py -text whitespace=cr-at-eol
+/src/hge_gold/features.py -text whitespace=cr-at-eol
+/src/hge_gold/partitions.py -text whitespace=cr-at-eol
+/src/hge_gold/research_experiments.py -text whitespace=cr-at-eol
+/src/hge_gold/research_experiments_v2.py -text whitespace=cr-at-eol
+/src/hge_gold/research_protocol.py -text whitespace=cr-at-eol
+/src/hge_gold/research_run.py -text whitespace=cr-at-eol
+/src/hge_gold/research_validation.py -text whitespace=cr-at-eol
+/src/hge_gold/statistics.py -text whitespace=cr-at-eol
+/src/hge_gold/targets.py -text whitespace=cr-at-eol

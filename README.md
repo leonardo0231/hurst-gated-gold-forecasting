@@ -1,5 +1,11 @@
 # HGE Gold Forecasting
 
+> **مرجع جاری پژوهش (2026-08-22):** گزارش canonical این شاخه
+> [`docs/qa_remediation_v2_report.md`](docs/qa_remediation_v2_report.md) و run فریز‌شده
+> `executable_direction_hurst_ablation_v2-20260822T165905Z` است. هر ۱۲ آزمایش توسعه رد
+> شدند و هیچ candidate، confirmation، historical audit جدید یا MT5 candidate run ایجاد
+> نشد. اسناد و نتایج قدیمی صرفاً شواهد تاریخی هستند.
+
 Leakage-controlled research software for multi-horizon XAUUSD direction forecasting. The framework separates statistical close-to-close labels from executable next-open labels, uses purged chronological validation, freezes every selection decision before evaluating the historical holdout, and exports fixed signals for MetaTrader 5 Strategy Tester replay. It is research software, not investment advice.
 
 ## Scientific design
@@ -14,7 +20,18 @@ Leakage-controlled research software for multi-horizon XAUUSD direction forecast
 
 The default market configuration uses the checked XAUUSD D1 export from MetaQuotes-Demo. Its `volume` is broker tick volume, not centralized exchange volume. Broker server, timezone, holidays, and candle boundaries can change D1 bars, features, labels, and results.
 
-## Run
+## اجرای canonical توسعه
+
+فقط خانوادهٔ پیش‌ثبت‌شدهٔ v2 از پارتیشن فیزیکی development استفاده می‌کند. این خانواده
+اکنون مصرف و بسته شده است؛ اجرای دوباره عمداً fail-closed خواهد بود:
+
+```powershell
+uv run python scripts/run_research_batch_v2.py --project-root .
+```
+
+فرمان زیر pipeline قدیمی/تاریخی را اجرا می‌کند و نباید برای selection جدید استفاده شود.
+
+## اجرای تاریخی
 
 ```powershell
 uv sync --extra dev --extra mt5

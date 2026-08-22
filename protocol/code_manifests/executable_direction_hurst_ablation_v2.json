@@ -1,0 +1,70 @@
+{
+  "files": [
+    {
+      "path": "pyproject.toml",
+      "sha256": "d0a8074dd575598bcf5eba7ef6e534d4885497239647ef42100861e0cb0ac4c7"
+    },
+    {
+      "path": "uv.lock",
+      "sha256": "ebc2f0aaeaaf96a08170ee5cef66e71db104faab9f9a3594995010715ece8212"
+    },
+    {
+      "path": "scripts/run_research_batch_v2.py",
+      "sha256": "e4b5b874cf4ac28c123750a4f2beface7bfceff38daecb9a9d23a8e706c368e0"
+    },
+    {
+      "path": "src/hge_gold/calibration.py",
+      "sha256": "e0c108bd622109ec4125d7b301362703657d6aa5a416110d4961f849552b94be"
+    },
+    {
+      "path": "src/hge_gold/config.py",
+      "sha256": "63cd259e3aad4078f70137a94b9cae7f9c86077d6901e64aab6897b139ae25d5"
+    },
+    {
+      "path": "src/hge_gold/data.py",
+      "sha256": "59e87951a4e400cbf8fc7d09409fca77e8f5b02e628202109657b40ff34183a2"
+    },
+    {
+      "path": "src/hge_gold/execution_v2.py",
+      "sha256": "c3b90bc5b32da1bcfaa4beb5d3581ca80aee9208423b4a79453914f903e1ea9a"
+    },
+    {
+      "path": "src/hge_gold/features.py",
+      "sha256": "71f02cde2adc08452ec54c51cf6117b1c21372aef0b8cd2fe64f53b2451f2f1a"
+    },
+    {
+      "path": "src/hge_gold/partitions.py",
+      "sha256": "640f1822beaf5850d8b2f9aaa01c8d4571e43ffac64eea6b3dba80ed7c755fc0"
+    },
+    {
+      "path": "src/hge_gold/research_experiments.py",
+      "sha256": "e25ba05d03b4e3cd5260174fd01252334f22bd9c85f62182f4f435341e74af61"
+    },
+    {
+      "path": "src/hge_gold/research_experiments_v2.py",
+      "sha256": "4a42972b55a6a5e6c075a5a42c9a768052a01a381361ed0a34906fe8f146a907"
+    },
+    {
+      "path": "src/hge_gold/research_protocol.py",
+      "sha256": "9f7e83202a1791fd7345c097f9cdc7608d824fc5c590082ae4fc7af14ae63686"
+    },
+    {
+      "path": "src/hge_gold/research_run.py",
+      "sha256": "cc5f3f370e50262f06853a52653730ec8c0cb16140b4de645c8ff1f75291bece"
+    },
+    {
+      "path": "src/hge_gold/research_validation.py",
+      "sha256": "2707612042f83490968ecc0f129705f1fc4868fcabd6c7f924eaca43f5f64330"
+    },
+    {
+      "path": "src/hge_gold/statistics.py",
+      "sha256": "5c38743dd6f239109cc5fdc955f8ee55ff1d4b60f9c40cc046f03af2c5c8b9e7"
+    },
+    {
+      "path": "src/hge_gold/targets.py",
+      "sha256": "84a22ab1224cf908e0825b23e3d6633eee54a7c130356009fab2d74e060fea44"
+    }
+  ],
+  "hypothesis_family": "executable_direction_hurst_ablation_v2",
+  "schema_version": "preregistered_runtime_code_manifest_v2"
+}

@@ -1,5 +1,10 @@
 # Research-improvement loop: implementation and results
 
+> **SUPERSEDED / HISTORICAL:** این گزارش batch نامعتبر اقتصادی v1 را مستند می‌کند و
+> مرجع جاری نیست. نتیجهٔ اصلاح v2 در
+> [`qa_remediation_v2_report.md`](qa_remediation_v2_report.md) ثبت شده است؛ خود v1 و
+> registry آن برای ممیزی بدون تغییر حفظ شده‌اند.
+
 Date: 2026-08-22  
 Canonical development batch: `executable_direction_hurst_ablation_v1-20260822T151315Z`  
 Scientific outcome: **all 12 registered experiments rejected; no candidate frozen**

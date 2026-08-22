@@ -1,0 +1,20 @@
+{
+  "baseline_cost_bps": 5.0,
+  "benchmark_deltas": {
+    "always_long": -0.1274859715503318,
+    "always_short": 0.06618284691470853,
+    "cash": -0.05764481456696818,
+    "momentum": -0.02806137693549711,
+    "trend": 0.03702454700244397
+  },
+  "candidate_net_log_return": -0.05764481456696818,
+  "declared_multiplicity_trials": 12,
+  "dsr_probability": 0.09397291092475174,
+  "non_overlapping_trades": 54,
+  "pbo": 0.2714285714285714,
+  "pbo_common_observations": 2339,
+  "pbo_trial_count": 12,
+  "schedule": "single_position_non_overlapping_v2",
+  "stress_cost_bps": 10.0,
+  "stress_net_log_return": -0.08462458030432243
+}
