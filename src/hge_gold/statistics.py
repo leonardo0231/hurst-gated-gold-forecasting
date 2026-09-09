@@ -206,13 +206,19 @@ def paired_block_sign_flip_test(
         contribution = 0.0
         for class_index, label in enumerate((0, 1)):
             mask = truth[block] == label
+            # For class 0 the balanced-accuracy contribution is the true-negative
+            # rate, so a prediction of 0 is correct.  Class 1 uses the true-positive
+            # rate, where a prediction of 1 is correct.
+            correct_difference = (
+                prediction_b[block][mask].astype(int) - prediction_a[block][mask].astype(int)
+                if label == 0
+                else prediction_a[block][mask].astype(int)
+                - prediction_b[block][mask].astype(int)
+            )
             contribution += (
                 0.5
                 * float(
-                    (
-                        prediction_a[block][mask].astype(int)
-                        - prediction_b[block][mask].astype(int)
-                    ).sum()
+                    correct_difference.sum()
                 )
                 / class_totals[class_index]
             )

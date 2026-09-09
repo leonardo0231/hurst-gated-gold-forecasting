@@ -16,7 +16,7 @@
     {"path": "src/hge_gold/research_protocol.py", "sha256": "9f7e83202a1791fd7345c097f9cdc7608d824fc5c590082ae4fc7af14ae63686"},
     {"path": "src/hge_gold/research_run.py", "sha256": "cc5f3f370e50262f06853a52653730ec8c0cb16140b4de645c8ff1f75291bece"},
     {"path": "src/hge_gold/research_validation.py", "sha256": "d56a179c336ba3fa4dd641d31e5e47d9897c32f8fdcef96acb20813157ad06e9"},
-    {"path": "src/hge_gold/statistics.py", "sha256": "8cc3df63d9ea117463e537fb040c6652d1334e24ca5af1a15f9767d4b034acd9"},
+    {"path": "src/hge_gold/statistics.py", "sha256": "b5362001edf3b709f6ffb64c148f9e3f77efcbc27092f2a09eec48ede5423926"},
     {"path": "src/hge_gold/targets.py", "sha256": "84a22ab1224cf908e0825b23e3d6633eee54a7c130356009fab2d74e060fea44"}
   ]
 }

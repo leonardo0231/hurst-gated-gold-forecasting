@@ -1,0 +1,9 @@
+{
+  "batch_id": "executable_direction_hurst_ablation_v3-20260909T144207Z",
+  "error_message": "Paired block contributions do not reproduce observed metric delta",
+  "error_type": "AssertionError",
+  "failed_at_utc": "2026-09-09T14:43:48.253360+00:00",
+  "schema_version": "failed_research_run_receipt_v2",
+  "staging_path": "/workspace/scratch/a344d315bff4/artifacts/research/.staging/executable_direction_hurst_ablation_v3-20260909T144207Z",
+  "state": "failed"
+}

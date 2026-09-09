@@ -167,8 +167,8 @@ def test_paired_bootstrap_is_reproducible() -> None:
 
 def test_paired_block_sign_flip_is_reproducible() -> None:
     truth = np.tile(np.asarray([0, 1]), 120)
-    no_hurst = np.where(truth == 1, 0.62, 0.38)
-    hurst = np.where(truth == 1, 0.70, 0.30)
+    no_hurst = np.full(len(truth), 0.62)
+    hurst = np.where(truth == 1, 0.70, 0.38)
 
     first = paired_block_sign_flip_test(
         truth, hurst, no_hurst, block_length=10, n_permutations=200, seed=7
@@ -178,6 +178,7 @@ def test_paired_block_sign_flip_is_reproducible() -> None:
     )
 
     assert first == second
+    assert first.observed_delta == pytest.approx(0.5)
     assert 0.0 <= first.p_raw <= 1.0
 
 

@@ -26,7 +26,7 @@
   "stop_rule": "Run exactly the 12 registered arm-horizon trials once; do not expand v3.",
   "v2_status": "immutable_historical_audited_defective_secondary_calibration_boundary",
   "executable_config_sha256": "897cdcabd8174a7f65b93be9a871b1a8816f02f3750cf6e7000ce9f4a31bad83",
-  "code_manifest_sha256": "8d5efeeef738bc722210f3593710cc239acc3f6b3b4e0277a066830135db9a4b",
+  "code_manifest_sha256": "21ade5e704fc3344b8d52fdf203e0a33ec518b16f8ffdd940cb107e96c145292",
   "development_manifest_sha256": "ac8bd9e07a9ec68664abb16a5badf0244440eeeb79b0903b6705b606f1e885c7",
   "development_data_sha256": "e5d90295a128fc37924f6d144a2f03701caf78490152335bcfe82311d974adfa",
   "data_availability_manifest_sha256": "e5369482c11fa3b3522aee52c11edf10a4bd07d63949d3d749e9a72fb10b8b41"
