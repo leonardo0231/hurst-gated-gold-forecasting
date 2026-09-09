@@ -1,11 +1,13 @@
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import dataclass
 from itertools import combinations
-from math import e, log, sqrt
+from math import ceil, e, log, sqrt
 from statistics import NormalDist
 
 import numpy as np
+from sklearn.metrics import balanced_accuracy_score
 
 
 @dataclass(frozen=True)
@@ -36,6 +38,224 @@ class SharpeDiagnostic:
     skewness: float
     kurtosis: float
     periods_per_year: float
+
+
+@dataclass(frozen=True)
+class PairedBlockBootstrapResult:
+    """Moving-block uncertainty for a paired metric difference."""
+
+    metric: str
+    block_length: int
+    n_resamples: int
+    confidence: float
+    seed: int
+    observed_a: float
+    observed_b: float
+    observed_delta: float
+    ci_low: float
+    ci_high: float
+
+
+@dataclass(frozen=True)
+class PairedBlockSignFlipResult:
+    """Block sign-flip inference for a paired metric contrast."""
+
+    metric: str
+    block_length: int
+    block_count: int
+    n_permutations: int
+    seed: int
+    observed_delta: float
+    p_raw: float
+
+
+def _validate_paired_probabilities(
+    y_true: np.ndarray,
+    probability_a: np.ndarray,
+    probability_b: np.ndarray,
+    *,
+    metric: str,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    if metric != "balanced_accuracy":
+        raise ValueError("Only the preregistered balanced_accuracy metric is supported")
+    truth = np.asarray(y_true, dtype=int)
+    first = np.asarray(probability_a, dtype=float)
+    second = np.asarray(probability_b, dtype=float)
+    if truth.ndim != 1 or first.ndim != 1 or second.ndim != 1:
+        raise ValueError("Paired inference inputs must be one-dimensional")
+    if len({len(truth), len(first), len(second)}) != 1 or len(truth) < 4:
+        raise ValueError("Paired inference inputs must have equal length and at least four rows")
+    if np.unique(truth).size != 2:
+        raise ValueError("Balanced-accuracy inference requires both target classes")
+    if not np.isfinite(np.column_stack((first, second))).all():
+        raise ValueError("Paired probabilities must be finite")
+    if np.any((first < 0.0) | (first > 1.0)) or np.any((second < 0.0) | (second > 1.0)):
+        raise ValueError("Paired probabilities must lie in [0, 1]")
+    return truth, first, second
+
+
+def _moving_block_indices(n: int, block_length: int, rng: np.random.Generator) -> np.ndarray:
+    if block_length < 1 or block_length > n:
+        raise ValueError("block_length must be between one and the sample size")
+    starts = rng.integers(0, n - block_length + 1, size=ceil(n / block_length))
+    indices = [index for start in starts for index in range(int(start), int(start) + block_length)]
+    return np.asarray(indices[:n], dtype=int)
+
+
+def _paired_metric(truth: np.ndarray, probability: np.ndarray, *, metric: str) -> float:
+    if metric != "balanced_accuracy":
+        raise ValueError("Only the preregistered balanced_accuracy metric is supported")
+    return float(balanced_accuracy_score(truth, probability >= 0.5))
+
+
+def paired_block_bootstrap_metric_difference(
+    y_true: np.ndarray,
+    probability_a: np.ndarray,
+    probability_b: np.ndarray,
+    block_length: int,
+    n_resamples: int,
+    seed: int,
+    metric: str = "balanced_accuracy",
+    confidence: float = 0.95,
+) -> PairedBlockBootstrapResult:
+    """Compute a paired moving-block bootstrap CI for ``A - B``.
+
+    One moving-block index draw is applied to both arms and the common target vector. Draws
+    containing only one target class are rejected because balanced accuracy is undefined for
+    the missing class. The retry limit is deterministic and fail-closed.
+    """
+
+    truth, first, second = _validate_paired_probabilities(
+        y_true, probability_a, probability_b, metric=metric
+    )
+    if n_resamples < 1 or not 0.0 < confidence < 1.0:
+        raise ValueError("n_resamples must be positive and confidence must lie in (0, 1)")
+    n = len(truth)
+    if block_length < 1 or block_length > n:
+        raise ValueError("block_length must be between one and the sample size")
+    observed_a = _paired_metric(truth, first, metric=metric)
+    observed_b = _paired_metric(truth, second, metric=metric)
+    observed_delta = observed_a - observed_b
+    rng = np.random.default_rng(np.random.SeedSequence([int(seed), int(block_length), 701]))
+    deltas: list[float] = []
+    attempts = 0
+    while len(deltas) < n_resamples:
+        attempts += 1
+        if attempts > n_resamples * 100:
+            raise RuntimeError("Unable to draw enough two-class paired bootstrap samples")
+        indices = _moving_block_indices(n, block_length, rng)
+        sampled_truth = truth[indices]
+        if np.unique(sampled_truth).size != 2:
+            continue
+        deltas.append(
+            _paired_metric(sampled_truth, first[indices], metric=metric)
+            - _paired_metric(sampled_truth, second[indices], metric=metric)
+        )
+    alpha = 1.0 - confidence
+    ci_low, ci_high = np.quantile(np.asarray(deltas), [alpha / 2.0, 1.0 - alpha / 2.0])
+    return PairedBlockBootstrapResult(
+        metric=metric,
+        block_length=int(block_length),
+        n_resamples=int(n_resamples),
+        confidence=float(confidence),
+        seed=int(seed),
+        observed_a=observed_a,
+        observed_b=observed_b,
+        observed_delta=observed_delta,
+        ci_low=float(ci_low),
+        ci_high=float(ci_high),
+    )
+
+
+def paired_block_sign_flip_test(
+    y_true: np.ndarray,
+    probability_a: np.ndarray,
+    probability_b: np.ndarray,
+    block_length: int,
+    n_permutations: int,
+    seed: int,
+    metric: str = "balanced_accuracy",
+) -> PairedBlockSignFlipResult:
+    """Run a two-sided paired block sign-flip test for ``A - B``.
+
+    Blocks are consecutive, non-overlapping chronological groups. Each block receives one
+    random sign, preserving within-block dependence. Contributions are class-normalized so
+    their sum equals the global balanced-accuracy contrast exactly.
+    """
+
+    truth, first, second = _validate_paired_probabilities(
+        y_true, probability_a, probability_b, metric=metric
+    )
+    if n_permutations < 1:
+        raise ValueError("n_permutations must be positive")
+    n = len(truth)
+    if block_length < 1 or block_length > n:
+        raise ValueError("block_length must be between one and the sample size")
+    if len(np.unique(truth)) != 2:
+        raise ValueError("Sign-flip inference requires both target classes")
+
+    prediction_a = first >= 0.5
+    prediction_b = second >= 0.5
+    class_totals = np.asarray([(truth == label).sum() for label in (0, 1)], dtype=float)
+    blocks = [
+        np.arange(start, min(start + block_length, n), dtype=int)
+        for start in range(0, n, block_length)
+    ]
+    contributions: list[float] = []
+    for block in blocks:
+        contribution = 0.0
+        for class_index, label in enumerate((0, 1)):
+            mask = truth[block] == label
+            contribution += (
+                0.5
+                * float(
+                    (
+                        prediction_a[block][mask].astype(int)
+                        - prediction_b[block][mask].astype(int)
+                    ).sum()
+                )
+                / class_totals[class_index]
+            )
+        contributions.append(contribution)
+    contribution_array = np.asarray(contributions, dtype=float)
+    observed_delta = _paired_metric(truth, first, metric=metric) - _paired_metric(
+        truth, second, metric=metric
+    )
+    if not np.isclose(contribution_array.sum(), observed_delta, atol=1e-12, rtol=0.0):
+        raise AssertionError("Paired block contributions do not reproduce observed metric delta")
+    rng = np.random.default_rng(np.random.SeedSequence([int(seed), int(block_length), 907]))
+    exceedances = 0
+    observed_abs = abs(observed_delta)
+    for _ in range(n_permutations):
+        signs = rng.choice(np.asarray([-1.0, 1.0]), size=len(contribution_array))
+        permuted = abs(float(np.dot(signs, contribution_array)))
+        if permuted >= observed_abs - 1e-15:
+            exceedances += 1
+    p_raw = (1.0 + exceedances) / (n_permutations + 1.0)
+    return PairedBlockSignFlipResult(
+        metric=metric,
+        block_length=int(block_length),
+        block_count=len(blocks),
+        n_permutations=int(n_permutations),
+        seed=int(seed),
+        observed_delta=float(observed_delta),
+        p_raw=float(p_raw),
+    )
+
+
+def holm_adjust(p_values: Sequence[float]) -> tuple[float, ...]:
+    """Return Holm step-down adjusted p-values in the original order."""
+
+    values = np.asarray(tuple(float(value) for value in p_values), dtype=float)
+    if values.ndim != 1 or values.size == 0 or not np.isfinite(values).all():
+        raise ValueError("p_values must be a non-empty finite vector")
+    if np.any((values < 0.0) | (values > 1.0)):
+        raise ValueError("p_values must lie in [0, 1]")
+    order = np.argsort(values, kind="stable")
+    adjusted_sorted = np.maximum.accumulate(values[order] * (len(values) - np.arange(len(values))))
+    adjusted = np.empty_like(values)
+    adjusted[order] = np.minimum(adjusted_sorted, 1.0)
+    return tuple(float(value) for value in adjusted)
 
 
 def _validate_returns(returns: np.ndarray, *, minimum_columns: int = 1) -> np.ndarray:

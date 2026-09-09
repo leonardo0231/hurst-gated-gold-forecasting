@@ -31,6 +31,8 @@ import pandas as pd
 from numpy.typing import NDArray
 from sklearn.metrics import balanced_accuracy_score, brier_score_loss, f1_score, recall_score
 
+from .research_protocol import ProtocolViolation
+
 
 @dataclass(frozen=True)
 class ResearchFold:
@@ -161,6 +163,140 @@ class PromotionDecision:
             "checks": dict(self.checks),
             "reasons": list(self.reasons),
         }
+
+
+def _as_integer_array(values: Sequence[int] | np.ndarray, *, name: str) -> np.ndarray:
+    """Return a one-dimensional integer array, rejecting non-finite values."""
+
+    result = np.asarray(values)
+    if result.ndim != 1:
+        raise ValueError(f"{name} must be one-dimensional")
+    if result.size == 0:
+        return result.astype(int)
+    try:
+        numeric = result.astype(float)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"{name} must contain integer-like values") from exc
+    if not np.isfinite(numeric).all() or not np.equal(numeric, np.floor(numeric)).all():
+        raise ValueError(f"{name} must contain finite integer-like values")
+    return numeric.astype(int)
+
+
+def calibration_label_overlap_mask(
+    calibration_label_end_indices: Sequence[int] | np.ndarray,
+    prediction_row_ids: Sequence[int] | np.ndarray,
+) -> np.ndarray:
+    """Return calibration events whose closed label interval reaches prediction time.
+
+    The caller must separately establish that calibration rows occur before the prediction
+    window.  Given that chronology, the canonical closed-interval rule is exactly
+    ``label_end_index < prediction_start_row`` for retained calibration events.
+    """
+
+    label_ends = _as_integer_array(
+        calibration_label_end_indices, name="calibration_label_end_indices"
+    )
+    prediction_rows = _as_integer_array(prediction_row_ids, name="prediction_row_ids")
+    if prediction_rows.size == 0:
+        raise ValueError("prediction_row_ids cannot be empty")
+    return label_ends >= int(prediction_rows.min())
+
+
+def purge_calibration_against_prediction_window(
+    calibration: pd.DataFrame,
+    *,
+    label_end_column: str,
+    prediction_start_row: int,
+) -> tuple[pd.DataFrame, dict[str, int | None]]:
+    """Purge calibration events whose closed label interval overlaps evaluation.
+
+    This is the single canonical secondary-boundary implementation used by the v3 runner
+    and by the independent sigmoid guard.  The returned frame preserves all columns and
+    chronological row order.  An empty retained frame is valid; deterministic calibration
+    eligibility decides whether sigmoid fitting may proceed.
+    """
+
+    required = {"row_id", label_end_column}
+    missing = required.difference(calibration.columns)
+    if missing:
+        raise ValueError(f"Calibration frame is missing required columns: {sorted(missing)}")
+    if not isinstance(prediction_start_row, int | np.integer):
+        raise ValueError("prediction_start_row must be an integer")
+
+    ordered = calibration.sort_values("row_id", kind="stable").reset_index(drop=True).copy()
+    row_ids = _as_integer_array(ordered["row_id"].to_numpy(), name="calibration row_id")
+    label_ends = _as_integer_array(
+        ordered[label_end_column].to_numpy(), name=f"calibration {label_end_column}"
+    )
+    if row_ids.size and np.unique(row_ids).size != row_ids.size:
+        raise ValueError("Calibration row_id values must be unique")
+    if row_ids.size and np.any(label_ends < row_ids):
+        raise ValueError("Calibration label endpoints must be at or after row_id")
+
+    overlap = calibration_label_overlap_mask(label_ends, np.asarray([prediction_start_row]))
+    retained = ordered.loc[~overlap].reset_index(drop=True)
+    retained_ends = _as_integer_array(
+        retained[label_end_column].to_numpy(), name=f"retained {label_end_column}"
+    )
+    residual_overlap = (
+        int(
+            np.count_nonzero(
+                calibration_label_overlap_mask(retained_ends, np.asarray([prediction_start_row]))
+            )
+        )
+        if retained_ends.size
+        else 0
+    )
+    metadata: dict[str, int | None] = {
+        "raw_count": int(len(ordered)),
+        "purged_count": int(np.count_nonzero(overlap)),
+        "retained_count": int(len(retained)),
+        "max_raw_label_end": int(label_ends.max()) if label_ends.size else None,
+        "max_retained_label_end": int(retained_ends.max()) if retained_ends.size else None,
+        "prediction_start_row": int(prediction_start_row),
+        "overlap_count_after_purge": residual_overlap,
+    }
+    if residual_overlap:
+        raise AssertionError("Canonical calibration purge left label overlap")
+    return retained, metadata
+
+
+def assert_exact_paired_alignment(
+    reference: pd.DataFrame,
+    candidate: pd.DataFrame,
+    *,
+    target_column: str = "executable_direction_binary",
+    reference_name: str = "reference",
+    candidate_name: str = "candidate",
+) -> dict[str, Any]:
+    """Require identical row and target sequences before paired inference."""
+
+    required = {"row_id", target_column}
+    for name, frame in ((reference_name, reference), (candidate_name, candidate)):
+        missing = required.difference(frame.columns)
+        if missing:
+            raise ProtocolViolation(f"{name} prediction frame is missing: {sorted(missing)}")
+    left = reference.sort_values("row_id", kind="stable").reset_index(drop=True)
+    right = candidate.sort_values("row_id", kind="stable").reset_index(drop=True)
+    left_rows = left["row_id"].to_numpy(dtype=int)
+    right_rows = right["row_id"].to_numpy(dtype=int)
+    left_targets = left[target_column].to_numpy(dtype=float)
+    right_targets = right[target_column].to_numpy(dtype=float)
+    if not np.array_equal(left_rows, right_rows):
+        raise ProtocolViolation(
+            f"Paired row alignment failed: {reference_name} and {candidate_name} differ"
+        )
+    if not np.array_equal(left_targets, right_targets, equal_nan=True):
+        raise ProtocolViolation(
+            f"Paired target alignment failed: {reference_name} and {candidate_name} differ"
+        )
+    return {
+        "reference": reference_name,
+        "candidate": candidate_name,
+        "row_count": int(len(left)),
+        "row_ids_identical": True,
+        "y_true_identical": True,
+    }
 
 
 REQUIRED_QA_FLAGS = frozenset(
@@ -464,9 +600,7 @@ def _ece(y_true: np.ndarray, probability_up: np.ndarray, n_bins: int = 10) -> fl
     return float(result)
 
 
-def _bootstrap_indices(
-    n: int, block_length: int, rng: np.random.Generator
-) -> NDArray[np.int_]:
+def _bootstrap_indices(n: int, block_length: int, rng: np.random.Generator) -> NDArray[np.int_]:
     starts = rng.integers(0, n - block_length + 1, size=ceil(n / block_length))
     blocks = [np.arange(start, start + block_length, dtype=int) for start in starts]
     return np.asarray(np.concatenate(blocks)[:n], dtype=int)
