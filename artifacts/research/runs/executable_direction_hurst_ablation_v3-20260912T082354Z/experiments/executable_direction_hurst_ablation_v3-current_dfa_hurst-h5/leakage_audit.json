@@ -1,0 +1,202 @@
+{
+  "primary": {
+    "folds": [
+      {
+        "fold_id": "outer_01",
+        "inner": [
+          {
+            "fold_id": "outer_01_inner_01",
+            "overlap_count": 0
+          },
+          {
+            "fold_id": "outer_01_inner_02",
+            "overlap_count": 0
+          },
+          {
+            "fold_id": "outer_01_inner_03",
+            "overlap_count": 0
+          }
+        ],
+        "overlap_count": 0
+      },
+      {
+        "fold_id": "outer_02",
+        "inner": [
+          {
+            "fold_id": "outer_02_inner_01",
+            "overlap_count": 0
+          },
+          {
+            "fold_id": "outer_02_inner_02",
+            "overlap_count": 0
+          },
+          {
+            "fold_id": "outer_02_inner_03",
+            "overlap_count": 0
+          }
+        ],
+        "overlap_count": 0
+      },
+      {
+        "fold_id": "outer_03",
+        "inner": [
+          {
+            "fold_id": "outer_03_inner_01",
+            "overlap_count": 0
+          },
+          {
+            "fold_id": "outer_03_inner_02",
+            "overlap_count": 0
+          },
+          {
+            "fold_id": "outer_03_inner_03",
+            "overlap_count": 0
+          }
+        ],
+        "overlap_count": 0
+      },
+      {
+        "fold_id": "outer_04",
+        "inner": [
+          {
+            "fold_id": "outer_04_inner_01",
+            "overlap_count": 0
+          },
+          {
+            "fold_id": "outer_04_inner_02",
+            "overlap_count": 0
+          },
+          {
+            "fold_id": "outer_04_inner_03",
+            "overlap_count": 0
+          }
+        ],
+        "overlap_count": 0
+      },
+      {
+        "fold_id": "outer_05",
+        "inner": [
+          {
+            "fold_id": "outer_05_inner_01",
+            "overlap_count": 0
+          },
+          {
+            "fold_id": "outer_05_inner_02",
+            "overlap_count": 0
+          },
+          {
+            "fold_id": "outer_05_inner_03",
+            "overlap_count": 0
+          }
+        ],
+        "overlap_count": 0
+      }
+    ],
+    "inner_overlap_count": 0,
+    "outer_overlap_count": 0,
+    "primary_purge_verified": true
+  },
+  "qa_flags": {
+    "audit_isolated": true,
+    "feature_causality_verified": true,
+    "leakage_free": true,
+    "manifest_verified": true,
+    "paired_alignment_verified": true,
+    "primary_purge_verified": true,
+    "provenance_complete": false,
+    "reproducible": true,
+    "secondary_calibration_purge_verified": true
+  },
+  "secondary_calibration": [
+    {
+      "calibration": "sigmoid",
+      "evaluation_start_row": 675,
+      "margin": 0.0,
+      "max_raw_label_end": 680,
+      "max_retained_label_end": 674,
+      "outer_fold": "outer_01",
+      "overlap_count_after_purge": 0,
+      "primary_purge_verified": true,
+      "purged_count": 6,
+      "raw_calibration_count": 329,
+      "retained_count": 323,
+      "secondary_calibration_purge_verified": true,
+      "sigmoid_eligibility_reason": "eligible",
+      "sigmoid_eligible": true,
+      "sigmoid_finite_probability": true,
+      "sigmoid_retained_class_count": 2
+    },
+    {
+      "calibration": "none",
+      "evaluation_start_row": 991,
+      "margin": 0.0,
+      "max_raw_label_end": 996,
+      "max_retained_label_end": 990,
+      "outer_fold": "outer_02",
+      "overlap_count_after_purge": 0,
+      "primary_purge_verified": true,
+      "purged_count": 6,
+      "raw_calibration_count": 645,
+      "retained_count": 639,
+      "secondary_calibration_purge_verified": true,
+      "sigmoid_eligibility_reason": "eligible",
+      "sigmoid_eligible": true,
+      "sigmoid_finite_probability": true,
+      "sigmoid_retained_class_count": 2
+    },
+    {
+      "calibration": "none",
+      "evaluation_start_row": 1307,
+      "margin": 0.0,
+      "max_raw_label_end": 1312,
+      "max_retained_label_end": 1306,
+      "outer_fold": "outer_03",
+      "overlap_count_after_purge": 0,
+      "primary_purge_verified": true,
+      "purged_count": 6,
+      "raw_calibration_count": 961,
+      "retained_count": 955,
+      "secondary_calibration_purge_verified": true,
+      "sigmoid_eligibility_reason": "eligible",
+      "sigmoid_eligible": true,
+      "sigmoid_finite_probability": true,
+      "sigmoid_retained_class_count": 2
+    },
+    {
+      "calibration": "sigmoid",
+      "evaluation_start_row": 1623,
+      "margin": 0.05,
+      "max_raw_label_end": 1628,
+      "max_retained_label_end": 1622,
+      "outer_fold": "outer_04",
+      "overlap_count_after_purge": 0,
+      "primary_purge_verified": true,
+      "purged_count": 6,
+      "raw_calibration_count": 1277,
+      "retained_count": 1271,
+      "secondary_calibration_purge_verified": true,
+      "sigmoid_eligibility_reason": "eligible",
+      "sigmoid_eligible": true,
+      "sigmoid_finite_probability": true,
+      "sigmoid_retained_class_count": 2
+    },
+    {
+      "calibration": "none",
+      "evaluation_start_row": 1939,
+      "margin": 0.05,
+      "max_raw_label_end": 1944,
+      "max_retained_label_end": 1938,
+      "outer_fold": "outer_05",
+      "overlap_count_after_purge": 0,
+      "primary_purge_verified": true,
+      "purged_count": 6,
+      "raw_calibration_count": 1593,
+      "retained_count": 1587,
+      "secondary_calibration_purge_verified": true,
+      "sigmoid_eligibility_reason": "eligible",
+      "sigmoid_eligible": true,
+      "sigmoid_finite_probability": true,
+      "sigmoid_retained_class_count": 2
+    }
+  ]
+}

@@ -8,6 +8,9 @@
 - Historical run: `executable_direction_hurst_ablation_v2-20260822T165905Z`
 - Repair family: `executable_direction_hurst_ablation_v3`
 - Audit status at initialization: v2 is immutable historical evidence and is not valid for final leakage-free inference.
+- Execution status: completed on 2026-09-12 in batch `executable_direction_hurst_ablation_v3-20260912T082354Z`.
+- Finalization record: `artifacts/research/finalizations/executable_direction_hurst_ablation_v3-20260912T082354Z.json`.
+- Final evidence includes all 12 preregistered trials, 60 outer-fold selections, zero post-purge secondary overlaps, and paired inference for both Hurst contrasts.
 
 The working tree was clean after `git fetch --all --prune`, and all remote references were inspected before the repair branch was created.
 
@@ -40,7 +43,7 @@ The historical v2 family declares exactly 12 trials:
 - inner choices: no calibration/sigmoid calibration and no-trade margins 0.00/0.05;
 - five outer folds and three inner folds.
 
-v3 will preserve this search space and estimator semantics while making all reproducibility-critical defaults explicit in a new family specification.
+v3 preserved this search space and estimator semantics while making all reproducibility-critical defaults explicit in a new family specification. The final run recorded the same configuration and code-manifest hashes in its receipt and registry records.
 
 ## DFA1 source truth
 
@@ -48,4 +51,8 @@ The current implementation in `features.py` computes a causal rolling DFA1 estim
 
 ## Required v3 controls
 
-The repaired family will carry the executable label endpoint through inner predictions, purge calibration rows using the canonical closed-interval rule `calibration_label_end_index < evaluation_start_row_id`, and pass the same endpoint arrays into an independent fail-closed sigmoid guard. Sigmoid eligibility will be deterministic and recorded before any outer result interpretation. v3 will also prove exact common-calendar row and target alignment across the two preregistered contrasts and generate block-aware paired inference with Holm correction.
+The repaired family carries the executable label endpoint through inner predictions, purges calibration rows using the canonical closed-interval rule `calibration_label_end_index < evaluation_start_row_id`, and passes the same endpoint arrays into an independent fail-closed sigmoid guard. Sigmoid eligibility is deterministic and recorded before any outer result interpretation. The final v3 run also proves exact common-calendar row and target alignment across the two preregistered contrasts and generates block-aware paired inference with Holm correction. The full result tables and interpretation are in `docs/research/hurst_ablation_v3_results.md`.
+
+## Final execution findings
+
+The repaired run finalized successfully; its receipt records `primary_purge_verified=true`, `secondary_calibration_purge_verified=true`, `paired_alignment_verified=true`, `trial_count=12`, `outer_selection_count=60`, and `secondary_overlap_max=0`. The primary DFA1-vs-no-Hurst paired deltas are negative at H1, H5, H10, and H20, with 95% block-bootstrap intervals crossing zero and Holm-adjusted p-values of 0.449955 at all four horizons. Therefore the repair makes the comparison valid but does not support an incremental DFA1-Hurst benefit on this development partition.
