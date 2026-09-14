@@ -1,0 +1,33 @@
+{
+  "schema_version": "hypothesis_card_v3",
+  "hypothesis_family": "executable_direction_hurst_ablation_v3",
+  "status": "preregistered_before_execution",
+  "registered_at_utc": "2026-09-09T00:00:00Z",
+  "scientific_question": "Does either preregistered causal Hurst representation add stable outer-development value over the identical no-Hurst executable-direction model after secondary calibration label-interval purge?",
+  "arms": [
+    "no_hurst",
+    "current_dfa_hurst",
+    "robust_hurst_regime"
+  ],
+  "horizons": [1, 5, 10, 20],
+  "declared_family_budget": 12,
+  "search_space_policy": "Exactly 3 arms x 4 horizons; fixed Logistic Regression estimator; calibration and margin are inner selection alternatives only.",
+  "primary_contrast": "current_dfa_hurst vs no_hurst",
+  "secondary_contrast": "robust_hurst_regime vs no_hurst",
+  "multiplicity_policy": "Holm correction across the four preregistered horizons within each contrast family; the robust family remains secondary.",
+  "secondary_calibration_purge": "Retain only calibration events with executable_label_end_index < evaluation_start_row_id.",
+  "audit_prohibition": "No historical_audit_previously_revealed file or metric may be loaded during v3 development selection.",
+  "partition_policy": {
+    "role": "development_reused_previously_exposed",
+    "physical_path": "data/partitions/v2/development/prices.csv",
+    "audit_access_during_selection": "forbidden",
+    "historical_confirmation": "unavailable_already_exposed"
+  },
+  "stop_rule": "Run exactly the 12 registered arm-horizon trials once; do not expand v3.",
+  "v2_status": "immutable_historical_audited_defective_secondary_calibration_boundary",
+  "executable_config_sha256": "897cdcabd8174a7f65b93be9a871b1a8816f02f3750cf6e7000ce9f4a31bad83",
+  "code_manifest_sha256": "21ade5e704fc3344b8d52fdf203e0a33ec518b16f8ffdd940cb107e96c145292",
+  "development_manifest_sha256": "ac8bd9e07a9ec68664abb16a5badf0244440eeeb79b0903b6705b606f1e885c7",
+  "development_data_sha256": "e5d90295a128fc37924f6d144a2f03701caf78490152335bcfe82311d974adfa",
+  "data_availability_manifest_sha256": "e5369482c11fa3b3522aee52c11edf10a4bd07d63949d3d749e9a72fb10b8b41"
+}

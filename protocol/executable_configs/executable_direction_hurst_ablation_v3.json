@@ -1,0 +1,185 @@
+{
+  "schema_version": "executable_research_config_v3",
+  "hypothesis_family": "executable_direction_hurst_ablation_v3",
+  "declared_family_budget": 12,
+  "minimum_development_rows": 3000,
+  "partition": {
+    "role": "development_reused_previously_exposed",
+    "physical_path": "data/partitions/v2/development/prices.csv",
+    "audit_access_during_selection": "forbidden",
+    "historical_confirmation": "unavailable_already_exposed"
+  },
+  "feature_availability": {
+    "decision": "after completed D1 bar t",
+    "earliest_entry": "next observed broker D1 open t+1",
+    "external_sources": "none",
+    "future_backfill": "forbidden"
+  },
+  "feature_config": {
+    "return_lags": [1, 2, 3, 5, 10, 20],
+    "windows": [5, 10, 20, 63, 126],
+    "hurst_windows": [64, 128],
+    "regime_window": 252,
+    "min_feature_coverage": 0.7
+  },
+  "feature_selection": {
+    "no_hurst": "all_non_hurst_features",
+    "current_dfa_hurst": "base_plus_current_dfa1_features",
+    "robust_hurst_regime": "base_plus_robust_regime_features"
+  },
+  "target_config": {
+    "horizons": [1, 5, 10, 20],
+    "selection_target": "executable_direction_binary_open_t+1_to_open_t+1+h",
+    "volatility_window": 63,
+    "volatility_min_periods": 40,
+    "threshold_k": 0.35,
+    "threshold_floor_bps": 8.0,
+    "transaction_cost_bps": 3.0,
+    "slippage_bps": 2.0,
+    "actionable_cost_buffer_bps": 2.0,
+    "execution_lag_bars": 1,
+    "cost_convention": "round_trip_total"
+  },
+  "folds": {
+    "outer_folds": 5,
+    "inner_folds": 3,
+    "outer_min_train_rows": 800,
+    "inner_min_train_rows": 300,
+    "outer_min_validation_rows": 120,
+    "inner_min_validation_rows": 60,
+    "pre_validation_gap_rows": 0,
+    "label_endpoint": "executable_label_end_index",
+    "purge_rule": "train_label_end_index < validation_start_row_id",
+    "common_calendar": true,
+    "post_validation_embargo_rows": 0,
+    "post_validation_embargo_rationale": "strictly forward expanding folds never train on future validation rows"
+  },
+  "model": {
+    "estimator": "logistic_regression",
+    "imputer": "median",
+    "imputer_missing_indicator": true,
+    "imputer_keep_empty_features": false,
+    "scaler": "standard",
+    "scaler_with_mean": true,
+    "scaler_with_std": true,
+    "estimator_parameters": {
+      "C": 0.2,
+      "penalty": "l2",
+      "solver": "lbfgs",
+      "fit_intercept": true,
+      "class_weight": "balanced",
+      "max_iter": 2000,
+      "tol": 0.0001,
+      "random_state": 42
+    }
+  },
+  "calibration": {
+    "ece_bins": 10,
+    "sigmoid": {
+      "minimum_samples": 40,
+      "C": 1000000.0,
+      "penalty": "l2",
+      "solver": "lbfgs",
+      "fit_intercept": true,
+      "max_iter": 100,
+      "tol": 0.0001,
+      "random_state": 42
+    }
+  },
+  "inner_selection": {
+    "calibration_fraction": 0.6666666667,
+    "calibration_options": ["none", "sigmoid"],
+    "no_trade_margins": [0.0, 0.05],
+    "ranking": [
+      "balanced_accuracy",
+      "macro_f1",
+      "cumulative_net_return_after_5bps",
+      "prefer_smaller_margin",
+      "prefer_no_calibration_on_tie"
+    ],
+    "secondary_purge": "calibration_label_end_index < evaluation_start_row_id"
+  },
+  "economics": {
+    "baseline_cost_bps": 5.0,
+    "stress_cost_bps": 10.0,
+    "periods_per_year": 252.0,
+    "benchmark_schedule": "same active trade rows as candidate",
+    "position_policy": "one position; exit processed before same-open next entry"
+  },
+  "uncertainty": {
+    "method": "joint_moving_block_bootstrap",
+    "primary_block_length": 10,
+    "sensitivity_block_lengths": [5, 20],
+    "bootstrap_iterations": 2000,
+    "confidence": 0.95
+  },
+  "inference": {
+    "metric": "balanced_accuracy",
+    "primary_contrast": "current_dfa_hurst_vs_no_hurst",
+    "secondary_contrast": "robust_hurst_regime_vs_no_hurst",
+    "bootstrap": {
+      "method": "moving_block",
+      "block_length": 10,
+      "iterations": 10000,
+      "confidence": 0.95,
+      "seed": 42
+    },
+    "sign_flip": {
+      "method": "non_overlapping_chronological_block_sign_flip",
+      "block_length": 10,
+      "permutations": 10000,
+      "seed": 42
+    },
+    "multiplicity_correction": "holm",
+    "multiplicity_families": {
+      "primary": "four horizons for current_dfa_hurst_vs_no_hurst",
+      "secondary": "four horizons for robust_hurst_regime_vs_no_hurst; Holm applied within secondary family"
+    }
+  },
+  "hurst_estimator": {
+    "method": "DFA1",
+    "input": "log_price_first_difference",
+    "increment_order": 1,
+    "windows": [64, 128],
+    "minimum_observations": 32,
+    "scale_min": 4,
+    "scale_growth": 2,
+    "max_scale": "floor(n_increments/3)",
+    "detrend_order": 1,
+    "segment_scheme": "forward_backward_nonoverlapping",
+    "minimum_usable_scales": 3,
+    "near_constant_increment_std_floor": 1e-12
+  },
+  "robust_hurst": {
+    "regime_window": 252,
+    "min_periods": 126,
+    "low_quantile": 0.33,
+    "high_quantile": 0.67,
+    "input": "causal_median_of_dfa1_windows",
+    "threshold_input": "one-period-lagged_hurst_summary"
+  },
+  "provenance": {
+    "complete": false,
+    "reason": "source is broker-specific MetaQuotes-Demo D1 data with reconstructed session provenance"
+  },
+  "promotion_gate": {
+    "expected_outer_folds": 5,
+    "minimum_median_balanced_accuracy": 0.6,
+    "minimum_pooled_macro_f1": 0.55,
+    "minimum_pooled_class_recall": 0.5,
+    "minimum_folds_at_055": 4,
+    "minimum_fold_balanced_accuracy": 0.5,
+    "chance_level": 0.5,
+    "maximum_brier_increase": 0.005,
+    "maximum_ece_increase": 0.01,
+    "minimum_non_overlapping_trades": 30,
+    "maximum_pbo": 0.2,
+    "minimum_dsr_probability": 0.95
+  },
+  "multiplicity": {
+    "declared_trials": 12,
+    "pbo_partitions": 8,
+    "pbo_universe": "all 12 trials on common outer OOF rows",
+    "dsr_universe": "annual Sharpe distribution of all 12 trials"
+  }
+}

@@ -1,0 +1,781 @@
+{
+  "created_at_utc": "2026-09-12T08:34:43.677102+00:00",
+  "metadata": {
+    "batch_id": "executable_direction_hurst_ablation_v3-20260912T082354Z",
+    "code_manifest_sha256": "21ade5e704fc3344b8d52fdf203e0a33ec518b16f8ffdd940cb107e96c145292",
+    "config_sha256": "897cdcabd8174a7f65b93be9a871b1a8816f02f3750cf6e7000ce9f4a31bad83",
+    "feature_causality_verified": true,
+    "git_commit_sha": "c3377374ef62b0e2e6e8b91b985707a11de1af10",
+    "historical_audit_accessed": false,
+    "historical_confirmation_available": false,
+    "hypothesis_family": "executable_direction_hurst_ablation_v3",
+    "outer_selection_count": 60,
+    "paired_alignment_verified": true,
+    "partition_role": "development_reused_previously_exposed",
+    "primary_purge_verified": true,
+    "registry_path": "artifacts/research/registry/executable_direction_hurst_ablation_v3.jsonl",
+    "secondary_calibration_purge_verified": true,
+    "secondary_overlap_max": 0,
+    "trial_count": 12,
+    "v2_preservation_hashes": {
+      "registry": "2340ab37fa44e548d02f03c45718225a7630aa361493bb608065d82d0a460dc0",
+      "run_receipt": "bd6bf37c85cd495cf2c3114b043d6733557feecdb765d78d538aa5f2b5b02482"
+    }
+  },
+  "outputs": [
+    {
+      "path": "experiment_inventory.json",
+      "sha256": "042c39b7acc95343fc63738379af31d1a2b8e9d7ba95cedc2d0f4a7381a30f6d",
+      "size_bytes": 14897
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-current_dfa_hurst-h1/calibration_uncertainty.json",
+      "sha256": "5a73bcb7a668d1ac263b234439d1555207420ee6347a7e8c4b3ad4f2441a34f9",
+      "size_bytes": 346
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-current_dfa_hurst-h1/economic_benchmarks.json",
+      "sha256": "8bcc5b9fb2db30a937f2d70c32be7c21616cc61eeeaefa4a259de11ded39079d",
+      "size_bytes": 632
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-current_dfa_hurst-h1/leakage_audit.json",
+      "sha256": "f33f9c84a3c5ba4626ba3088394172b52a58a428b3d2d40270e188c71a6ea4a0",
+      "size_bytes": 5440
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-current_dfa_hurst-h1/outer_fold_metrics.json",
+      "sha256": "0f56f36962c8896c7bc5aeba56449a717023f2d0156618108231e9ae445923ab",
+      "size_bytes": 1495
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-current_dfa_hurst-h1/promotion_decision.json",
+      "sha256": "9158d28006c04c4b7e901b16acf4d58826c17868b230a62a281b6ba408e1cb54",
+      "size_bytes": 1709
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-current_dfa_hurst-h1/split_manifest.json",
+      "sha256": "f4f5d2f1fed99028ae9efba297ea5405ab8c287aeac9476f957e45f39b65ac51",
+      "size_bytes": 1014079
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-current_dfa_hurst-h10/calibration_uncertainty.json",
+      "sha256": "6c23b59c31f20ad84f23cab6aed99aef43cd67297dde7dfcdd28069cf823bc8f",
+      "size_bytes": 348
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-current_dfa_hurst-h10/economic_benchmarks.json",
+      "sha256": "a1aa8961a4c2a38a9f93bf1065eb0ddc6b2071e6012d41a6ad055b7a02621e71",
+      "size_bytes": 625
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-current_dfa_hurst-h10/leakage_audit.json",
+      "sha256": "6dc1e854f3a31b81082088aea9cb0c7a62702631071204a94717671354210995",
+      "size_bytes": 5452
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-current_dfa_hurst-h10/outer_fold_metrics.json",
+      "sha256": "1f0d341f5f258097f24046870d1e13ec2d8c892f556598d8fe00eb15f4dadffe",
+      "size_bytes": 1496
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-current_dfa_hurst-h10/promotion_decision.json",
+      "sha256": "fe723518acb3f436c0d8e13634ff2a17b86c038d16ac83b7033ab7a5547311e5",
+      "size_bytes": 1679
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-current_dfa_hurst-h10/split_manifest.json",
+      "sha256": "8166ba2fde47cf627e0883efd4a57578690b7682173a7d9d5a2e64260542a318",
+      "size_bytes": 1006911
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-current_dfa_hurst-h20/calibration_uncertainty.json",
+      "sha256": "ad99b92502955fa69ed094b1ea925ee37772b177f55b2507be04849614e544c4",
+      "size_bytes": 346
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-current_dfa_hurst-h20/economic_benchmarks.json",
+      "sha256": "b2ce80a8c046806fe04fbcb9127cb289aeffd0531f241a6ca5ac340fdd147498",
+      "size_bytes": 626
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-current_dfa_hurst-h20/leakage_audit.json",
+      "sha256": "41b17c9bcae692f33b78b7a8b313df981940e8f7e38f71a678fe2f4410208ff6",
+      "size_bytes": 5448
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-current_dfa_hurst-h20/outer_fold_metrics.json",
+      "sha256": "26a033544e06a7c292efebce93c1582579b1abe1e3a49219d64751a7164cd719",
+      "size_bytes": 1406
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-current_dfa_hurst-h20/promotion_decision.json",
+      "sha256": "0b2e0dd03643ac082e1c71072b37c8dd1a5a20efe054918d65430934e6c57646",
+      "size_bytes": 1756
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-current_dfa_hurst-h20/split_manifest.json",
+      "sha256": "90e8106fcd3581e987d5a5885cb375ec6f08f9a97875ce172624e9edeab1df09",
+      "size_bytes": 999105
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-current_dfa_hurst-h5/calibration_uncertainty.json",
+      "sha256": "f55a84ce9e8c6b08f909c99ca3902711d1b85a2c54f7bf27f1a5c4449b8cbf00",
+      "size_bytes": 341
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-current_dfa_hurst-h5/economic_benchmarks.json",
+      "sha256": "242a43ec684d54e74bf14e4b5e3cd084d2489e718a98e00d23274582e507b1ae",
+      "size_bytes": 628
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-current_dfa_hurst-h5/leakage_audit.json",
+      "sha256": "ef6708ecc479a9e6c5727890c33154239cae12e17be47a4873cb84869c1ad1bb",
+      "size_bytes": 5438
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-current_dfa_hurst-h5/outer_fold_metrics.json",
+      "sha256": "ad5e8ed72c75303ac427b4a3835c0481ecd6c6f1d6164579cb7bf8fa03474710",
+      "size_bytes": 1540
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-current_dfa_hurst-h5/promotion_decision.json",
+      "sha256": "0b2e0dd03643ac082e1c71072b37c8dd1a5a20efe054918d65430934e6c57646",
+      "size_bytes": 1756
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-current_dfa_hurst-h5/split_manifest.json",
+      "sha256": "d3fb58c441b7298ab093d1674996970298ab23abd8240f3bb566126bddbe7dd5",
+      "size_bytes": 1010897
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-no_hurst-h1/calibration_uncertainty.json",
+      "sha256": "4d3f82468ad2604fb557ab881e03bdfe729a71c6e6e5b9ffd4ad821f067e17de",
+      "size_bytes": 345
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-no_hurst-h1/economic_benchmarks.json",
+      "sha256": "7dfd72c9dcefef16429343f4fd5e9607f56893551336e6eaa7f9627489d67986",
+      "size_bytes": 629
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-no_hurst-h1/leakage_audit.json",
+      "sha256": "ae13e4d7cfdb6737d1693f4f0ce8daba533e313ef8c24732422af14f3d2a299d",
+      "size_bytes": 5438
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-no_hurst-h1/outer_fold_metrics.json",
+      "sha256": "11dc8e427950d275777cd09768b3ba11d44fcb02b126851fd5558631a1441dd9",
+      "size_bytes": 1494
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-no_hurst-h1/promotion_decision.json",
+      "sha256": "75f96207517681fd60a07c21fdc129fa1e204c014e7c94cada37897f9b62b55a",
+      "size_bytes": 1597
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-no_hurst-h1/split_manifest.json",
+      "sha256": "f4f5d2f1fed99028ae9efba297ea5405ab8c287aeac9476f957e45f39b65ac51",
+      "size_bytes": 1014079
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-no_hurst-h10/calibration_uncertainty.json",
+      "sha256": "487dc1ca486aef5010c56c092acac52342bf80567762367498b06f6549b07308",
+      "size_bytes": 344
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-no_hurst-h10/economic_benchmarks.json",
+      "sha256": "f91526d54dbbf8d2594a2db94e9464ea3853635872a444c64f35fce437a01d7e",
+      "size_bytes": 627
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-no_hurst-h10/leakage_audit.json",
+      "sha256": "689f0c295905d61878b0d7a9c8daf891d8c719bdd31f73938478dfe8dbdcccfa",
+      "size_bytes": 5445
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-no_hurst-h10/outer_fold_metrics.json",
+      "sha256": "fa20a4ccae1806c14971e60fb7059fd0c41318b0296271a46e5d9826a4921213",
+      "size_bytes": 1540
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-no_hurst-h10/promotion_decision.json",
+      "sha256": "9158d28006c04c4b7e901b16acf4d58826c17868b230a62a281b6ba408e1cb54",
+      "size_bytes": 1709
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-no_hurst-h10/split_manifest.json",
+      "sha256": "8166ba2fde47cf627e0883efd4a57578690b7682173a7d9d5a2e64260542a318",
+      "size_bytes": 1006911
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-no_hurst-h20/calibration_uncertainty.json",
+      "sha256": "7a03bc9461a8abc94fec37a1a8cd00f326ca2c2a81b37b1ecdf6119cda979704",
+      "size_bytes": 346
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-no_hurst-h20/economic_benchmarks.json",
+      "sha256": "2fbe9e04fab721251cc6b4e24c06e0a45c82deaa5fabb597c421c2c1f13ffc1b",
+      "size_bytes": 625
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-no_hurst-h20/leakage_audit.json",
+      "sha256": "c86d27b3a4b48bb2d1f62674fe88e7d6d3e404969f955fa2f82ffadcf5351279",
+      "size_bytes": 5449
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-no_hurst-h20/outer_fold_metrics.json",
+      "sha256": "6391b2647e5853a5b53a6669b1fac4b9debfc87c23820deeb342e590608e3fa9",
+      "size_bytes": 1403
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-no_hurst-h20/promotion_decision.json",
+      "sha256": "0b2e0dd03643ac082e1c71072b37c8dd1a5a20efe054918d65430934e6c57646",
+      "size_bytes": 1756
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-no_hurst-h20/split_manifest.json",
+      "sha256": "90e8106fcd3581e987d5a5885cb375ec6f08f9a97875ce172624e9edeab1df09",
+      "size_bytes": 999105
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-no_hurst-h5/calibration_uncertainty.json",
+      "sha256": "111a0e56f30983e9de4c038a0c2bd301a883f989f12aed524256f47cf3ed7ef9",
+      "size_bytes": 344
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-no_hurst-h5/economic_benchmarks.json",
+      "sha256": "fb14aa7169b89b7e9b2f7d2d4298b5eea69e98fc83e110f5744ba31261992d1e",
+      "size_bytes": 626
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-no_hurst-h5/leakage_audit.json",
+      "sha256": "ef6708ecc479a9e6c5727890c33154239cae12e17be47a4873cb84869c1ad1bb",
+      "size_bytes": 5438
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-no_hurst-h5/outer_fold_metrics.json",
+      "sha256": "161150d8b0f5eb74e4b40145f6468772ba6d5375db782f1a93a8eb58d5e659d9",
+      "size_bytes": 1526
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-no_hurst-h5/promotion_decision.json",
+      "sha256": "0b2e0dd03643ac082e1c71072b37c8dd1a5a20efe054918d65430934e6c57646",
+      "size_bytes": 1756
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-no_hurst-h5/split_manifest.json",
+      "sha256": "d3fb58c441b7298ab093d1674996970298ab23abd8240f3bb566126bddbe7dd5",
+      "size_bytes": 1010897
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-robust_hurst_regime-h1/calibration_uncertainty.json",
+      "sha256": "24bc9d32ae4fe3de75740c60abb9c375e886c5451ff1255294d273be97bb8e83",
+      "size_bytes": 345
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-robust_hurst_regime-h1/economic_benchmarks.json",
+      "sha256": "53b038112a4032d49cf43f8af96dd43ba1161c6a9aa3daff9b9a6cd76937b52e",
+      "size_bytes": 628
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-robust_hurst_regime-h1/leakage_audit.json",
+      "sha256": "4b158da53ff168a7557b59223d34d8f785d4e655ce812a7a43da75ff2ff6979a",
+      "size_bytes": 5434
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-robust_hurst_regime-h1/outer_fold_metrics.json",
+      "sha256": "3873e6d02f089c3a72cf3bca745b544862379370f89a794b204ef8342d498a99",
+      "size_bytes": 1541
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-robust_hurst_regime-h1/promotion_decision.json",
+      "sha256": "e71f03be2101b5d3a00ef38499687c46a7b39646faa482733db06a92a6afa4ce",
+      "size_bytes": 1758
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-robust_hurst_regime-h1/split_manifest.json",
+      "sha256": "f4f5d2f1fed99028ae9efba297ea5405ab8c287aeac9476f957e45f39b65ac51",
+      "size_bytes": 1014079
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-robust_hurst_regime-h10/calibration_uncertainty.json",
+      "sha256": "cf9c861ebf44da9df293c8b6c73db0be27d0ea8b3154e232b19d45f56cf14419",
+      "size_bytes": 347
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-robust_hurst_regime-h10/economic_benchmarks.json",
+      "sha256": "e23a6a8d97e9edd27c7c0903866e1d549b6170647ea41dba8c47bfc28913430d",
+      "size_bytes": 625
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-robust_hurst_regime-h10/leakage_audit.json",
+      "sha256": "acddffb1c45483d860f27f50603b08d89da53655e3781ddcd39ae96fa54d7fe0",
+      "size_bytes": 5443
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-robust_hurst_regime-h10/outer_fold_metrics.json",
+      "sha256": "8a314567fab04a24350e58547464369a159d70405394e8c9bba500cd1c5266ab",
+      "size_bytes": 1540
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-robust_hurst_regime-h10/promotion_decision.json",
+      "sha256": "8c3359aff9e32a69dada5c5214ea0bb1a1661c7a8a4e853283c4dc3ebd6111ff",
+      "size_bytes": 1748
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-robust_hurst_regime-h10/split_manifest.json",
+      "sha256": "8166ba2fde47cf627e0883efd4a57578690b7682173a7d9d5a2e64260542a318",
+      "size_bytes": 1006911
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-robust_hurst_regime-h20/calibration_uncertainty.json",
+      "sha256": "a4c7262ed1e3dcdd5ec1204719c40bf2a59fa5de36a8c68f42e86eee99189bcb",
+      "size_bytes": 348
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-robust_hurst_regime-h20/economic_benchmarks.json",
+      "sha256": "ff6248a895f8c14fdecf2ccf940dc0c012af4f3d5eec657375bd28b09a0218a7",
+      "size_bytes": 624
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-robust_hurst_regime-h20/leakage_audit.json",
+      "sha256": "6055e12fc194cdf6aba2b295bb1963c47f8717ec92ddc2b8f50b2a4ed04e9472",
+      "size_bytes": 5447
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-robust_hurst_regime-h20/outer_fold_metrics.json",
+      "sha256": "85fe3fae4dd0aabff1949f7a7186478f23261c52090e131b2ad1f86bdb25f9de",
+      "size_bytes": 1422
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-robust_hurst_regime-h20/promotion_decision.json",
+      "sha256": "9158d28006c04c4b7e901b16acf4d58826c17868b230a62a281b6ba408e1cb54",
+      "size_bytes": 1709
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-robust_hurst_regime-h20/split_manifest.json",
+      "sha256": "90e8106fcd3581e987d5a5885cb375ec6f08f9a97875ce172624e9edeab1df09",
+      "size_bytes": 999105
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-robust_hurst_regime-h5/calibration_uncertainty.json",
+      "sha256": "2f5a1597719679e7893d3625bf7c236cd2b05da0785c9092bcd1cbd897b1c8d8",
+      "size_bytes": 342
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-robust_hurst_regime-h5/economic_benchmarks.json",
+      "sha256": "f2660cfd1eb0c111c92a090af5bfa844b6c8e151572cc0f388a1fcd2b523a39f",
+      "size_bytes": 618
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-robust_hurst_regime-h5/leakage_audit.json",
+      "sha256": "095b1dbe675ef6bdf25f3c517e76ed63f761d8b29391da2ad75c6c48129d8e6c",
+      "size_bytes": 5435
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-robust_hurst_regime-h5/outer_fold_metrics.json",
+      "sha256": "93a8f560d83619b17d1b7602f5164f97633a52aed4ee0fec7657499f6e542317",
+      "size_bytes": 1536
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-robust_hurst_regime-h5/promotion_decision.json",
+      "sha256": "69e18dabe6d12ec9cbff792e1ecd9977794a5e08afd92386a023f083fa0273b1",
+      "size_bytes": 1601
+    },
+    {
+      "path": "experiments/executable_direction_hurst_ablation_v3-robust_hurst_regime-h5/split_manifest.json",
+      "sha256": "d3fb58c441b7298ab093d1674996970298ab23abd8240f3bb566126bddbe7dd5",
+      "size_bytes": 1010897
+    },
+    {
+      "path": "feature_membership.json",
+      "sha256": "a9579cd5dcfc580a4ebdc6873409bab249bbce18bb7e4bf8b8bfa0a2b85be561",
+      "size_bytes": 4525
+    },
+    {
+      "path": "inner_selection/executable_direction_hurst_ablation_v3-current_dfa_hurst-h1.csv",
+      "sha256": "f02e83239ca0efa1cc9de673cbb979e4c93442ad39c0356bf6c31d976b5e8789",
+      "size_bytes": 3294
+    },
+    {
+      "path": "inner_selection/executable_direction_hurst_ablation_v3-current_dfa_hurst-h10.csv",
+      "sha256": "ebd6c88ff4b3827e7ecc5c68891430c240e9e1bf781827019076e0f42f4f6a65",
+      "size_bytes": 3373
+    },
+    {
+      "path": "inner_selection/executable_direction_hurst_ablation_v3-current_dfa_hurst-h20.csv",
+      "sha256": "ae69d89961f9b147640c0696ac9d46b8c86f1b90d735da8f4fa6dac350e12f8d",
+      "size_bytes": 3363
+    },
+    {
+      "path": "inner_selection/executable_direction_hurst_ablation_v3-current_dfa_hurst-h5.csv",
+      "sha256": "e339b2257411e463e1c987a407de0d953722665e037212b176781ed09be8ec94",
+      "size_bytes": 3394
+    },
+    {
+      "path": "inner_selection/executable_direction_hurst_ablation_v3-no_hurst-h1.csv",
+      "sha256": "54aa253c211402bd3376808aa30a4d68c0a7e1530f96513d39bfb74a959d950d",
+      "size_bytes": 3260
+    },
+    {
+      "path": "inner_selection/executable_direction_hurst_ablation_v3-no_hurst-h10.csv",
+      "sha256": "798fb4f79f4e3cc0c1617d2e7620c32852067390288e5d17e9b92c5c84308e9a",
+      "size_bytes": 3379
+    },
+    {
+      "path": "inner_selection/executable_direction_hurst_ablation_v3-no_hurst-h20.csv",
+      "sha256": "f8cbc92ee1942e318696ec0eea62a6e6e2f99974e02b4f927a71876a4826b48f",
+      "size_bytes": 3358
+    },
+    {
+      "path": "inner_selection/executable_direction_hurst_ablation_v3-no_hurst-h5.csv",
+      "sha256": "bf5b9b38eaf46cf13c9a5a2a3f02c0b593b3f3df707661f3aa4a569cddb37a91",
+      "size_bytes": 3423
+    },
+    {
+      "path": "inner_selection/executable_direction_hurst_ablation_v3-robust_hurst_regime-h1.csv",
+      "sha256": "4da7607d667bd9c399a2b0ed79a42246421df99be71b0714065637fce8ccdf00",
+      "size_bytes": 3343
+    },
+    {
+      "path": "inner_selection/executable_direction_hurst_ablation_v3-robust_hurst_regime-h10.csv",
+      "sha256": "a329848cb4424f1aed36f8675d53466d0f34c50d37ca38c1c7a8a8734760c5e1",
+      "size_bytes": 3427
+    },
+    {
+      "path": "inner_selection/executable_direction_hurst_ablation_v3-robust_hurst_regime-h20.csv",
+      "sha256": "b8e0e0b24ca17648e85464a3a3044d79f96d0eec306263887188fbf35608064b",
+      "size_bytes": 3354
+    },
+    {
+      "path": "inner_selection/executable_direction_hurst_ablation_v3-robust_hurst_regime-h5.csv",
+      "sha256": "d8a9f61254b81af475f5c8d5be26e4ba70a518695f80996d494bf72f443898da",
+      "size_bytes": 3361
+    },
+    {
+      "path": "model_specs/executable_direction_hurst_ablation_v3-current_dfa_hurst-h1.json",
+      "sha256": "94d70bae4f07698cb8a0ab600cd0a098fa72cfb3f9876cb613d5231537f30550",
+      "size_bytes": 6621
+    },
+    {
+      "path": "model_specs/executable_direction_hurst_ablation_v3-current_dfa_hurst-h10.json",
+      "sha256": "0e7876692742503aa83fa53b012d724d3220d93d3db697148baa511b1c512f80",
+      "size_bytes": 6634
+    },
+    {
+      "path": "model_specs/executable_direction_hurst_ablation_v3-current_dfa_hurst-h20.json",
+      "sha256": "1b5b0dc4a30d4874331741c1655811dd00a421456f599dd4f4fa2477632b14bd",
+      "size_bytes": 6630
+    },
+    {
+      "path": "model_specs/executable_direction_hurst_ablation_v3-current_dfa_hurst-h5.json",
+      "sha256": "86a3305e32e3169f840fb3019ede3c2f667db6bf9a4fc3811e3f7a54aa27229c",
+      "size_bytes": 6619
+    },
+    {
+      "path": "model_specs/executable_direction_hurst_ablation_v3-no_hurst-h1.json",
+      "sha256": "b70b72146bafe455bf2817410b3e2d41bd9d051f234a0046fd57804f87a0bd4f",
+      "size_bytes": 6489
+    },
+    {
+      "path": "model_specs/executable_direction_hurst_ablation_v3-no_hurst-h10.json",
+      "sha256": "510e6355178b431a4c932eeb69038247ca7874a26c288ca76e7f00de59401c03",
+      "size_bytes": 6497
+    },
+    {
+      "path": "model_specs/executable_direction_hurst_ablation_v3-no_hurst-h20.json",
+      "sha256": "f195b8cd3ea1e2ecfd2be4a643767f88610b21c97c3a591d22c8bf36efcac104",
+      "size_bytes": 6501
+    },
+    {
+      "path": "model_specs/executable_direction_hurst_ablation_v3-no_hurst-h5.json",
+      "sha256": "bb0dd2f2bbc669529eb1c522cb93420f2b6e74cafcb939f60ee5b10ffd0c7a76",
+      "size_bytes": 6489
+    },
+    {
+      "path": "model_specs/executable_direction_hurst_ablation_v3-robust_hurst_regime-h1.json",
+      "sha256": "97c7d53ec65c59d1d182c849c82c623c30a01e5279b56e78f9135e5136cd6eda",
+      "size_bytes": 6680
+    },
+    {
+      "path": "model_specs/executable_direction_hurst_ablation_v3-robust_hurst_regime-h10.json",
+      "sha256": "7a1d4188db67a78491c3a895d9890d39989945f1b27cd966b1c2e693d4be60d3",
+      "size_bytes": 6690
+    },
+    {
+      "path": "model_specs/executable_direction_hurst_ablation_v3-robust_hurst_regime-h20.json",
+      "sha256": "a01ffa8d7b450c3bcafd10311956826b97fd4ba9933f8981441932379db0d814",
+      "size_bytes": 6694
+    },
+    {
+      "path": "model_specs/executable_direction_hurst_ablation_v3-robust_hurst_regime-h5.json",
+      "sha256": "62c665de279ed6335d12f08e086ae872ca6b605509ef2617e10bb41beeab54b9",
+      "size_bytes": 6681
+    },
+    {
+      "path": "multiplicity_report.json",
+      "sha256": "a7c7c9ab3b29df849e7c46c7b058df78a40bccafddee71296813c3799e055ec5",
+      "size_bytes": 28674
+    },
+    {
+      "path": "paired_comparisons/dfa1_vs_no_hurst.csv",
+      "sha256": "5edc8551870956d8dce328d8e57588299bfaec771beff9b82f8934552bb604aa",
+      "size_bytes": 1466
+    },
+    {
+      "path": "paired_comparisons/robust_vs_no_hurst.csv",
+      "sha256": "c4ae687ef1ae99f77c8259a1ad801a30a5c667edb00c79d4460453fbd26064f1",
+      "size_bytes": 1488
+    },
+    {
+      "path": "paired_comparisons/table_5_v3.csv",
+      "sha256": "73a0167ff012cda4f658467ac5cccd2bd23cb39fd7c1b19d26a01cdc544e1eab",
+      "size_bytes": 646
+    },
+    {
+      "path": "paired_inference.json",
+      "sha256": "1eb4d7b48fa1a58954ecf67c05c145bbe0a0e8506f248a4be22e725bd56f3edc",
+      "size_bytes": 9367
+    },
+    {
+      "path": "predictions/executable_direction_hurst_ablation_v3-current_dfa_hurst-h1.csv",
+      "sha256": "9af2cec3c7506a428dc5ba39945e0227fcf2ab1bd337940795f5c63241273e54",
+      "size_bytes": 421819
+    },
+    {
+      "path": "predictions/executable_direction_hurst_ablation_v3-current_dfa_hurst-h10.csv",
+      "sha256": "5ad3993d72f778e976bdbde8941322de8270b5640b86f8ae1fbd0ebe42fe2fc4",
+      "size_bytes": 420426
+    },
+    {
+      "path": "predictions/executable_direction_hurst_ablation_v3-current_dfa_hurst-h20.csv",
+      "sha256": "0530d87b9b87a5c8a88530e2da16daa2c3def8d383aede61e8a009d25eb51844",
+      "size_bytes": 413630
+    },
+    {
+      "path": "predictions/executable_direction_hurst_ablation_v3-current_dfa_hurst-h5.csv",
+      "sha256": "7c290cf2c3e435aa7356858ec510f2e4628cc87bedfc5aa69ff05c5f7dc7be6d",
+      "size_bytes": 418530
+    },
+    {
+      "path": "predictions/executable_direction_hurst_ablation_v3-no_hurst-h1.csv",
+      "sha256": "c4f10f66742b21aecd884c86933dad54b50a4f620184307c16593d2534cfd49a",
+      "size_bytes": 420629
+    },
+    {
+      "path": "predictions/executable_direction_hurst_ablation_v3-no_hurst-h10.csv",
+      "sha256": "6a7a9840d3718c2c4c0f1541316feebb05b9ae23f5379da17d0bf7bf5cced941",
+      "size_bytes": 416856
+    },
+    {
+      "path": "predictions/executable_direction_hurst_ablation_v3-no_hurst-h20.csv",
+      "sha256": "7b7581b1f84ac39d6a1548d511c52e7894737a412b9384a76d461c32b123e48b",
+      "size_bytes": 414170
+    },
+    {
+      "path": "predictions/executable_direction_hurst_ablation_v3-no_hurst-h5.csv",
+      "sha256": "ae00f5e2dbc285f0827972243c0be1198c2fbd253f1bd2a3a7787b03a75134db",
+      "size_bytes": 418503
+    },
+    {
+      "path": "predictions/executable_direction_hurst_ablation_v3-robust_hurst_regime-h1.csv",
+      "sha256": "46671e69eec77ea816ce8c3da01456627a48e945d307273942595f2ceeefe520",
+      "size_bytes": 418620
+    },
+    {
+      "path": "predictions/executable_direction_hurst_ablation_v3-robust_hurst_regime-h10.csv",
+      "sha256": "13e72541b062618fa318a6b5f6cf175bab7921836294ad139c9e217ddaa35501",
+      "size_bytes": 415856
+    },
+    {
+      "path": "predictions/executable_direction_hurst_ablation_v3-robust_hurst_regime-h20.csv",
+      "sha256": "4e15d0747559b521818abed0169ea0d89e451a08bbd13b80d7a41e0a522d4817",
+      "size_bytes": 413296
+    },
+    {
+      "path": "predictions/executable_direction_hurst_ablation_v3-robust_hurst_regime-h5.csv",
+      "sha256": "5f3c3b7e1fb7ed084705b419514f1fb30e749ce4b84b540bea59949abb1c1e6c",
+      "size_bytes": 416889
+    },
+    {
+      "path": "return_ledgers/executable_direction_hurst_ablation_v3-current_dfa_hurst-h1.csv",
+      "sha256": "9e3ba746f06a5ea14b8c6198ab28edd79ebc26b8b645ba1196075392860f1635",
+      "size_bytes": 687448
+    },
+    {
+      "path": "return_ledgers/executable_direction_hurst_ablation_v3-current_dfa_hurst-h10.csv",
+      "sha256": "25e625c21982e1ac5000ea7c32e004782bb8016bd46609efad50ec39c93a0f23",
+      "size_bytes": 548037
+    },
+    {
+      "path": "return_ledgers/executable_direction_hurst_ablation_v3-current_dfa_hurst-h20.csv",
+      "sha256": "d8b9e2747ddb86b6ec9f2a54a7a0daa37195fee036dea1e0b3a4923868292043",
+      "size_bytes": 539818
+    },
+    {
+      "path": "return_ledgers/executable_direction_hurst_ablation_v3-current_dfa_hurst-h5.csv",
+      "sha256": "646ecbc236cb3df7cc9a76d2a0d6ae20d09233e4ce4bc032f90e0a571d13ee64",
+      "size_bytes": 585276
+    },
+    {
+      "path": "return_ledgers/executable_direction_hurst_ablation_v3-no_hurst-h1.csv",
+      "sha256": "bbbdde2be8bfbb2f59c7da4b71249ae99b760127f69e50140db78e70f8e5b788",
+      "size_bytes": 690234
+    },
+    {
+      "path": "return_ledgers/executable_direction_hurst_ablation_v3-no_hurst-h10.csv",
+      "sha256": "d4270fd3a1861dfb984f9fa7449657b1d43992a8634882d50f9c92833437fd4e",
+      "size_bytes": 556640
+    },
+    {
+      "path": "return_ledgers/executable_direction_hurst_ablation_v3-no_hurst-h20.csv",
+      "sha256": "f5b781c39b74d8172d57abbb3a8fc9bfe9aadaa4ba84711b8cd8a526c65e6dd0",
+      "size_bytes": 540835
+    },
+    {
+      "path": "return_ledgers/executable_direction_hurst_ablation_v3-no_hurst-h5.csv",
+      "sha256": "52a141617c5fba0042ee46307326f7295f882e4357a68bdf3c5083e31e64d123",
+      "size_bytes": 586974
+    },
+    {
+      "path": "return_ledgers/executable_direction_hurst_ablation_v3-robust_hurst_regime-h1.csv",
+      "sha256": "a44ab0ecac235e5a9b05d5cee3f7e3e2ec2f9d2f37caff7997e2bdf662037f7f",
+      "size_bytes": 783372
+    },
+    {
+      "path": "return_ledgers/executable_direction_hurst_ablation_v3-robust_hurst_regime-h10.csv",
+      "sha256": "c64a10678e72958f70f9b96de2eebcc6fc1a389a86ff1659a4434a72336c3f51",
+      "size_bytes": 562622
+    },
+    {
+      "path": "return_ledgers/executable_direction_hurst_ablation_v3-robust_hurst_regime-h20.csv",
+      "sha256": "3ebc34331eb7d0a6b30539a9c4336016db30bab2acdfca0dcdd649fbd2d8577d",
+      "size_bytes": 537839
+    },
+    {
+      "path": "return_ledgers/executable_direction_hurst_ablation_v3-robust_hurst_regime-h5.csv",
+      "sha256": "fbe5ff905fc19ffc7fc1baaded87bb8aa4b28d29f44a3be87dab5d2a62600190",
+      "size_bytes": 597963
+    },
+    {
+      "path": "secondary_calibration_audit.csv",
+      "sha256": "750ff87c6bd843083d11c948fbfeafd8ea8a234696c4828707a9c6580725efb0",
+      "size_bytes": 6113
+    },
+    {
+      "path": "v2_vs_v3_diagnostic.csv",
+      "sha256": "5c71c5c3a56ea44dd81b7ef6bb1d88fdae56db0798bbffe6c8794b4bd7b7a9b5",
+      "size_bytes": 6729
+    }
+  ],
+  "runtime_sources": [
+    {
+      "path": "data/partitions/v2/development/manifest.json",
+      "sha256": "ac8bd9e07a9ec68664abb16a5badf0244440eeeb79b0903b6705b606f1e885c7",
+      "size_bytes": 654
+    },
+    {
+      "path": "protocol/code_manifests/executable_direction_hurst_ablation_v3.json",
+      "sha256": "21ade5e704fc3344b8d52fdf203e0a33ec518b16f8ffdd940cb107e96c145292",
+      "size_bytes": 2103
+    },
+    {
+      "path": "protocol/data_availability_manifest.json",
+      "sha256": "e5369482c11fa3b3522aee52c11edf10a4bd07d63949d3d749e9a72fb10b8b41",
+      "size_bytes": 5545
+    },
+    {
+      "path": "protocol/executable_configs/executable_direction_hurst_ablation_v3.json",
+      "sha256": "897cdcabd8174a7f65b93be9a871b1a8816f02f3750cf6e7000ce9f4a31bad83",
+      "size_bytes": 5820
+    },
+    {
+      "path": "protocol/hypothesis_cards/executable_direction_hurst_ablation_v3.json",
+      "sha256": "d3d5a7f73a0ffc4f4d05b234e14731223222142e5beb593f3091fe7559893d87",
+      "size_bytes": 2179
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "d0a8074dd575598bcf5eba7ef6e534d4885497239647ef42100861e0cb0ac4c7",
+      "size_bytes": 1212
+    },
+    {
+      "path": "scripts/run_research_batch_v3.py",
+      "sha256": "bad96b03bee1d1db5835eee4ec9664f18e19a32a323ba8c77afd88e59eac3ef4",
+      "size_bytes": 499
+    },
+    {
+      "path": "src/hge_gold/calibration.py",
+      "sha256": "fa1e550abef84c00efd4fbf469a86eb910f14860b83799f52acb2d729c672cc0",
+      "size_bytes": 4951
+    },
+    {
+      "path": "src/hge_gold/config.py",
+      "sha256": "63cd259e3aad4078f70137a94b9cae7f9c86077d6901e64aab6897b139ae25d5",
+      "size_bytes": 11551
+    },
+    {
+      "path": "src/hge_gold/data.py",
+      "sha256": "59e87951a4e400cbf8fc7d09409fca77e8f5b02e628202109657b40ff34183a2",
+      "size_bytes": 6793
+    },
+    {
+      "path": "src/hge_gold/execution_v2.py",
+      "sha256": "c3b90bc5b32da1bcfaa4beb5d3581ca80aee9208423b4a79453914f903e1ea9a",
+      "size_bytes": 9411
+    },
+    {
+      "path": "src/hge_gold/features.py",
+      "sha256": "71f02cde2adc08452ec54c51cf6117b1c21372aef0b8cd2fe64f53b2451f2f1a",
+      "size_bytes": 11712
+    },
+    {
+      "path": "src/hge_gold/partitions.py",
+      "sha256": "640f1822beaf5850d8b2f9aaa01c8d4571e43ffac64eea6b3dba80ed7c755fc0",
+      "size_bytes": 5134
+    },
+    {
+      "path": "src/hge_gold/research_experiments.py",
+      "sha256": "e25ba05d03b4e3cd5260174fd01252334f22bd9c85f62182f4f435341e74af61",
+      "size_bytes": 32413
+    },
+    {
+      "path": "src/hge_gold/research_experiments_v3.py",
+      "sha256": "b8585fc560d9ac94ced1703f5ee8652740da949e8a3a592bf3e39491aaab6bd8",
+      "size_bytes": 70652
+    },
+    {
+      "path": "src/hge_gold/research_protocol.py",
+      "sha256": "9f7e83202a1791fd7345c097f9cdc7608d824fc5c590082ae4fc7af14ae63686",
+      "size_bytes": 15465
+    },
+    {
+      "path": "src/hge_gold/research_run.py",
+      "sha256": "cc5f3f370e50262f06853a52653730ec8c0cb16140b4de645c8ff1f75291bece",
+      "size_bytes": 6638
+    },
+    {
+      "path": "src/hge_gold/research_validation.py",
+      "sha256": "d56a179c336ba3fa4dd641d31e5e47d9897c32f8fdcef96acb20813157ad06e9",
+      "size_bytes": 34629
+    },
+    {
+      "path": "src/hge_gold/statistics.py",
+      "sha256": "b5362001edf3b709f6ffb64c148f9e3f77efcbc27092f2a09eec48ede5423926",
+      "size_bytes": 18503
+    },
+    {
+      "path": "src/hge_gold/targets.py",
+      "sha256": "84a22ab1224cf908e0825b23e3d6633eee54a7c130356009fab2d74e060fea44",
+      "size_bytes": 6932
+    },
+    {
+      "path": "uv.lock",
+      "sha256": "ebc2f0aaeaaf96a08170ee5cef66e71db104faab9f9a3594995010715ece8212",
+      "size_bytes": 154578
+    }
+  ],
+  "schema_version": "immutable_research_run_receipt_v2",
+  "state": "prepared_for_atomic_finalization"
+}
